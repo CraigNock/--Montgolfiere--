@@ -1,10 +1,11 @@
+import { IP } from '../../constants';
 
 const getClosestCity = async (position, changeNearestCity) => {
   
   let currentPosition = [...position];
   // console.log('position at fetch ', currentPosition);
   return(
-    fetch('/api/nearest', {
+    fetch(`${IP}/api/nearest`, {
     method: 'POST',
     headers: {
         "Content-Type": "application/json",

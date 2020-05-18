@@ -29,6 +29,8 @@ const GlassDiv = styled.div`
   z-index: 30000;
   height: 60vh;
   width: 60vw;
+  min-width: 600px;
+  min-height: 400px;
   background-color: rgba(0,0,0,0.1); 
   border-radius: 25%;
   box-shadow: inset 0 50px rgba(255,255,255,0.2), 

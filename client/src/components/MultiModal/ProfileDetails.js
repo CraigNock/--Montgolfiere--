@@ -37,7 +37,7 @@ const ProfileDetails = () => {
     <StyledDiv> 
       <SubDiv> 
         <UserInfo>
-          <StyledImg src={gentleman} />
+          <StyledImg src={profile.imageSrc || gentleman} />
           <SubUser>
             <InfoHeading>Display Name</InfoHeading>
             <InfoValue>{profile.displayName}</InfoValue>

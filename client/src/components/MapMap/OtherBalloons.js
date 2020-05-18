@@ -1,24 +1,24 @@
-import React, { useRef, useEffect, useState } from 'react'; 
-import styled, {keyframes} from 'styled-components'; 
+import React, { useEffect, useState } from 'react'; 
+import styled from 'styled-components'; 
 import { useDispatch, useSelector } from 'react-redux';
 
 import { Marker, Popup } from "react-leaflet";
-import L, { Icon } from "leaflet";
+import { Icon } from "leaflet";
 
 // import useInterval from '../../hooks/use-interval-hook';
 // import pointInCircle from './pointInCircle';
 import markerFilter from './markerfilter';
 
-import { addChat, setStatusAskChat, changeCurrentChat } from '../../reducersActions/chatActions';
-
-import balloon from '../../assets/balloon.svg';
+import { addChat, changeCurrentChat } from '../../reducersActions/chatActions';
+import { IP } from '../../constants';
+// import balloon from '../../assets/balloon.svg';
 import balloon2 from '../../assets/Balloon Icons/hot-air-balloon (6).svg';
 import balloon3 from '../../assets/Balloon Icons/hot-air-balloon (20).svg';
 
-const ballooon = new Icon({
-  iconUrl: balloon,
-  iconSize: [20, 20]
-});
+// const ballooon = new Icon({
+//   iconUrl: balloon,
+//   iconSize: [20, 20]
+// });
 const ballooon22 = new Icon({
   iconUrl: balloon2,
   iconSize: [25, 25]
@@ -31,8 +31,8 @@ const ballooon33 = new Icon({
 //this component will display markers for balloons at different ranges (togglable) may need to limit at higher user count
 const OtherBalloons = ({balloons}) => { 
   const dispatch = useDispatch();
-  const { status, currentChat } = useSelector(state => state.chat);
-  const { location, userId, displayName } = useSelector((state) => state.user.profile);
+  const { status } = useSelector(state => state.chat);
+  const { location, userId } = useSelector((state) => state.user.profile);
   const { viewRange } = useSelector((state) => state.app);
 
   // if(balloons.length > 0) console.log('balloons', balloons);
@@ -78,6 +78,7 @@ const OtherBalloons = ({balloons}) => {
 
   useEffect(()=> {
     if(balloons && balloons.length > 0)filterRanges(5000, 100000, balloons);
+// eslint-disable-next-line
   }, [location])
   
   useEffect(()=> {
@@ -87,7 +88,7 @@ const OtherBalloons = ({balloons}) => {
   const handleRequestChat = async (e) => {
     e.preventDefault();
     setDisable(true);
-    fetch('/startConversation', {
+    fetch(`${IP}/startConversation`, {
       method: 'POST',
       headers: {
         'Accept': 'application/json',
@@ -101,7 +102,7 @@ const OtherBalloons = ({balloons}) => {
       }),
     }).then(res => res.json())
       .then(json => {
-        console.log('json', json);
+        // console.log('json', json);
         dispatch(changeCurrentChat({
           chatId: json.chatId,
           conversation: [
@@ -185,9 +186,6 @@ const OtherBalloons = ({balloons}) => {
 export default OtherBalloons;
 
 
-const StyledDiv = styled.div`
-
-`;
 
 const PopContent = styled.div`
 

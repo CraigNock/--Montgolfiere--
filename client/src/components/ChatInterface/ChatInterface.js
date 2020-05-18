@@ -8,6 +8,7 @@ import * as firebase from 'firebase';
 
 import paper from '../../assets/paper.jpg';
 import ChatMessage from './ChatMessage';
+import { IP } from '../../constants';
 
 import { 
   addChat, 
@@ -34,13 +35,13 @@ const ChatInterface = () => {
       try{ //change content to conversation here and server
         firebase.database().ref('conversations/' + currentChat.chatId + '/conversation').on('child_added', 
         (snapshot, prevChildKey)=>{
-          console.log('hsc snapshot', snapshot.val());
+          // console.log('hsc snapshot', snapshot.val());
           dispatch( updateCurrentChat(snapshot.val()) );
           
         })
       } catch (err) {console.log('err', err)}
     } else {
-      console.log('nope');
+      // console.log('nope');
       dispatch(setStatusNoChat());
       endChat();
       return;
@@ -50,7 +51,7 @@ const ChatInterface = () => {
   const endChat = () => {
     console.log('func endchat');
     firebase.database().ref('conversations/' + currentChat.chatId + '/conversation').off('child_added');
-    fetch(`/removeConversation/${currentChat.chatId}`, {
+    fetch(`${IP}/removeConversation/${currentChat.chatId}`, {
       method: 'PUT',
       headers: {
         'Accept': 'application/json',
@@ -66,9 +67,9 @@ const ChatInterface = () => {
   const handleSendMessage = async (e) => {
     e.preventDefault();
     setDisable(true);
-    console.log('send mesg');
-    console.log('hsm currentChat', currentChat);
-    fetch('/newChatMessage', {
+    // console.log('send mesg');
+    // console.log('hsm currentChat', currentChat);
+    fetch(`${IP}/newChatMessage`, {
       method: 'POST',
       headers: {
         'Accept': 'application/json',
@@ -84,7 +85,7 @@ const ChatInterface = () => {
     })
       .then(res => res.json())
       .then(json => {
-        console.log('nmsg res status', json.status);
+        // console.log('nmsg res status', json.status);
         if(json.status===200) setContent('');
         setDisable(false);
       })
@@ -94,7 +95,7 @@ const ChatInterface = () => {
 // function to prevent jumping to new message if user has scrolled up
   const jumpToggle = (e) => {
     if(e.target.scrollHeight - e.target.scrollTop === e.target.clientHeight){
-      console.log('jumptog');
+      // console.log('jumptog');
       setJumpToNew(true);
     } else {
       setJumpToNew(false);
@@ -116,7 +117,7 @@ const ChatInterface = () => {
         disabled={disable}
         onClick={()=>{
           setDisable(true);
-          console.log('endchat');
+          // console.log('endchat');
           endChat();
         }}
       >

@@ -3,6 +3,7 @@
 const express = require('express');
 const bodyParser = require('body-parser');
 const morgan = require('morgan');
+const cors = require('cors');
 
 //DATABASE HANDLERS
 const { 
@@ -26,10 +27,12 @@ const {
   retrieveImages, 
 } = require('./apiHandlers');
 
-const PORT = 8000;
+const PORT = process.env.PORT || 8000;
 
 express()
+  .use(cors())
   .use(function(req, res, next) {
+    res.header('Access-Control-Allow-Origin', '*');
     res.header(
       'Access-Control-Allow-Methods',
       'OPTIONS, HEAD, GET, PUT, POST, DELETE'

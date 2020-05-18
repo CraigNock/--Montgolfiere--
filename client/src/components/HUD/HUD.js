@@ -1,4 +1,4 @@
-import React, { useRef, useEffect, useState } from 'react'; 
+import React, { useState } from 'react'; 
 import styled, {keyframes} from 'styled-components'; 
 import { useDispatch, useSelector } from 'react-redux';
 
@@ -232,9 +232,9 @@ const StyledDiv = styled.div`
   flex-direction: column;
   /* justify-content: center; */
   width: 15vw;
-  /* min-width: fit-content; */
+  min-width: 150px;
   height: 80vh;
-  min-height: 60vh;
+  min-height: 500px;
   /* overflow: hidden; */
   /* background-image: url(${paper}); */
   /* background-size: cover; */

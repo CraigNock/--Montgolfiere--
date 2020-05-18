@@ -2,6 +2,7 @@
   "name": "montgolfiere",
   "version": "0.1.0",
   "private": true,
+  "homepage": ".",
   "proxy": "http://localhost:8000",
   "dependencies": {
     "@testing-library/jest-dom": "^4.2.4",
@@ -12,7 +13,6 @@
     "firebase": "^7.14.2",
     "immer": "^6.0.3",
     "leaflet": "^1.6.0",
-    "leaflet-drift-marker": "^1.0.3",
     "new-component": "^1.0.1",
     "react": "^16.13.1",
     "react-dom": "^16.13.1",

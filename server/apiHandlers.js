@@ -111,7 +111,7 @@ const retrieveImages = async (req, res) => {
 
   //the search term for the request
   let searchTerm = `city of ${nearestCity} scenic`;
-  console.log('city', nearestCity);
+  // console.log('city', nearestCity);
   //instantiate the image search client
   let credentials = new CognitiveServicesCredentials(serviceKey);
   let imageSearchApiClient = new Search.ImageSearchAPIClient(credentials);
@@ -130,7 +130,7 @@ const retrieveImages = async (req, res) => {
         console.log(`Total number of images returned: ${imageResults.value.length}`);
         // console.log(`First image content url: ${imageResults.value[0].contentUrl}`);
         // console.log('imageResults', imageResults);
-        console.log(`Total number of images found: ${imageResults.value.length}`);
+        // console.log(`Total number of images found: ${imageResults.value.length}`);
         res.status(200).json({
           status: 200,
           images: [

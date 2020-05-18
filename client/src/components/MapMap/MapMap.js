@@ -2,10 +2,10 @@ import React, { useRef, useEffect, useState } from 'react';
 import styled, {keyframes} from 'styled-components'; 
 import { useDispatch, useSelector } from 'react-redux';
 
-import { Map, Marker, Popup, TileLayer, AttributionControl } from "react-leaflet";
+import { Map, TileLayer, AttributionControl } from "react-leaflet";
 // import L, { Icon } from "leaflet";
 
-import balloon from '../../assets/balloon.svg';
+// import balloon from '../../assets/balloon.svg';
 import balloonIconArray from '../MultiModal/balloonArray';
 
 import useInterval from '../../hooks/use-interval-hook';
@@ -22,9 +22,7 @@ import nearbyBalloonSync from './nearbyBalloonSync';
 import OtherBalloons from './OtherBalloons';
 import LensEffect from './LensEffect';
 
-// const ballooon = new Icon({
-//   iconUrl: balloon,
-//   iconSize: [15, 15]});
+import { IP } from '../../constants';
 
 
 const MapMap = () => { 
@@ -91,7 +89,7 @@ const MapMap = () => {
     const { leafletElement } = current;
     if (newLoc[0])
     setTimeout(()=>{
-      console.log('panTo');
+      // console.log('panTo');
       leafletElement.panTo(newLoc, panToOptions)
     }, 100);
 // eslint-disable-next-line
@@ -112,7 +110,7 @@ const MapMap = () => {
       modBearing,
       (windSum * 10 *  profile.elevation) 
     );
-    console.log('newDest', newDest);
+    // console.log('newDest', newDest);
     setNewLoc(newDest);
     } else {
       setNewLoc(mapRef.current.viewport.center);
@@ -127,6 +125,7 @@ const MapMap = () => {
 
   useEffect(() => {
     if(mapRef.current.viewport.center && anchored===false)newLeg();
+  // eslint-disable-next-line
   }, [profile.elevation]);
 
 //STORES BALLOON LOCATION EVERY 10 SECONDS lastVector
@@ -135,7 +134,7 @@ const MapMap = () => {
     const modBearing = (windBearing + profile.direction)>360? 
     (windBearing + profile.direction -360) 
     : (windBearing + profile.direction);
-      fetch('/newLastVector', {
+      fetch(`${IP}/newLastVector`, {
         method: 'PUT',
         headers: {
           'Accept': 'application/json',
@@ -215,7 +214,7 @@ const MapMap = () => {
           onClick={()=>{
             setAnchored(false);
             setLaunch(true);
-            console.log('anchored, launch', anchored, launch);
+            // console.log('anchored, launch', anchored, launch);
             newLeg(false);
           }}
           style={{display: launch? 'none' : 'flex'}}
@@ -226,7 +225,7 @@ const MapMap = () => {
             setAnchored(true)
             newLeg(true);
           }}
-          style={{display: (profile.elevation==1 && !anchored)? 'flex' : 'none'}}
+          style={{display: (profile.elevation===1 && !anchored)? 'flex' : 'none'}}
         >Anchor</StyledButton>
 
         <OtherBalloons balloons={nearbyBalloons} />
@@ -268,6 +267,8 @@ const StyledDiv = styled.div`
   /* background: gray; */
   height: 65vh;
   width: 60vw;
+  min-width: 600px;
+  min-height: 400px;
   border: 15px ridge #b78727;
   box-shadow: 5px 5px 15px 5px rgba(0,0,0,0.53);
   overflow:hidden;

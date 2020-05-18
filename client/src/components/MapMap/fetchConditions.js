@@ -1,12 +1,13 @@
 // import React from 'react';
 import {format, fromUnixTime} from 'date-fns';
+import { IP } from '../../constants';
 
 const fetchConditions = async (position) => {
 
   let currentPosition = [...position];
   // console.log('position at fetch ', currentPosition);
   return(
-    fetch('/api/conditions', {
+    fetch(`${IP}/api/conditions`, {
       method: 'POST',
       headers: {
           "Content-Type": "application/json",

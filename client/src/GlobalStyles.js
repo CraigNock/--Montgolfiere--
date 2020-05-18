@@ -1,5 +1,4 @@
-import React, { useRef, useEffect, useState } from 'react';
-import { useDispatch, useSelector } from 'react-redux';
+
 import { createGlobalStyle } from 'styled-components';
 
 
@@ -15,6 +14,7 @@ const GlobalStyleGlobal = createGlobalStyle`
 
   html, body {
     max-width: 100vw;
+    
   }
 
 
@@ -73,6 +73,7 @@ const GlobalStyleGlobal = createGlobalStyle`
     rgba(157,207,255,1) 83%);
     /* background: linear-gradient(180deg, rgba(0,3,34,1) 0%, rgba(0,18,54,1) 83%); */
     overflow: hidden;
+    /* overflow-x: hidden; */
     color: whitesmoke;
     font-family: 'Poppins', sans-serif;
   }

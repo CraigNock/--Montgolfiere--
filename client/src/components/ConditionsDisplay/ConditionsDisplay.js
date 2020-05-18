@@ -1,6 +1,6 @@
 import React, {useState} from 'react'; 
 import styled, {keyframes} from 'styled-components'; 
-import { useDispatch, useSelector } from 'react-redux';
+import { useSelector } from 'react-redux';
 
 import paper from '../../assets/paper.jpg';
 
@@ -78,9 +78,9 @@ const StyledDiv = styled.div`
   flex-direction: column;
   align-items: flex-end;
   width: 15vw;
-  /* min-width: fit-content; */
+  min-width: 150px;
   height: 80vh;
-  min-height: 60vh;
+  min-height: 500px;
   /* overflow: hidden; */
   /* background-image: url(${paper});
   background-size: cover;

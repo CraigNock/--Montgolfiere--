@@ -118,6 +118,9 @@ const StyledButton = styled.button`
   color: white;
   background: gray;
   font-family: 'Rye', cursive;
+  &:hover {
+    cursor: pointer;
+  }
 `;
 const Tab = styled.div`
   position: absolute;

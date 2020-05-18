@@ -24,6 +24,11 @@ const Header = () => {
     // setShowMenu(false);
     dispatch(toggleModal());
   };
+  const aboutHandle = () => {
+    if(modalValue !== 'about') dispatch(setModalValue('about'));
+    // setShowMenu(false);
+    dispatch(toggleModal());
+  };
 
 
   return (
@@ -43,7 +48,7 @@ const Header = () => {
           <ProButton onClick={()=> modalHandle()}>
             Profile
           </ProButton>
-          <ProButton>
+          <ProButton onClick={()=> aboutHandle()}>
             About
           </ProButton>
           <StylishSpace></StylishSpace>
@@ -116,6 +121,7 @@ const Menu = styled.div`
   background: rgba(0,0,0,.75);
   border-radius: 0 0 0 7px;
   padding: 0 0 .25rem 0;
+  z-index: 10000;
   &:hover{
     display: flex;
   }
@@ -126,7 +132,8 @@ const StyledLink = styled(Link)`
   font-family: 'Fredericka the Great', cursive;
   padding: .25rem .5rem .25rem .75rem;
   &:hover{
-    background: rgba(0,0,0,.25);
+    /* background: rgba(0,0,0,.25); */
+    cursor: context-menu;
   }
 `;
 const ProButton = styled.button`

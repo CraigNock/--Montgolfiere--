@@ -1,11 +1,15 @@
 import React, {useState, useEffect} from 'react'; 
 import styled, {keyframes} from 'styled-components'; 
 
-import { useDispatch, useSelector } from 'react-redux';
+import { useSelector } from 'react-redux';
 
 import paper from '../../assets/paper.jpg';
-
+import { IP } from '../../constants';
 // import { GiSextant } from "react-icons/gi";
+import altitude from '../../assets/placeicons/altitude.svg';
+import buildings from '../../assets/placeicons/buildings.svg';
+import cities from '../../assets/placeicons/cities.svg';
+import constructions from '../../assets/placeicons/constructions.svg';
 
 const NearbyDisplay = ({children}) => { 
   const { nearestCity } = useSelector(state => state.conditions);
@@ -27,7 +31,7 @@ const NearbyDisplay = ({children}) => {
   useEffect(() => {
     // console.log('nearestCity', nearestCity);
     if(nearestCity !== 'Atlantis')
-    fetch(`/api/retrieveImages/${nearestCity.tags.name}`)
+    fetch(`${IP}/api/retrieveImages/${nearestCity.tags.name}`)
       .then(data => data.json())
       .then(data => {
         // console.log('data', data.images);
@@ -41,8 +45,8 @@ const NearbyDisplay = ({children}) => {
         *
       </Tab>
       <ImageDiv>
-        <StyledImg src={imageArray[0] || ''}/>
-        <StyledImg src={imageArray[1] || ''}/>
+        <StyledImg src={imageArray[0] || buildings}/>
+        <StyledImg src={imageArray[1] || altitude}/>
       </ImageDiv>
       <CenterDiv>
         <p> 
@@ -55,8 +59,8 @@ const NearbyDisplay = ({children}) => {
         </p>
       </CenterDiv>
       <ImageDiv>
-        <StyledImg src={imageArray[2] || ''}/>
-        <StyledImg src={imageArray[3] || ''}/>
+        <StyledImg src={imageArray[2] || cities}/>
+        <StyledImg src={imageArray[3] || constructions}/>
       </ImageDiv>
 
       {children}
@@ -98,13 +102,9 @@ const StyledDiv = styled.div`
   justify-content: center;
   align-items:center;
   width: 100%;
-  /* min-width: fit-content; */
+  min-width: 700px;
   height: 100%;
-  /* min-height: 60vh; */
-  /* overflow: hidden; */
-  /* background-image: url(${paper});
-  background-size: cover;
-  opacity: 0.9; */
+  min-height: 150px;
   box-shadow: 0 0 20px 5px rgba(0,0,0,0.33);
   border: 3px solid #674c47;
   border-bottom: none;

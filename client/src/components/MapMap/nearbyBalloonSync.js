@@ -1,7 +1,8 @@
+import { IP } from '../../constants';
 
 
 const nearbyBalloonSync = async (locObj) => {
-  return (fetch('/syncAllBalloons', {
+  return (fetch(`${IP}/syncAllBalloons`, {
     method: 'POST',
     headers: {
       'Accept': 'application/json',

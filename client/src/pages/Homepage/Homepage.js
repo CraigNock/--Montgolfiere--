@@ -19,7 +19,7 @@ import ChatInterface from '../../components/ChatInterface';
 import { addChat, setStatusAskChat, setStatusNoChat, changeCurrentChat } from '../../reducersActions/chatActions';
 
 import paper from '../../assets/paper.jpg';
-
+import { IP } from '../../constants';
 
 const Homepage = () => { 
   const dispatch = useDispatch();
@@ -30,7 +30,8 @@ const Homepage = () => {
 
   const getConversation = async (snapshot) => {
     //get conversation first and make current or whatever then change status
-    fetch(`/getConversation/${snapshot.chatId}`, {
+    console.log('IP', IP);
+    fetch(`${IP}/getConversation/${snapshot.chatId}`, {
       method: 'GET',
       headers: {
         'Accept': 'application/json',
@@ -66,6 +67,7 @@ const Homepage = () => {
       // console.log('conversation added .off');
       // firebase.database().ref('conversations').off('child_added');
     }
+// eslint-disable-next-line
   }, [appStatus]);
 
   useEffect(()=> {
@@ -130,6 +132,7 @@ const StyledDiv = styled.div`
   flex-direction: column;
   /* justify-content: space-between; */
   /* height: 100%; */
+  
 
 `;
 const MainContent = styled.div`
@@ -142,9 +145,9 @@ const MainContent = styled.div`
 const LeftPanel = styled.div`
   position: relative;
   width: 16vw;
-  min-width: fit-content;
+  /* min-width: 150px; */
   height: 80vh;
-  min-height: 60vh;
+  min-height: 500px;
   background: transparent;
   margin: 1rem 0;
   /* border: 1px solid goldenrod; */
@@ -156,8 +159,9 @@ const LeftBackground = styled.div`
   display: flex;
   flex-direction: column;
   width: 15vw;
+  min-width: 150px;
   height: 80vh;
-  min-height: 60vh;
+  min-height: 500px;
   overflow: hidden;
   background-image: url(${paper});
   background-size: cover;
@@ -175,7 +179,7 @@ const RightPanel = styled.div`
   width: 16vw;
   min-width: fit-content;
   height: 80vh;
-  min-height: 60vh;
+  min-height: 500px;
   background: transparent;
   margin: 1rem 0;
   /* border: 1px solid goldenrod; */
@@ -188,8 +192,9 @@ const RightBackground = styled.div`
   flex-direction: column;
   align-items: flex-end;
   width: 15vw;
+  min-width: 150px;
   height: 80vh;
-  min-height: 60vh;
+  min-height: 500px;
   overflow: hidden;
   background-image: url(${paper});
   background-size: cover;
@@ -223,7 +228,9 @@ const BottomBackground = styled.div`
   /* justify-content: center; */
   align-items:center;
   width: 100%;
+  min-width: 700px;
   height: 100%;
+  min-height: 150px;
   overflow: hidden;
   background-image: url(${paper});
   background-size: cover;

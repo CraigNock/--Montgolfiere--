@@ -1,8 +1,8 @@
-import React, {useEffect, useState} from 'react'; 
+import React from 'react'; 
 import styled from 'styled-components'; 
 import { useDispatch, useSelector } from 'react-redux';
 
-import { toggleModal, setModalValue } 
+import { toggleModal } 
 from '../../reducersActions/appActions';
 
 import ProfileDetails from './ProfileDetails';
@@ -14,8 +14,8 @@ import parchment2 from '../../assets/parchment2.png';
 const MultiModal = () => { 
   const dispatch = useDispatch();
   // const [disable, setDisable] = useState(false);
-  const { profile } = useSelector(state => state.user);
-  const { appStatus, modalToggle, modalValue } = useSelector(state => state.app);
+  // const { profile } = useSelector(state => state.user);
+  const { modalToggle, modalValue } = useSelector(state => state.app);
 
   return (  
     <ModalFrame style={{visibility:modalToggle? 'visible' : 'hidden'}} >
@@ -70,7 +70,9 @@ const ModalFront = styled.div`
   align-items: center;
   z-index: 100002;
   height: 70vh;
+  min-height: 400px;
   width: 65vw;
+  min-width: 600px;
   top: 3rem;
   background-image: url(${parchment2});
   background-size: cover;

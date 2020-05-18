@@ -65,7 +65,7 @@ const getUserProfile = async (email) => {
 //type:POST
 //receives:google user data
 const createUserProfile = async (req, res) => {
-  console.log('createUserProfile');
+  // console.log('createUserProfile');
   const returningUser = (await getUserProfile(req.body.email));
   // console.log('returningUser ',returningUser);
 
@@ -252,7 +252,7 @@ const syncAllBalloons = async (req, res) => {
 /////////////////////////
 
 const startConversation = async (req, res) => {
-  console.log('create convo');
+  // console.log('create convo');
   const chatId = await db.ref('/conversations').push().key;
   const newChat = {
     chatId: chatId,
@@ -276,19 +276,21 @@ const startConversation = async (req, res) => {
 };
 
 const getConversation = async (req, res) => {
-  console.log('get convo');
+  // console.log('get convo');
   const { chatId } = req.params;
-  const data = (await queryDatabase('conversations/' + chatId)) || {};
-  console.log('get conv data', data);
-  if(data.conversation) data.conversation = Object.values(data.conversation);
-  res.status(200).json({
-    status:200,
-    data,
-  })
+  try {
+    const data = (await queryDatabase('conversations/' + chatId)) || {};
+    // console.log('get conv data', data);
+    if(data.conversation) data.conversation = Object.values(data.conversation);
+    res.status(200).json({
+      status:200,
+      data,
+    })
+  } catch (err) {console.log('getconv err', err);}
 };
 
 const sendNewMessage = async (req, res) => {
-  console.log('sendmsg req.body', req.body);
+  // console.log('sendmsg req.body', req.body);
   try {
     await db.ref('conversations/' + req.body.chatId + '/conversation').push(req.body);
     res.status(200).json({
@@ -298,7 +300,7 @@ const sendNewMessage = async (req, res) => {
 };
 
 const removeConversation = async (req, res) => {
-  console.log('remove convo');
+  // console.log('remove convo');
   const { chatId } = req.params;
   try {
     await db.ref('conversations/' + chatId).set(null);

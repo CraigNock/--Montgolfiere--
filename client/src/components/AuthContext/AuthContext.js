@@ -5,6 +5,8 @@ import { updateCurrentUser, updateLocation } from '../../reducersActions/userAct
 import { setStatusWaiting, setStatusLoading, setStatusLogged } from '../../reducersActions/appActions';
 import findNextLoc from '../MapMap/findNextLoc';
 
+import { IP } from '../../constants';
+
 import withFirebaseAuth from 'react-with-firebase-auth';
 import * as firebase from 'firebase';
 import 'firebase/auth';
@@ -65,7 +67,7 @@ const AuthProvider = ({ children, signInWithGoogle, signOut, user }) => {
 //if someone signs in with google (user changes) then check if user exists on db, if not then add to db and set currentUser to that user data
   useEffect(() => {
     if (user) {
-      fetch('/createUser', {
+      fetch(`${IP}/createUser`, {
         method: 'POST',
         headers: {
           'Content-Type': 'application/json',
@@ -82,7 +84,7 @@ const AuthProvider = ({ children, signInWithGoogle, signOut, user }) => {
           setCurrentUser(json.data);
           dispatch(updateCurrentUser(json.data));
         //grabs last known vector and updates the starting location
-          fetch(`/getLastVector/${json.data.userId}`)
+          fetch(`${IP}/getLastVector/${json.data.userId}`)
             .then(vector => vector.json())
             .then(last =>{ 
               // console.log('last', last.data);

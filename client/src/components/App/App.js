@@ -75,6 +75,8 @@ const App = () => {
 const Wrapper = styled.div`
   overflow: hidden;
   /* filter: brightness(75%); */
+  min-width: 1000px;
+  min-height: 700px;
 `;
 const CloudBackground = styled.div`
   position: absolute;
