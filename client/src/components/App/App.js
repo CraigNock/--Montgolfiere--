@@ -31,13 +31,13 @@ const App = () => {
     // console.log('sunTimes', sunTimes);
     if(sunTimes){
       if( sunTimes[0] > sunTimes[1]+1 && sunTimes[0] < sunTimes[2]-1 ){
-        setTimeOfDay(day);
+        if(timeOfDay !== day)setTimeOfDay(day);
       } else if ( sunTimes[0] < sunTimes[1]-1 || sunTimes[0] > sunTimes[2]+1 ){
-        setTimeOfDay(night);
+        if(timeOfDay !== night)setTimeOfDay(night);
       } else if ( sunTimes[0] >= sunTimes[1]-1 && sunTimes[0] <= sunTimes[1]+1 ){
-        setTimeOfDay(sunrise);
+        if(timeOfDay !== sunrise)setTimeOfDay(sunrise);
       } else if ( sunTimes[0] >= sunTimes[2]-1 && sunTimes[0] <= sunTimes[2]+1 ){
-        setTimeOfDay(sunset);
+        if(timeOfDay !== sunset)setTimeOfDay(sunset);
       }
     };
 // eslint-disable-next-line

@@ -248,4 +248,5 @@ const CenterDiv = styled.div`
   flex-direction: column;
   justify-content: space-between;
   height: 100%;
+  min-height: 600px;
 `;
