@@ -11,13 +11,11 @@ This project was borne of the question of what happens to those escaped party ba
 
 ---
 ## Demo 
-<a href='https://youtu.be/-sSS4GtjhEM'>
+<a href='https://youtu.be/-sSS4GtjhEM'>https://youtu.be/-sSS4GtjhEM</a>
 <img src='.\client\src\assets\screenshots\screen1day.png'/>
-</a>
-
-<img src='.\client\src\assets\screenshots\screen2sunset.png' style='width:100px;margin-left:5%;' />
-<img src='.\client\src\assets\screenshots\screen3nightrain.png' style='width:100px' />
-<img src='.\client\src\assets\screenshots\screen4profile.png' style='width:100px' />
+<img src='.\client\src\assets\screenshots\screen2sunset.png' />
+<img src='.\client\src\assets\screenshots\screen3nightrain.png' />
+<img src='.\client\src\assets\screenshots\screen4profile.png'  />
 
 ## Installing
 Note that a firebase RealTime Database will need to be set up and various API keys (see Technologies) will be required for full functionality.
