@@ -4,14 +4,17 @@
 
 # Where <em>is</em> My Balloon
 
-Where <em>is</em> My Balloon was created in two weeks as a final project for Full-Stack Web Development Diploma with Concordia Bootcamps.
+Where <em>is</em> My Balloon was created in two weeks as a final project for Full-Stack Web Development Diploma with <a href='https://concordiabootcamps.ca/' alt='link to Concordia Bootcamps website'>Concordia Bootcamps</a>.
 
 This project was borne of the question of what happens to those escaped party balloons that disappear off into the horizon.
 "Where <em>is</em> My Balloon?" leverages real-time wind data to allow users to launch a hot-air-balloon and travel the world according to natures whims.
 
 ---
 ## Demo 
-<a href='https://youtu.be/-sSS4GtjhEM'>https://youtu.be/-sSS4GtjhEM</a>
+- <a href='https://youtu.be/-sSS4GtjhEM'>https://youtu.be/-sSS4GtjhEM</a>
+
+---
+## Screenshots
 <img src='.\client\src\assets\screenshots\screen1day.png'/>
 <img src='.\client\src\assets\screenshots\screen2sunset.png' />
 <img src='.\client\src\assets\screenshots\screen3nightrain.png' />
