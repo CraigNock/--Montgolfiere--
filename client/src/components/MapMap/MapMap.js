@@ -32,6 +32,7 @@ const MapMap = () => {
   //add if active===false stop everything(toggle active else where)
   // console.log('profile', profile);
   const { windSum, windBearing } = useSelector((state) => state.conditions.current);
+  const { nearestCity } = useSelector((state) => state.conditions);
   const dispatch = useDispatch();
 
   const [launch, setLaunch] = useState(false);
@@ -53,7 +54,7 @@ const MapMap = () => {
       
       let nearCity = await findClosestCity(profile.location);
       // console.log('nearCity', nearCity);
-      if(nearCity) dispatch( updateNearestCity(nearCity) )
+      if(nearCity && nearCity !== nearestCity) dispatch( updateNearestCity(nearCity) )
     } catch (err) {
       console.log('handlecond error', err)
     };

@@ -67,10 +67,13 @@ const GlobalStyleGlobal = createGlobalStyle`
     min-width: 1000px;
     min-height: 700px;
     /* background: #2980b9; */
+    /* background: black; */
+
     background: 
     linear-gradient(180deg, 
       rgba(0,122,235,1) 0%, 
     rgba(157,207,255,1) 83%);
+
     /* background: linear-gradient(180deg, rgba(0,3,34,1) 0%, rgba(0,18,54,1) 83%); */
     overflow: hidden;
     /* overflow-x: hidden; */

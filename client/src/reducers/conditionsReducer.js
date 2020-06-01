@@ -8,7 +8,7 @@ const initialState = {
     "windSum": 16.93,
     "windBearing": 338,
   },
-  sunTimes: [11, 6, 19],
+  sunTimes: [12, 6, 18],
   nearestCity: 'Atlantis',
 };
 

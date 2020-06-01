@@ -45,7 +45,7 @@ const Clouds = () => {
         <CloudTrack><Cloud scale={1} speed={uniqueSpeeds[5]} /></CloudTrack>
         <CloudTrack><Cloud scale={.8} speed={uniqueSpeeds[6]} /></CloudTrack>
       </StyledDiv> 
-      {(true)?
+      {(cloudy)?
       <StyledDiv2> 
         <CloudTrack><Cloud scale={.8} speed={uniqueSpeeds[7]} /></CloudTrack>
         <CloudTrack><Cloud scale={1} speed={uniqueSpeeds[8]} /></CloudTrack>

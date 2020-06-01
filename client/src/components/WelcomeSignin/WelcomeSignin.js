@@ -7,9 +7,11 @@ import parchment2 from '../../assets/parchment2.png';
 
 
 const WelcomeSignin = () => { 
-  const { signInWithGoogle } = React.useContext(AuthContext);
+  const { signInWithGoogle, guestHandle } = React.useContext(AuthContext);
 
   const [toggle, setToggle] = useState(true);
+
+  const [disable, setDisable] = useState(false);
 
   return (
     <Backing>
@@ -22,8 +24,23 @@ const WelcomeSignin = () => {
       </Intro>
       <SignIn>
         <p>Please sign in to start your voyage.</p>
-        <StyledButton onClick={signInWithGoogle}>
+        <StyledButton 
+          onClick={()=> {
+            setDisable(true);
+            signInWithGoogle();
+          }}
+          disabled={disable}
+        >
             Sign In
+        </StyledButton>
+        <StyledButton 
+          onClick={()=>{
+            setDisable(true);
+            guestHandle();
+          }}
+          disabled={disable}
+        >
+            Guest
         </StyledButton>
       </SignIn>
       <Tab onClick={() => setToggle(!toggle)}>*</Tab>
@@ -120,6 +137,9 @@ const StyledButton = styled.button`
   font-family: 'Rye', cursive;
   &:hover {
     cursor: pointer;
+  }
+  &:disabled {
+    filter: grayscale(100%);
   }
 `;
 const Tab = styled.div`

@@ -62,6 +62,7 @@ const getConditions = async (req, res) => {
 
 const cityGet = async (lat, lon, range) => {
   // console.log('lat, lon', lat, lon);
+  
   try{
     let cityData = await request(`http://overpass-api.de/api/interpreter?data=[out:json];node(around:${range},${lat},${lon})["place"="city"];out;`);
     cityData = JSON.parse(cityData);
@@ -73,10 +74,12 @@ const getNearestCity = async (req, res) => {
   let lat = position[0];
   let lon = position[1];
   
+  // note API rate limit is 2, so currently need limit re-searching on larger radius reqs to 2 attempts.
   let cities = await cityGet(lat, lon, 10000);
-  if(!cities.elements[0]) cities = await cityGet(lat, lon, 100000);
+  // console.log('1st cityget');
+  // if(!cities.elements[0]) cities = await cityGet(lat, lon, 100000);
   if(!cities.elements[0]) cities = await cityGet(lat, lon, 1000000);
-  if(!cities.elements[0]) cities = await cityGet(lat, lon, 10000000);
+  // if(!cities.elements[0]) cities = await cityGet(lat, lon, 10000000);
 
   let cityList = [...cities.elements];
   cityList.sort((elementA, elementB) => {

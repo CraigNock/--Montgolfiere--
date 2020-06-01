@@ -43,10 +43,10 @@ const App = () => {
 // eslint-disable-next-line
   }, [sunTimes])
   
-
+//***currently darkness filter causes background rerender clipping, disabled with string condition rather than actual variable 'night'
   return (
     <Router>
-      <Wrapper style={{filter: (timeOfDay === night)? 'brightness(75%)' : 'none'}}>
+      <Wrapper style={{filter: (timeOfDay === 'night')? 'brightness(75%)' : 'none'}}>
         <GlobalStyles />
         <CloudBackground style={{background: `${timeOfDay}`}}/>
         <Clouds/>

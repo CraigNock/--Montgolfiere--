@@ -6,6 +6,7 @@ import { setStatusWaiting, setStatusLoading, setStatusLogged } from '../../reduc
 import findNextLoc from '../MapMap/findNextLoc';
 
 import { IP } from '../../constants';
+import gentleman from '../../assets/gentleman.svg';
 
 import withFirebaseAuth from 'react-with-firebase-auth';
 import * as firebase from 'firebase';
@@ -38,7 +39,10 @@ export const AuthContext = createContext(null);
 
 // {signInWithGoogle, signOut, user} are provided/imported with firebase
 const AuthProvider = ({ children, signInWithGoogle, signOut, user }) => { 
-  const [currentUser, setCurrentUser] = useState({}); //replace with redux state? No. Keep separate, avoid misfire.
+  //replace with redux state? No. Keep separate, avoid misfire. 
+  //Homepage renders on currentUser.email
+  const [currentUser, setCurrentUser] = useState({});
+  
   const dispatch = useDispatch();
 
   const handleSignOut = () => {
@@ -64,7 +68,38 @@ const AuthProvider = ({ children, signInWithGoogle, signOut, user }) => {
     return start;
   }
 
-//if someone signs in with google (user changes) then check if user exists on db, if not then add to db and set currentUser to that user data
+//HANDLING FOR GUEST SIGNIN (one time use, currently cleared manually)
+  const randy = (min, max) => { 
+    let rand = Math.floor((Math.random()*(max - min)) + min);
+    return rand;
+  };
+  const guestHandle = () => {
+    let guestName = `Honoured Guest ${randy(1, 1001)}`;
+    let guestEmail = `${guestName}@montgolfiere.com`;
+    let guestphotoURL = `${gentleman}`;
+    fetch(`${IP}/createUser`, {
+      method: 'POST',
+      headers: {
+        'Content-Type': 'application/json',
+      },
+      body: JSON.stringify({
+        displayName: guestName,
+        email: guestEmail,
+        photoURL: guestphotoURL,
+      }),
+    })
+      .then((res) => res.json())
+      .then((json) => {
+        // console.log('guestjson.data', json.data);
+        setCurrentUser(json.data);
+        dispatch(updateCurrentUser(json.data));
+      })
+      .then(()=>dispatch(setStatusLogged()))
+      .catch(err=> console.log('guestfetch err', err));
+  }
+
+
+//if someone signs in with google (user changes) then check if user exists on db(createUser endpoint checks), if not then add to db and set currentUser to that user data
   useEffect(() => {
     if (user) {
       fetch(`${IP}/createUser`, {
@@ -96,7 +131,7 @@ const AuthProvider = ({ children, signInWithGoogle, signOut, user }) => {
             })
             .then(()=>dispatch(setStatusLogged()))
             
-        }).catch(err=> console.log('athfet err', err));
+        }).catch(err=> console.log('authfetch err', err));
     }
 // eslint-disable-next-line
   }, [user])
@@ -105,7 +140,7 @@ const AuthProvider = ({ children, signInWithGoogle, signOut, user }) => {
 
   return (
     <AuthContext.Provider 
-      value={{ currentUser, signInWithGoogle, handleSignOut }}
+      value={{ currentUser, signInWithGoogle, handleSignOut, guestHandle }}
     > 
       { children }
     </AuthContext.Provider> 

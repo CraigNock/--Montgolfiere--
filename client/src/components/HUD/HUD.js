@@ -233,8 +233,10 @@ const StyledDiv = styled.div`
   /* justify-content: center; */
   width: 15vw;
   min-width: 150px;
+  max-width: 200px;
   height: 80vh;
   min-height: 500px;
+  max-height: 600px;
   /* overflow: hidden; */
   /* background-image: url(${paper}); */
   /* background-size: cover; */

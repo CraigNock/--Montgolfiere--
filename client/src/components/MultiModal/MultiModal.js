@@ -21,7 +21,7 @@ const MultiModal = () => {
     <ModalFrame style={{visibility:modalToggle? 'visible' : 'hidden'}} >
       <ModalBack 
         onClick={()=>{
-          console.log('togmod');
+          // console.log('togmod');
           dispatch(toggleModal());
         }}></ModalBack>
 

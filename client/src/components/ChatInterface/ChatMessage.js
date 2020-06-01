@@ -98,13 +98,13 @@ const Stacker = styled.div`
   flex-direction: column;
   align-items: flex-end;
 `;
-const UserTip = styled.img`
-  position: absolute;
-  right: -8px;
-  top: .9rem;
-`;
-const OtherTip = styled.img`
-  position: absolute;
-  left: -8px;
-  top: 1.1rem;
-`;
+// const UserTip = styled.img`
+//   position: absolute;
+//   right: -8px;
+//   top: .9rem;
+// `;
+// const OtherTip = styled.img`
+//   position: absolute;
+//   left: -8px;
+//   top: 1.1rem;
+// `;

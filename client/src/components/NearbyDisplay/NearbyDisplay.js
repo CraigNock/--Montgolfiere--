@@ -3,7 +3,8 @@ import styled, {keyframes} from 'styled-components';
 
 import { useSelector } from 'react-redux';
 
-import paper from '../../assets/paper.jpg';
+import NearImage from './NearImage';
+// import paper from '../../assets/paper.jpg';
 import { IP } from '../../constants';
 // import { GiSextant } from "react-icons/gi";
 import altitude from '../../assets/placeicons/altitude.svg';
@@ -45,8 +46,8 @@ const NearbyDisplay = ({children}) => {
         *
       </Tab>
       <ImageDiv>
-        <StyledImg src={imageArray[0] || buildings}/>
-        <StyledImg src={imageArray[1] || altitude}/>
+        <NearImage image={imageArray[0]} token={buildings} />
+        <NearImage image={imageArray[1]} token={altitude} />
       </ImageDiv>
       <CenterDiv>
         <p> 
@@ -59,8 +60,8 @@ const NearbyDisplay = ({children}) => {
         </p>
       </CenterDiv>
       <ImageDiv>
-        <StyledImg src={imageArray[2] || cities}/>
-        <StyledImg src={imageArray[3] || constructions}/>
+        <NearImage image={imageArray[2]} token={cities} />
+        <NearImage image={imageArray[3]} token={constructions} />
       </ImageDiv>
 
       {children}
@@ -169,16 +170,16 @@ const ImageDiv = styled.div`
   align-items: center;
 
 `;
-const StyledImg = styled.img`
-  height: 5rem;
-  width: 5rem;
-  object-fit: cover;
-  border-radius: 50%;
-  border: 3px ridge dimgray;
-  margin: -.5rem 1rem 0 0;
-  transition: all 2000ms ease-in-out;
-  &:hover {
-    transform: scale(2) translateY(-1.2rem);
+// const StyledImg = styled.img`
+//   height: 5rem;
+//   width: 5rem;
+//   object-fit: cover;
+//   border-radius: 50%;
+//   border: 3px ridge dimgray;
+//   margin: -.5rem 1rem 0 0;
+//   transition: all 1500ms ease-in-out;
+//   &:hover {
+//     transform: scale(2) translateY(-1.2rem);
     
-  }
-`;
+//   }
+// `;
