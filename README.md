@@ -19,6 +19,7 @@ This project was borne of the question of what happens to those escaped party ba
 <img src='.\client\src\assets\screenshots\screen2sunset.png' />
 <img src='.\client\src\assets\screenshots\screen3nightrain.png' />
 <img src='.\client\src\assets\screenshots\screen4profile.png'  />
+<img src='.\client\src\assets\screenshots\screen5instruct.png'  />
 
 ## Installing
 Note that a firebase RealTime Database will need to be set up and various API keys (see Technologies) will be required for full functionality.
