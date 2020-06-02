@@ -16,12 +16,13 @@ import { GiGlobe } from "react-icons/gi";
 import { GiShipWheel } from "react-icons/gi";
 import { GiSpyglass } from "react-icons/gi";
 import { IoIosBasket } from "react-icons/io";
-import { FiArrowUpLeft } from "react-icons/fi"
-import { FiArrowUpRight } from "react-icons/fi"
-import { FiArrowUp } from "react-icons/fi"
+import { FiArrowUpLeft } from "react-icons/fi";
+import { FiArrowUpRight } from "react-icons/fi";
+import { FiArrowUp } from "react-icons/fi";
 
-// GiHandheldFan GiSail GiSpyglass GiEmptyHourglass IoIosCog
-//GiKite  GiBurningEmbers GiFireZone GiPulleyHook GiOldLantern
+// TiArrowUpThick TiArrowBack TiArrowForward TiArrowDownThick
+// GiHandheldFan GiRadarSweep GiSail GiSpyglass GiEmptyHourglass IoIosCog
+//GiKite GiTreasureMap MdMap GiBurningEmbers GiFireZone GiPulleyHook GiOldLantern
 //GiLibertyWing GiLever GiPadlock AiFillVideoCamera GiMagnifyingGlass
 //GiPaperWindmill GiAnchor GiBatWing GiHourglass FaTelegramPlane
 //GiSextant  GiSpeedometer GiSteampunkGoggles GiWindsock GiWindTurbine
@@ -35,7 +36,7 @@ const HUD = ({children}) => {
   const { lens, viewRange } = useSelector( state => state.app );
   const { elevation, direction } = useSelector( state => state.user.profile);
   const { windSum, windBearing } = useSelector( state => state.conditions.current);
-  
+
   const [toggle, setToggle] = useState(true);
   const [path, setPath] = useState(0);
 
@@ -53,7 +54,7 @@ const HUD = ({children}) => {
     setPath(val);
     dispatch(changeDirection(val));
   };
-
+  
   return (
     <StyledDiv style={{transform: toggle? 'translateX(0)' : 'translateX(-100%)'}}> 
       <Tab onClick={() => setToggle(!toggle)}>
@@ -131,15 +132,14 @@ const HUD = ({children}) => {
               <label>
               <InvisRadio type='radio' name={'global'} value={3} 
               onChange={(e) => handleViewRange(e)}
-              checked={(viewRange === 3)} />
-              Global
+              checked={(viewRange === 3)} />Global
               </label>
             </li>
             <li style={{color: (viewRange === 2)? '#00563f' : 'slategray'}}>
               <label>
               <InvisRadio type='radio' name={'radius'} value={2} 
               onChange={(e) => handleViewRange(e)}
-              checked={(viewRange === 2)} />Radius
+              checked={(viewRange === 2)} />Abroad
               </label>
             </li>
             <li style={{color: (viewRange === 1)? '#00563f' : 'slategray'}}>
@@ -202,7 +202,6 @@ const HUD = ({children}) => {
           
           <WheelDiv><GiShipWheel/></WheelDiv>
         </Sail>
-
       </ControlsDiv>
       {children}
     </StyledDiv> 
@@ -281,6 +280,10 @@ const ControlsDiv = styled.div`
   border-top: 2px solid gray;
   label{
     cursor: pointer;
+    &:hover {
+      cursor: pointer;
+      color: black;
+    }
   }
 `;
 const ElevUl = styled.ul`
@@ -292,6 +295,7 @@ const ElevUl = styled.ul`
   font-family: 'Rye', cursive;
   label {
     font-family: 'Rye', cursive;
+
   }
   /* color: #36454f; */
   color: black;
@@ -339,11 +343,16 @@ const StyledButton = styled.button`
   align-items: center;
   width: 3rem;
   margin: 0 .5rem;
-  border: 2px solid goldenrod;
+  border: 2px outset goldenrod;
   border-radius: 10px;
   color: white;
   background: gray;
   font-family: 'Rye', cursive;
+  &:hover {
+    cursor: pointer;
+    color: black;
+    background: whitesmoke;
+  }
 `;
 const Sail = styled.div`
   /* filter: grayscale(100%); */
@@ -378,6 +387,7 @@ const SailButton = styled(StyledButton)`
 `;
 const UnderButton = styled(SailButton)`
   margin: 0 0 0 1.1rem;
+  
 `;
 
 const Tab = styled.div`

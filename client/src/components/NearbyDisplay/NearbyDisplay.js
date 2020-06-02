@@ -1,7 +1,12 @@
 import React, {useState, useEffect} from 'react'; 
 import styled, {keyframes} from 'styled-components'; 
 
-import { useSelector } from 'react-redux';
+import { useDispatch, useSelector } from 'react-redux';
+
+import { GiAirBalloon } from "react-icons/gi";
+
+import { toggleModal, setModalValue 
+} from '../../reducersActions/appActions';
 
 import NearImage from './NearImage';
 // import paper from '../../assets/paper.jpg';
@@ -15,6 +20,8 @@ import constructions from '../../assets/placeicons/constructions.svg';
 const NearbyDisplay = ({children}) => { 
   const { nearestCity } = useSelector(state => state.conditions);
   const { location } = useSelector((state) => state.user.profile);
+  const dispatch = useDispatch();
+  const { modalValue } = useSelector(state => state.app);
   // console.log('nearestCity', nearestCity);
   const [toggle, setToggle] = useState(true);
 
@@ -40,6 +47,12 @@ const NearbyDisplay = ({children}) => {
       }).catch(err => console.log('cond err', err))
   }, [nearestCity]);
 
+  const handleProfile = () => {
+    if(modalValue !== 'profile') dispatch(setModalValue('profile'));
+    // setShowMenu(false);
+    dispatch(toggleModal());
+  };
+
   return ( nearestCity.tags?
     <StyledDiv style={{transform: toggle? 'translateY(0)' : 'translateY(calc(100% - 2.5rem))'}}> 
       <Tab onClick={() => setToggle(!toggle)}>
@@ -58,6 +71,9 @@ const NearbyDisplay = ({children}) => {
           <span>Distance: </span>
           {(distanceTo([nearestCity.lat, nearestCity.lon], location)/1000).toFixed()} km
         </p>
+        <StyledButton onClick={ () => handleProfile() }>
+          <GiAirBalloon/>
+        </StyledButton>
       </CenterDiv>
       <ImageDiv>
         <NearImage image={imageArray[2]} token={cities} />
@@ -71,6 +87,9 @@ const NearbyDisplay = ({children}) => {
         <Tab onClick={() => setToggle(!toggle)}>*</Tab>
         <CenterDiv>
         <p><span>Nearest City: </span>Atlantis</p>
+        <StyledButton onClick={ () => handleProfile() }>
+          <GiAirBalloon/>
+        </StyledButton>
         </CenterDiv>
         {children}
       </StyledDiv>
@@ -104,6 +123,7 @@ const StyledDiv = styled.div`
   align-items:center;
   width: 100%;
   min-width: 700px;
+  max-width: 850px;
   height: 100%;
   min-height: 150px;
   box-shadow: 0 0 20px 5px rgba(0,0,0,0.33);
@@ -162,6 +182,25 @@ const CenterDiv = styled.div`
     font-family: 'Rye', cursive;
     /* color: #36454f; */
     color: black;
+  }
+`;
+const StyledButton = styled.button`
+  display: inline-flex;
+  justify-content: center;
+  align-items: center;
+  width: 3.5rem;
+  height: 3rem;
+  margin: .5rem 0;
+  font-size: 2rem;
+  border: 3px outset slategray;
+  border-radius: 15px;
+  color: whitesmoke;
+  background: gray;
+  font-family: 'Rye', cursive;
+  &:hover {
+    cursor: pointer;
+    color: black;
+    background: whitesmoke;
   }
 `;
 const ImageDiv = styled.div`

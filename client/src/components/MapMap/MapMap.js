@@ -296,11 +296,14 @@ const StyledButton = styled.button`
   left: 50%;
   margin: 30px 0 0 -2rem;
   z-index: 2000;
-  border: 2px solid goldenrod;
+  border: 2px outset goldenrod;
   border-radius: 10px;
   color: white;
   background: gray;
   font-family: 'Rye', cursive;
+  &:hover {
+    cursor: pointer;
+  }
 `;
 
 // const Pinpoint = styled.div`

@@ -1,6 +1,5 @@
 import React from 'react'; 
 import styled from 'styled-components'; 
-import { Link } from 'react-router-dom';
 import { useDispatch, useSelector } from 'react-redux';
 // import { GrSettingsOption } from "react-icons/gr";
 import Icon from 'react-icons-kit';
@@ -30,13 +29,13 @@ const Header = () => {
     dispatch(toggleModal());
   };
 
-
+//style={{opacity: modalToggle? 1 : 0}}
   return (
-    <StyledBar>
+    <StyledBar >
       <Title> 
-        <StyledLink to={'/'}>
+        <StyledP>
           Where <span>is</span> my Balloon? 
-        </StyledLink>
+        </StyledP>
       </Title>
       <Settings 
       onMouseLeave={()=>setShowMenu(!showMenu)}
@@ -126,15 +125,11 @@ const Menu = styled.div`
     display: flex;
   }
 `;
-const StyledLink = styled(Link)`
-  text-decoration: none;
+const StyledP = styled.p`
   color: whitesmoke;
   font-family: 'Fredericka the Great', cursive;
   padding: .25rem .5rem .25rem .75rem;
-  &:hover{
-    /* background: rgba(0,0,0,.25); */
-    cursor: context-menu;
-  }
+  
 `;
 const ProButton = styled.button`
   color: whitesmoke;

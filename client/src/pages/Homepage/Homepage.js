@@ -233,6 +233,7 @@ const BottomBackground = styled.div`
   align-items:center;
   width: 100%;
   min-width: 700px;
+  max-width: 850px;
   height: 100%;
   min-height: 150px;
   overflow: hidden;

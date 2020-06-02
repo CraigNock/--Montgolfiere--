@@ -7,6 +7,7 @@ from '../../reducersActions/appActions';
 
 import ProfileDetails from './ProfileDetails';
 import About from './About';
+import Instructions from './Instructions';
 
 import parchment2 from '../../assets/parchment2.png';
 
@@ -20,6 +21,8 @@ const MultiModal = () => {
   return (  
     <ModalFrame style={{visibility:modalToggle? 'visible' : 'hidden'}} >
       <ModalBack 
+        style={{background:(modalValue === 'instructions')? 
+        'rgba(0,0,0, .1)':'rgba(0,0,0, .5)'}}
         onClick={()=>{
           // console.log('togmod');
           dispatch(toggleModal());
@@ -28,7 +31,9 @@ const MultiModal = () => {
       <ModalFront onClick={(e)=>e.stopPropagation()}> 
         {(modalValue === 'profile')?
           <ProfileDetails/>
-        : <About/> }
+        : (modalValue === 'instructions')?
+          <Instructions/>
+          :<About/> }
       </ModalFront> 
     </ModalFrame>
   ) 

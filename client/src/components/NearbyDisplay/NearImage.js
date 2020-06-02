@@ -3,7 +3,7 @@ import styled from 'styled-components';
 
 const NearImage = (props) => { 
   const [error, setError] = useState(false);
-  console.log('props', props.image);
+  // console.log('props', props.image);
   return (
 
     <StyledImg 

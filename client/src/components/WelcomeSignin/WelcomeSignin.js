@@ -23,7 +23,7 @@ const WelcomeSignin = () => {
         
       </Intro>
       <SignIn>
-        <p>Please sign in to start your voyage.</p>
+        <p>Please sign in with Google or select temporary Guest to start your voyage.</p>
         <StyledButton 
           onClick={()=> {
             setDisable(true);
