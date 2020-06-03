@@ -63,7 +63,7 @@ const MapMap = () => {
     handleConditions();
 //on dismount clear the intervals below
     return ()=> {
-      console.log('clean intervals'); 
+      // console.log('clean intervals'); 
       clearInterval(freshBreeze);
       clearInterval(checkpoint); 
       clearInterval(updateDestination);

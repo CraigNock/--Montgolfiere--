@@ -113,7 +113,7 @@ const panelSlide = keyframes`
 const StyledDiv = styled.div`
   animation: ${panelSlide} 2s ease-in-out;
   transition: transform 2000ms ease-in-out;
-
+  /* margin: 0 100px; */
   position: absolute;
   left: 0;
   bottom: 0;
@@ -123,7 +123,7 @@ const StyledDiv = styled.div`
   align-items:center;
   width: 100%;
   min-width: 700px;
-  max-width: 850px;
+  /* max-width: 850px; */
   height: 100%;
   min-height: 150px;
   box-shadow: 0 0 20px 5px rgba(0,0,0,0.33);

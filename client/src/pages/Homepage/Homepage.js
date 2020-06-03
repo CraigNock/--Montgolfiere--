@@ -233,7 +233,7 @@ const BottomBackground = styled.div`
   align-items:center;
   width: 100%;
   min-width: 700px;
-  max-width: 850px;
+  /* max-width: 850px; */
   height: 100%;
   min-height: 150px;
   overflow: hidden;
@@ -246,12 +246,14 @@ const BottomBackground = styled.div`
   border-radius: 80% 80% 5px 5px;
   opacity: 0.9;
   padding: 1rem;
+  margin: 0 auto;
   z-index: -1;
 `;
 const CenterDiv = styled.div`
   display: flex;
   flex-direction: column;
   justify-content: space-between;
+  
   height: 100%;
   min-height: 600px;
 `;

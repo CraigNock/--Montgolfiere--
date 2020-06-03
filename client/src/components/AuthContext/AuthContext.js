@@ -51,6 +51,7 @@ const AuthProvider = ({ children, signInWithGoogle, signOut, user }) => {
   };
 
   const handleLastVector = async (lastVector) => {
+    if (!lastVector.lastActive) return false;
     let activeDiff = Date.now() - lastVector.lastActive
     // console.log('type', typeof lastVector.lastElevation);
     // console.log('activeDiff', activeDiff, lastVector.lastElevation, lastVector.lastWindSum);
