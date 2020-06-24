@@ -131,8 +131,12 @@ const StyledDiv = styled.div`
   display: flex;
   flex-direction: column;
   /* justify-content: space-between; */
-  /* height: 100%; */
-  
+  height: 100vh;
+
+  /* @media (max-width: 800px) {
+    min-width: 400px;
+    min-height: 300px;
+  } */
 
 `;
 const MainContent = styled.div`
@@ -140,7 +144,7 @@ const MainContent = styled.div`
   flex-wrap: none;
   justify-content: space-between;
   overflow: hidden;
-  height: 100vh;
+  height: 100%;
 `;
 const LeftPanel = styled.div`
   position: relative;
@@ -215,13 +219,14 @@ const BottomPanel = styled.div`
   position: relative;
   /* bottom: 0;
   left: 16vw; */
-  height: 25vh;
+  height: 20vh;
   width: 80vw;
   /* right: 0%; */
-  margin: 0 auto;
+  /* margin: 0 auto 0 auto; */
   background: transparent;
   /* border: 1px solid goldenrod; */
   /* z-index: 200; */
+  
 `;
 const BottomBackground = styled.div`
   position: absolute;
@@ -256,4 +261,5 @@ const CenterDiv = styled.div`
   
   height: 100%;
   min-height: 600px;
+
 `;

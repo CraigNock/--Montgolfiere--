@@ -87,6 +87,7 @@ const AuthProvider = ({ children, signInWithGoogle, signOut, user }) => {
         displayName: guestName,
         email: guestEmail,
         photoURL: guestphotoURL,
+        guest: true,
       }),
     })
       .then((res) => res.json())
@@ -112,6 +113,7 @@ const AuthProvider = ({ children, signInWithGoogle, signOut, user }) => {
           displayName: user.displayName,
           email: user.email,
           photoURL: user.photoURL,
+          guest: false,
         }),
       })
         .then((res) => res.json())

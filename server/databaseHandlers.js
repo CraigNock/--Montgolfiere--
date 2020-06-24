@@ -90,6 +90,7 @@ const createUserProfile = async (req, res) => {
       displayName: req.body.displayName,
       email: req.body.email,
       imageSrc: req.body.photoURL,
+      guest: req.body.guest || false,
       userId: userId,
       location: start.coords,
       elevation: 1,

@@ -47,6 +47,8 @@ const ModalFrame = styled.div`
   position: absolute;
   height: 100vh;
   width: 100vw;
+  min-width: 1000px;
+  min-height: 700px;
   display: flex;
   justify-content: center;
   align-items: center;
@@ -55,8 +57,8 @@ const ModalFrame = styled.div`
 
 const ModalBack = styled.div`
   position: absolute;
-  height: 100vh;
-  width: 100vw;
+  height: 100%;
+  width: 100%;
   /* position: relative; */
   display: flex;
   justify-content: center;
@@ -84,6 +86,6 @@ const ModalFront = styled.div`
   /* border-radius: 10%; */
   border: 10px ridge peru;
   
-
+  
 
 `;

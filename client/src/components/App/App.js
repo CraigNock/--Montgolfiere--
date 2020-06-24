@@ -48,8 +48,9 @@ const App = () => {
     <Router>
       <Wrapper style={{filter: (timeOfDay === 'night')? 'brightness(75%)' : 'none'}}>
         <GlobalStyles />
-        <CloudBackground style={{background: `${timeOfDay}`}}/>
-        <Clouds/>
+        <CloudBackground style={{background: `${timeOfDay}`}}>
+          <Clouds/>
+        </CloudBackground>
         {currentUser && currentUser.email? (
         <Switch>
           <Route exact path="/">
@@ -75,15 +76,23 @@ const App = () => {
 const Wrapper = styled.div`
   overflow: hidden;
   /* filter: brightness(75%); */
+  /* transform: scale(.5); */
+  width: 100%;
+  height: 100%;
   min-width: 1000px;
   min-height: 700px;
+
+  /* @media (max-width: 800px) {
+    min-width: 400px;
+    min-height: 300px;
+  } */
 `;
 const CloudBackground = styled.div`
   position: absolute;
   width:100vw;
   height:100vh;
-  /* min-width: 1000px; */
-  /* min-height: 700px; */
+  min-width: 1000px;
+  min-height: 700px;
   z-index: -100;
   overflow: hidden;
   /*background:  

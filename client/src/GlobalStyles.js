@@ -11,12 +11,17 @@ const GlobalStyleGlobal = createGlobalStyle`
     -webkit-font-smoothing: antialiased;
     font-family: 'Poppins', sans-serif;
   }
-
+  html {
+    font-size: 16px;
+  }
   html, body {
     max-width: 100vw;
+    max-height: 100vh;
+    /* width: 100vw; */
+    /* height: 100vh; */
     
   }
-
+  
 
   /* http://meyerweb.com/eric/tools/css/reset/
     v2.0 | 20110126
@@ -62,20 +67,27 @@ const GlobalStyleGlobal = createGlobalStyle`
 
   body {
     line-height: 1.25;
-    width:100vw;
-    height:100vh;
+    /* width:100vw; */
+    /* height:100vh; */
+    
     min-width: 1000px;
     min-height: 700px;
-    /* background: #2980b9; */
-    /* background: black; */
 
-    background: 
+    /* @media (max-width: 800px) {
+    min-width: 400px;
+    min-height: 300px;
+    } */
+
+    /* background: #2980b9; */
+    background: black;
+
+    /* background: 
     linear-gradient(180deg, 
       rgba(0,122,235,1) 0%, 
-    rgba(157,207,255,1) 83%);
+    rgba(157,207,255,1) 83%); */
 
     /* background: linear-gradient(180deg, rgba(0,3,34,1) 0%, rgba(0,18,54,1) 83%); */
-    overflow: hidden;
+    /* overflow: hidden; */
     /* overflow-x: hidden; */
     color: whitesmoke;
     font-family: 'Poppins', sans-serif;

@@ -11,6 +11,7 @@ const initialState = {
 //   displayName: null,
 //   email: null,
 //   imageSrc: null,
+//   guest: false,
 //   id: null,
 //   location: [],
 //   elevation: 2,

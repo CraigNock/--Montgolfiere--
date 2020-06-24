@@ -275,9 +275,13 @@ const StyledDiv = styled.div`
   overflow:hidden;
   border-radius: 25%;
   
+
+  @media (max-width: 800px) {
+    min-width: 400px;
+    min-height: 300px;
+  }
 `;
 
-//make this it's own component, custom color/balloon
 const StyledBalloon = styled.img`
   position: absolute;
   top: 50% ;
