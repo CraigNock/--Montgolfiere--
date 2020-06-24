@@ -132,7 +132,8 @@ const StyledDiv = styled.div`
   flex-direction: column;
   /* justify-content: space-between; */
   height: 100vh;
-
+  min-width: 1000px;
+  min-height: 700px;
   /* @media (max-width: 800px) {
     min-width: 400px;
     min-height: 300px;
@@ -220,7 +221,7 @@ const BottomPanel = styled.div`
   /* bottom: 0;
   left: 16vw; */
   height: 20vh;
-  width: 80vw;
+  width: 100%;
   /* right: 0%; */
   /* margin: 0 auto 0 auto; */
   background: transparent;
@@ -258,7 +259,7 @@ const CenterDiv = styled.div`
   display: flex;
   flex-direction: column;
   justify-content: space-between;
-  
+  width: 100%;
   height: 100%;
   min-height: 600px;
 

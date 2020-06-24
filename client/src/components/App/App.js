@@ -76,7 +76,6 @@ const App = () => {
 const Wrapper = styled.div`
   overflow: hidden;
   /* filter: brightness(75%); */
-  /* transform: scale(.5); */
   width: 100%;
   height: 100%;
   min-width: 1000px;

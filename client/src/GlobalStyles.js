@@ -1,6 +1,14 @@
 
 import { createGlobalStyle } from 'styled-components';
 
+// First we get the viewport height and we multiple it by 1% to get a value for a vh unit
+let vh = window.innerHeight * 0.01;
+// Then we set the value in the --vh custom property to the root of the document
+document.documentElement.style.setProperty('--vh', `${vh}px`);
+// First we get the viewport height and we multiple it by 1% to get a value for a vh unit
+let vw = window.innerWidth * 0.01;
+// Then we set the value in the --vh custom property to the root of the document
+document.documentElement.style.setProperty('--vw', `${vw}px`);
 
 
 const GlobalStyleGlobal = createGlobalStyle`
@@ -13,12 +21,15 @@ const GlobalStyleGlobal = createGlobalStyle`
   }
   html {
     font-size: 16px;
+    @media (max-width: 800px) {
+      font-size: 12px;
+    }
   }
   html, body {
     max-width: 100vw;
     max-height: 100vh;
-    /* width: 100vw; */
-    /* height: 100vh; */
+    width: 100vw;
+    height: 100vh;
     
   }
   
@@ -67,8 +78,8 @@ const GlobalStyleGlobal = createGlobalStyle`
 
   body {
     line-height: 1.25;
-    /* width:100vw; */
-    /* height:100vh; */
+    width:100vw;
+    height:100vh;
     
     min-width: 1000px;
     min-height: 700px;
