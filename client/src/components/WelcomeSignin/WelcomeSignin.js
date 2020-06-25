@@ -80,7 +80,7 @@ const StyledDiv = styled.div`
   left: calc(50% - 25vw);
   margin: 20vh auto;
   width: 50vw;
-  /* height: 50%; */
+  max-height: 60%;
   display: flex;
   flex-direction: column;
   align-items: center;
@@ -94,6 +94,16 @@ const StyledDiv = styled.div`
   border: 10px ridge peru;
   border-radius: 10px;
   color: black;
+  @media (max-width: 600px) {
+    width: 90vw;
+    max-height: 60%;
+    left: calc(50% - 45vw);
+  }
+  @media (max-width: 350px) {
+    width: 100vw;
+    max-height: 70%;
+    left: calc(50% - 50vw);
+  }
 `;
 const Intro = styled.div`
   text-align: center;
@@ -117,6 +127,7 @@ const SignIn = styled.div`
   p {
     font-family: 'Rye', cursive;
     font-size: .9rem;
+    text-align: center;
   };
   display: flex;
   flex-direction: column;
@@ -144,10 +155,10 @@ const StyledButton = styled.button`
 `;
 const Tab = styled.div`
   position: absolute;
-  top: -1.7rem;
+  top: -2.4rem;
   left: calc(50% - 2rem);
   width: 4rem;
-  height: 1.2rem;
+  height: 1.7rem;
   opacity: .3;
   background: tan;
   box-sizing: border-box;
