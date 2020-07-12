@@ -1,14 +1,12 @@
 import React, {useState, useEffect} from 'react';
 import styled from 'styled-components';
-import { BrowserRouter as Router, Switch, Route } from 'react-router-dom';
+// import { BrowserRouter as Router, Switch, Route } from 'react-router-dom';
 import { useSelector } from 'react-redux';
 // import {format} from 'date-fns';
 
 import GlobalStyles from '../../GlobalStyles';
 import WelcomeSignin from '../WelcomeSignin';
 import Homepage from '../../pages/Homepage';
-import Profile from '../../pages/Profile';//longterm->other :user profile pages
-import About from '../../pages/About';
 import Clouds from '../../components/Clouds';
 
 
@@ -45,29 +43,17 @@ const App = () => {
   
 //***currently darkness filter causes background rerender clipping, disabled with string condition rather than actual variable 'night'
   return (
-    <Router>
       <Wrapper style={{filter: (timeOfDay === 'night')? 'brightness(75%)' : 'none'}}>
         <GlobalStyles />
         <CloudBackground style={{background: `${timeOfDay}`}}>
           <Clouds/>
         </CloudBackground>
         {currentUser && currentUser.email? (
-        <Switch>
-          <Route exact path="/">
-            <Homepage />
-          </Route>
-          <Route path="/profile">
-            <Profile />
-          </Route>
-          <Route path="/about">
-            <About />
-          </Route>
-        </Switch>
+          <Homepage />
         ) : (
           <WelcomeSignin />
         )}
       </Wrapper>
-    </Router>
   );
 
 };
