@@ -67,10 +67,10 @@ const Wrapper = styled.div`
   min-width: 1000px;
   min-height: 700px;
 
-  /* @media (max-width: 800px) {
-    min-width: 400px;
-    min-height: 300px;
-  } */
+  @media(max-width: 800px) {
+    min-width: 100vw;
+    min-height: 100vh;
+  }
 `;
 const CloudBackground = styled.div`
   position: absolute;
@@ -93,6 +93,10 @@ const CloudBackground = styled.div`
   
   /* background: rgb(9,0,85);
   background: linear-gradient(180deg, rgba(9,0,85,1) 0%, rgba(0,63,181,1) 50%, rgba(255,252,171,1) 100%); */
+  @media(max-width: 800px) {
+    min-width: 100vw;
+    min-height: 100vh;
+  }
 `;
 
 

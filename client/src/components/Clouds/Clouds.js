@@ -75,6 +75,7 @@ const StyledDiv = styled.div`
   overflow: hidden;
   width: 100%;
   z-index: -1;
+  
 `;
 const CloudTrack = styled.div`
   height: fit-content;
@@ -88,4 +89,7 @@ const StyledDiv2 = styled.div`
   overflow: hidden;
   width: 100%;
   z-index: -2;
+  @media(max-width: 800px) {
+    display: none;
+  }
 `;

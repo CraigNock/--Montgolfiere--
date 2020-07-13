@@ -1,4 +1,4 @@
-import React, {useEffect, useState} from 'react'; 
+import React, {useEffect} from 'react'; 
 import { useDispatch, useSelector } from 'react-redux';
 import styled from 'styled-components'; 
 
@@ -6,11 +6,9 @@ import * as firebase from 'firebase';
 
 import Header from '../../components/Header';
 import MultiModal from '../../components/MultiModal';
-// import AlertBar from '../../components/AlertBar';
 import HUD from '../../components/HUD';
 import MapMap from '../../components/MapMap';
 import NearbyDisplay from '../../components/NearbyDisplay';
-// import ImageModal from '../../components/ImageModal';
 import ConditionsDisplay from '../../components/ConditionsDisplay';
 import ChatInterface from '../../components/ChatInterface';
 
@@ -91,7 +89,9 @@ const Homepage = () => {
     }
   }, [status]);
 
-
+  const isMobile = window.innerWidth < 500;
+  const isPortraitTablet = window.innerWidth < 800;
+  const isLandscapeMobile = window.innerWidth < 900 && window.innerHeight < 500;
 
   return (
     <StyledDiv> 
@@ -100,8 +100,9 @@ const Homepage = () => {
       <>
       <MainContent>
         <LeftPanel>
-          
-          <HUD><LeftBackground/></HUD>
+          <HUD>
+            <LeftBackground/>
+          </HUD>
         </LeftPanel>
         <CenterDiv>
           <MapMap />
@@ -117,7 +118,6 @@ const Homepage = () => {
       <MultiModal/>
       </>
       : ''}
-      
       
     </StyledDiv> 
   ) 
@@ -146,6 +146,7 @@ const MainContent = styled.div`
   justify-content: space-between;
   overflow: hidden;
   height: 100%;
+  
 `;
 const LeftPanel = styled.div`
   position: relative;
