@@ -21,11 +21,20 @@ This project was borne of the question of what happens to those escaped party ba
 <img src='.\client\src\assets\screenshots\screen4profile.png'  />
 <img src='.\client\src\assets\screenshots\screen5instruct.png'  />
 
+---
+
 ## Installing
-Note that a firebase RealTime Database will need to be set up and various API keys (see Technologies) will be required for full functionality.
-1. Open up your favourite code editor and git clone the repository.
+
+ Prerequisites:
+
+- Before you begin, ensure you have you have installed the latest version of Node.js and Yarn.
+
+Note that a firebase RealTime Database will need to be set up and various API keys will be required for full functionality.
+1. Open up your favourite code editor (such as Visual Studio Code) and git clone the repository.
 2. Change directory to the project folder and open the terminal there.
 3. In the terminal enter $yarn fullinstall. Concurrently will be installed, then this dependancy will install all the necessary dependancies for both the Server and the React app. (for your convenience!)
+4. Head to Firebase and create a Real Time Database! 
+    - https://firebase.google.com/products/realtime-database
 5. Create a <strong>.env</strong> file in the <strong>client</strong> folder containing the following information & keys:
     - Firebase information: 
     (Once a Firebase Realtime database is created, this info can be found in the Firebase Console sidebar under "Project Settings" {look for the cog!} ) 
@@ -75,7 +84,7 @@ Note that a firebase RealTime Database will need to be set up and various API ke
 
 
 6. In the terminal enter $yarn dev. Concurrently will start both the Server and the React app (which will open automatically in the browser).
-7. Sign In using Google or Guest button.
+7. Sign In using Google or Guest button. Then launch your balloon!
 
 ---
 ## Technologies
@@ -95,29 +104,50 @@ Tracking of closest city to balloon is achieved via the Overpass API.
 
 ---
 ## FEATURES
-Users balloon positions are persistant. If unanchored by user, balloon will also continue to fly for up to an hour after app closure.
 
-Users can chat with other balloons if they are in range. (For now, this allowable range is set to global)
+Main:
 
-The Background was created from scratch using styled components. It changes dynamically to represent both the time-of-day and weather conditions local to your balloon.
+- Players can <strong>launch</strong> their balloon to ride the real-world wind according to their location. Balloon can also be <strong>anchored</strong> at anytime to stop movement.
 
-Users can customise their balloon icon, which will be persistant to their profile and visible to other users.
+- <strong>Elevation</strong> can be changed which will affect speed (higher=faster). At lowest elevation option is presented for balloon to be <strong>anchored</strong>.
+
+- Optional limited <strong>steering</strong> (changes direction by +-45 degrees) is available by deploying a sail.
+
+- Users balloon positions are <strong>persistant</strong>. 
+    - Also if left unanchored by user, their balloon will also continue to fly for up to an hour after app closure.
+
+- Users can <strong>chat</strong> with other balloons, however this is <strong>proximity-gated</strong> to a radius around their balloons. (For now, this allowable range-radius is set to global)
+
+- Users can also choose the <strong>render-radius</strong> of other users balloons on their map.
+    - Ranges are Local (chat range), Abroad, and Global (all)
+    - Other user balloons will only be rendered if they have been active in the last half-hour.
+
+Displays:
+
+- The <strong>dynamic Background</strong> was created from scratch using styled components. It changes to represent both the time-of-day and weather conditions local to your balloon.
+
+- Up to date <strong>weather conditions</strong> at balloon location are displayed and kept up to date as it travels.
+
+- <strong>Nearest city</strong> and it's distance to balloon is displayed and kept up to date as it travels.
+    - Additionally: <strong>Nearest city images</strong> are also found and displayed.
+
+- Users can customise their <strong>balloon icon</strong>, which will be persistant to their profile and visible to other users.
+
+- Optional <strong>Lens effect</strong> over map for that authentic viewing port look.
 
 ---
 ## Key learnings and Goals
-While progress was solid, there were certainly points where I expanded my knowledge:
+While progress was solid during this 2-week build, there were certainly points where I expanded my knowledge:
 - Manipulating normally static mapping frameworks into an interactive gameplay element. 
 - Leveraging Firebase Real-Time Database, with no prior experience.
 - Troubleshooting proximity gated chat functionality.
 
-There are many additional features I would like to add to this game to both increase gameplay, quality of life and performance.
+There are many additional features I would like to eventually add to this game to both increase gameplay, quality of life and performance.
 While the list is expansive here are some shorter term goals:
 - Add items to collect from locations across the globe.
 - Increase sign-in options. Expand to Facebook etc logins as well as app only credentials.
-- Increase security on inputs.
 - Add option to disable dynamic background, also off by default for animation reducing global user settings. Saving resources for low performance platforms and increasing accessibility for motion vunerable persons.
-- Increase responsiveness, tailor a better user experience on tablet and mobile.
-I definitely intend to rewrite this app in a mobile friendlier language such as Flutter.
+- Increase responsiveness, tailor a better user experience on mobile.
 
 ---
 ## Contact
