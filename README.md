@@ -23,9 +23,35 @@ This project was borne of the question of what happens to those escaped party ba
 
 ## Installing
 Note that a firebase RealTime Database will need to be set up and various API keys (see Technologies) will be required for full functionality.
-1. Clone the repo.
-2. In both client and server directory terminals, run commands ```$yarn install``` and  ```$yarn start```.
-3. Login using Google Login.
+1. Open up your favourite code editor and git clone the repository.
+2. Change directory to the project folder and open the terminal there.
+3. In the terminal enter $yarn fullinstall. Concurrently will be installed, then this dependancy will install all the necessary dependancies for both the Server and the React app. (for your convenience!)
+4. Create a .env file containing the following information & keys:
+    - Firebase information: 
+    (Once a Firebase Realtime database is created, this info can be found in the Firebase Dashboard sidebar under "Project Settings" {look for the cog!}. Simply copy them over.)
+      - FB_DATABASE_URL=
+      - FIREBASE_PROJECT_ID=
+      - FIREBASE_PRIVATE_KEY_ID=
+      - FIREBASE_PRIVATE_KEY=
+      - FIREBASE_CLIENT_ID=
+      - FIREBASE_CLIENT_EMAIL=
+      - FIREBASE_CLIENT_CERT=
+  
+    - API keys: You will need to obtain your own free keys for these services
+      - DARKSKY_API_KEY= 
+        - Provides <strong>wind</strong>, weather and sunrise/set data. <strong>(Essential)</strong>
+        - (Darksky no longer accepts new signups, can use alternative: Openweather One Call API ) https://openweathermap.org/api/one-call-api
+      - OPENCAGE_GEOCODE_API_KEY=
+        - Provides nearest city information (<strong>Without</strong>: defaults to "Atlantis")
+        - https://opencagedata.com/api
+      - THUNDERFOREST_MAPTILES_KEY=
+        - Provides map tiles (<strong>Without</strong>: defaults to OpenStreetMap tiles)
+        - https://www.thunderforest.com/docs/apikeys/
+      - AZURE_COGNITIVE_KEY=
+        - Provides nearby location images (<strong>Without</strong>: defaults to built in icons)
+        - https://docs.microsoft.com/en-us/azure/cognitive-services/
+5. In the terminal enter $yarn dev. Concurrently will start both the Server and the React app (which will open automatically in the browser).
+6. Sign In using Google or Guest button.
 
 ---
 ## Technologies

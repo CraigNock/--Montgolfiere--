@@ -90,8 +90,19 @@ const Homepage = () => {
   }, [status]);
 
   const isMobile = window.innerWidth < 500;
+
   const isPortraitTablet = window.innerWidth < 800;
+  // or prevent flipping on mobile, portraitTablet
   const isLandscapeMobile = window.innerWidth < 900 && window.innerHeight < 500;
+
+  // const handleResize = () => {
+  //   //setstate ismobile
+  // }
+
+  // useEffect(() => {
+  //   window.addEventListener('resize', handleResize);
+  //   return window.removeEventListener('resize', handleResize);
+  // }, [])
 
   return (
     <StyledDiv> 
