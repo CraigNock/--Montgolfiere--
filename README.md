@@ -26,9 +26,34 @@ Note that a firebase RealTime Database will need to be set up and various API ke
 1. Open up your favourite code editor and git clone the repository.
 2. Change directory to the project folder and open the terminal there.
 3. In the terminal enter $yarn fullinstall. Concurrently will be installed, then this dependancy will install all the necessary dependancies for both the Server and the React app. (for your convenience!)
-4. Create a .env file containing the following information & keys:
+5. Create a <strong>.env</strong> file in the <strong>client</strong> folder containing the following information & keys:
     - Firebase information: 
-    (Once a Firebase Realtime database is created, this info can be found in the Firebase Dashboard sidebar under "Project Settings" {look for the cog!}. Simply copy them over.)
+    (Once a Firebase Realtime database is created, this info can be found in the Firebase Console sidebar under "Project Settings" {look for the cog!} ) 
+    - Located under the heading "Firebase SDK Snippet" Simply copy over the matching values.
+      - FB_DATABASE_URL=
+      - REACT_APP_FB_APIKEY=
+      - REACT_APP_FB_AUTHDOMAIN=
+      - REACT_APP_FB_DATABASEURL=
+      - REACT_APP_FB_PROJECTID=
+      - REACT_APP_FB_STORAGEBUCKET=
+      - REACT_APP_FB_MESSAGINSENDERID=
+      - REACT_APP_FB_APPID=
+
+    - IP address: 
+      - REACT_APP_FB_IP=
+        - If you were hosting the backend, you would put the URL for that location here. For local running however, you will want http://localhost:8000/ as it is the default port for the server when not hosted.
+  
+    - API keys: You will need to obtain your own key for this service
+      - REACT_APP_THUNDERFOREST_MAPTILES_KEY=
+        - Provides map tiles (<strong>Without</strong>: defaults to OpenStreetMap tiles)
+        - https://www.thunderforest.com/docs/apikeys/
+
+4. Create a <strong>.env</strong> file in the <strong>server</strong> folder containing the following information & keys:
+    - Firebase information: 
+    (Once a Firebase Realtime database is created, this info can be found in the Firebase Console sidebar under "Project Settings" {look for the cog!} )
+
+    - Navigate to the "Service Accounts" tab and you should see a button down the bottom labelled "Generate New Key". Press this and a .JSON file will be downloaded to your computer. Open this .JSON file and copy over the matching information and keys.
+
       - FB_DATABASE_URL=
       - FIREBASE_PROJECT_ID=
       - FIREBASE_PRIVATE_KEY_ID=
@@ -37,21 +62,20 @@ Note that a firebase RealTime Database will need to be set up and various API ke
       - FIREBASE_CLIENT_EMAIL=
       - FIREBASE_CLIENT_CERT=
   
-    - API keys: You will need to obtain your own free keys for these services
+    - API keys: You will need to obtain your own keys for these services
       - DARKSKY_API_KEY= 
         - Provides <strong>wind</strong>, weather and sunrise/set data. <strong>(Essential)</strong>
-        - (Darksky no longer accepts new signups, can use alternative: Openweather One Call API ) https://openweathermap.org/api/one-call-api
-      - OPENCAGE_GEOCODE_API_KEY=
-        - Provides nearest city information (<strong>Without</strong>: defaults to "Atlantis")
-        - https://opencagedata.com/api
+        - (Darksky no longer accepts new signups, can use alternative: "Openweather One Call API" ) https://openweathermap.org/api/one-call-api
       - THUNDERFOREST_MAPTILES_KEY=
         - Provides map tiles (<strong>Without</strong>: defaults to OpenStreetMap tiles)
         - https://www.thunderforest.com/docs/apikeys/
       - AZURE_COGNITIVE_KEY=
         - Provides nearby location images (<strong>Without</strong>: defaults to built in icons)
         - https://docs.microsoft.com/en-us/azure/cognitive-services/
-5. In the terminal enter $yarn dev. Concurrently will start both the Server and the React app (which will open automatically in the browser).
-6. Sign In using Google or Guest button.
+
+
+6. In the terminal enter $yarn dev. Concurrently will start both the Server and the React app (which will open automatically in the browser).
+7. Sign In using Google or Guest button.
 
 ---
 ## Technologies
