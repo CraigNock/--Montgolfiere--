@@ -275,10 +275,12 @@ const StyledDiv = styled.div`
   overflow:hidden;
   border-radius: 25%;
   
-
   @media (max-width: 800px) {
     min-width: 400px;
     min-height: 300px;
+  }
+  @media (max-width: 440px) {
+    width: 100%;
   }
 `;
 

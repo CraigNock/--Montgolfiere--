@@ -6,8 +6,8 @@ import * as firebase from 'firebase';
 
 import Header from '../../components/Header';
 import MultiModal from '../../components/MultiModal';
-import HUD from '../../components/HUD';
 import MapMap from '../../components/MapMap';
+import HUD from '../../components/HUD';
 import NearbyDisplay from '../../components/NearbyDisplay';
 import ConditionsDisplay from '../../components/ConditionsDisplay';
 import ChatInterface from '../../components/ChatInterface';
@@ -91,9 +91,9 @@ const Homepage = () => {
 
   const isMobile = window.innerWidth < 500;
 
-  const isPortraitTablet = window.innerWidth < 800;
+  // const isPortraitTablet = window.innerWidth < 800;
   // or prevent flipping on mobile, portraitTablet
-  const isLandscapeMobile = window.innerWidth < 900 && window.innerHeight < 500;
+  // const isLandscapeMobile = window.innerWidth < 900 && window.innerHeight < 500;
 
   // const handleResize = () => {
   //   //setstate ismobile
