@@ -7,6 +7,7 @@ import * as firebase from 'firebase';
 import Header from '../../components/Header';
 import MultiModal from '../../components/MultiModal';
 import MapMap from '../../components/MapMap';
+import MobileMultiPanel from '../../components/MobileMultiPanel';
 
 import { addChat, setStatusAskChat, setStatusNoChat, changeCurrentChat } from '../../reducersActions/chatActions';
 
@@ -90,7 +91,11 @@ const MobilePage = () => {
     <StyledDiv> 
       <Header />
       {(appStatus==='logged in')?
-      <MapMap/>
+      <>
+        <MapMap/>
+        <MobileMultiPanel/>
+        <MultiModal/>
+      </>
       : ''}
     </StyledDiv> 
   ) 

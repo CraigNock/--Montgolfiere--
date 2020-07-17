@@ -1,17 +1,17 @@
 import React from 'react'; 
 import styled from 'styled-components'; 
 
-const MobileMultiPanel = () => { 
+const Weather = () => { 
 
   return (
     <StyledDiv> 
-      <div> MobileMultiPanel </div>
+      <div> Weather </div>
     </StyledDiv> 
   ) 
 }; 
 
 
-export default MobileMultiPanel;
+export default Weather;
 
 
 const StyledDiv = styled.div`

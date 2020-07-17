@@ -281,6 +281,10 @@ const StyledDiv = styled.div`
   }
   @media (max-width: 440px) {
     width: 100%;
+    border: none;
+    border-top: 15px ridge #b78727;
+    border-bottom: 15px ridge #b78727;
+    border-radius: none;
   }
 `;
 
@@ -309,6 +313,9 @@ const StyledButton = styled.button`
   font-family: 'Rye', cursive;
   &:hover {
     cursor: pointer;
+  }
+  @media (max-width: 440px) {
+    padding: .5rem;
   }
 `;
 
