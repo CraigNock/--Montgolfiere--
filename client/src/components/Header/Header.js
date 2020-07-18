@@ -73,11 +73,14 @@ const StyledBar = styled.div`
   background: rgba(0,0,0,.5);
   /* margin-bottom: 1rem; */
   height: 2.5rem;
-  opacity: 0;
+  opacity: 0.1;
   transition: opacity 2s;
   &:hover {
     opacity: 1;
     transition: opacity 2s;
+  }
+  @media(max-width: 440px) {
+    opacity: 1;
   }
 `;
 const Title = styled.div`

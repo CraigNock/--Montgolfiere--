@@ -1,6 +1,7 @@
 import React from 'react'; 
 import styled from 'styled-components'; 
 
+import FixedInfo from './FixedInfo';
 
 import paper from '../../assets/paper.jpg';
 
@@ -8,6 +9,7 @@ const MobileMultiPanel = () => {
 
   return (
     <StyledDiv> 
+      <FixedInfo/>
       <div> MobileMultiPanel </div>
     </StyledDiv> 
   ) 

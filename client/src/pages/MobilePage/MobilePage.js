@@ -4,8 +4,8 @@ import styled from 'styled-components';
 
 import * as firebase from 'firebase';
 
-import Header from '../../components/Header';
-import MultiModal from '../../components/MultiModal';
+import MobileHeader from '../../components/MobileHeader';
+import MobileModal from '../../components/MobileModal';
 import MapMap from '../../components/MapMap';
 import MobileMultiPanel from '../../components/MobileMultiPanel';
 
@@ -89,12 +89,12 @@ const MobilePage = () => {
 
   return (
     <StyledDiv> 
-      <Header />
       {(appStatus==='logged in')?
       <>
+        <MobileHeader />
         <MapMap/>
         <MobileMultiPanel/>
-        <MultiModal/>
+        <MobileModal/>
       </>
       : ''}
     </StyledDiv> 
