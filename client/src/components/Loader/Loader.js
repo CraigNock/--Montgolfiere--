@@ -1,19 +1,20 @@
 import React from 'react'; 
 import styled from 'styled-components'; 
 
-const Controls = () => { 
+const Loader = () => { 
 
   return (
     <StyledDiv> 
-      <div> Controls </div>
-    </StyledDiv>
+      <div> Loading... </div>
+    </StyledDiv> 
   ) 
 }; 
 
 
-export default Controls;
+export default Loader;
 
 
 const StyledDiv = styled.div`
-
+  background: slateblue;
+  margin: 40vh auto;
 `;

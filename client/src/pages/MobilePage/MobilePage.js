@@ -4,6 +4,7 @@ import styled from 'styled-components';
 
 import * as firebase from 'firebase';
 
+import Loader from '../../components/Loader';
 import MobileHeader from '../../components/MobileHeader';
 import MobileModal from '../../components/MobileModal';
 import MapMap from '../../components/MapMap';
@@ -96,7 +97,7 @@ const MobilePage = () => {
         <MobileMultiPanel/>
         <MobileModal/>
       </>
-      : ''}
+      : <Loader/>}
     </StyledDiv> 
   ) 
 }; 
@@ -108,6 +109,7 @@ export default MobilePage;
 const StyledDiv = styled.div`
   display: flex;
   flex-direction: column;
-  
+  justify-content: space-between;
+  width: 100vw;
   height: 100vh;
 `;

@@ -20,6 +20,8 @@ export default MobileMultiPanel;
 
 
 const StyledDiv = styled.div`
+  width: 100%;
   background-image: url(${paper});
+  background-size: cover;
   border-top: 3px solid #674c47;
 `;

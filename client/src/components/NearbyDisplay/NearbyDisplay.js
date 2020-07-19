@@ -7,7 +7,7 @@ import { GiAirBalloon } from "react-icons/gi";
 
 import { toggleModal, setModalValue 
 } from '../../reducersActions/appActions';
-
+import { distanceTo } from '../../utils';
 import NearImage from './NearImage';
 // import paper from '../../assets/paper.jpg';
 import { IP } from '../../constants';
@@ -26,15 +26,6 @@ const NearbyDisplay = ({children}) => {
   const [toggle, setToggle] = useState(true);
 
   const [imageArray, setImageArray ] = useState([]);
-
-  const distanceTo = (pointA, pointB) => {
-    const φ1 = pointA[0] * Math.PI/180;
-    const φ2 = pointB[0] * Math.PI/180;
-    const Δλ = (pointB[1]-pointA[1]) * Math.PI/180;
-    const R = 6371e3;
-    const distance = Math.acos( Math.sin(φ1)*Math.sin(φ2) + Math.cos(φ1)*Math.cos(φ2) * Math.cos(Δλ) ) * R;
-    return distance;
-  };
 
   useEffect(() => {
     // console.log('nearestCity', nearestCity);

@@ -23,7 +23,7 @@ const FixedInfo = () => {
       <Section>
         <Descriptor>Velocity: </Descriptor>
         <Values>
-          {parseInt(windSum * elevation)}
+          {parseInt(windSum * elevation)} bph
         </Values>
       </Section>
       <Section>
@@ -37,10 +37,10 @@ const FixedInfo = () => {
       <Section> 
         <Descriptor>Nearest City: </Descriptor>
         <Values>
-          {nearestCity.tags.name}
-          {' [ '} 
-          {(distanceTo([nearestCity.lat, nearestCity.lon], location)/1000).toFixed()} 
-          {' km]'}
+          {nearestCity.tags? nearestCity.tags.name : nearestCity}
+          {' ( '} 
+          {nearestCity.lat? (distanceTo([nearestCity.lat, nearestCity.lon], location)/1000).toFixed() : '?'} 
+          {' km)'}
         </Values>
       </Section>
     </StyledDiv> 
@@ -56,20 +56,21 @@ const StyledDiv = styled.div`
   display: flex;
   justify-content: space-evenly;
   align-items: center;
-  padding: .5rem;
+  padding: .5rem 0;
   background-image: url(${paper});
-  border-top: 3px solid gray;
+  background-size: cover;
+  /* border-top: 3px solid gray; */
   border-bottom: 3px solid gray;
 `;
 const Section = styled.div`
   display: inline-block;
-  span {
+  span, p {
     font-family: 'Rye', cursive;
   }
 `;
 const Descriptor = styled.span`
   color: black;
 `;
-const Values = styled.span`
+const Values = styled.p`
   color: #36454f;
 `;

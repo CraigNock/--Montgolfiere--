@@ -268,6 +268,7 @@ const StyledDiv = styled.div`
   /* background: gray; */
   height: 65vh;
   width: 60vw;
+  /* width: 100%; */
   min-width: 600px;
   min-height: 400px;
   border: 15px ridge #b78727;
@@ -280,11 +281,15 @@ const StyledDiv = styled.div`
     min-height: 300px;
   }
   @media (max-width: 440px) {
-    width: 100%;
+    width: 100vw;
+    min-width: 100vw;
+    /* min-height: 100%; */
+    margin: 0;
     border: none;
-    border-top: 15px ridge #b78727;
-    border-bottom: 15px ridge #b78727;
-    border-radius: none;
+    border-top: 10px ridge #b78727;
+    border-bottom: 10px ridge #b78727;
+    border-radius: 0%;
+    /* border: 10px ridge #b78727; */
   }
 `;
 
@@ -301,19 +306,17 @@ const StyledBalloon = styled.img`
 const StyledButton = styled.button`
   position: absolute;
   justify-content: center;
-  width: 4rem;
+  width: 5rem;
   top: 50%;
   left: 50%;
-  margin: 30px 0 0 -2rem;
+  margin: 30px 0 0 -2.5rem;
+  box-sizing: border-box;
   z-index: 2000;
   border: 2px outset goldenrod;
   border-radius: 10px;
   color: white;
   background: gray;
   font-family: 'Rye', cursive;
-  &:hover {
-    cursor: pointer;
-  }
   @media (max-width: 440px) {
     padding: .5rem;
   }

@@ -37,6 +37,13 @@ const GlassDiv = styled.div`
               inset 0 -15px 30px rgba(0,0,0,0.4),
                     0 5px 10px rgba(0,0,0,0.5);
   overflow: hidden;
+  @media (max-width: 440px) {
+    border-radius: 0%;
+    height: 100%;
+    width: 100%;
+    min-width: 100%;
+    min-height: 100%;
+  }
 `;
 const RainDiv = styled.div`
   display: none;
