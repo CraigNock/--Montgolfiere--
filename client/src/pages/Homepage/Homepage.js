@@ -24,7 +24,6 @@ const Homepage = () => {
   const { appStatus } = useSelector((state) => state.app);
   const { profile } = useSelector(state => state.user);
   const { status, chats } = useSelector(state => state.chat);
-  // console.log('appStatus', appStatus);
 
   const getConversation = async (snapshot) => {
     //get conversation first and make current or whatever then change status
@@ -75,7 +74,6 @@ const Homepage = () => {
           firebase.database().ref('conversations').on('child_removed', 
           (snapshot, prevChildKey)=>{
             if (snapshot.val().participants.includes(profile.userId)){
-              // console.log('snapshot', snapshot.val());
               dispatch(setStatusNoChat());
               dispatch( changeCurrentChat(null) );
             }
@@ -89,20 +87,6 @@ const Homepage = () => {
     }
   }, [status]);
 
-  const isMobile = window.innerWidth < 500;
-
-  // const isPortraitTablet = window.innerWidth < 800;
-  // or prevent flipping on mobile, portraitTablet
-  // const isLandscapeMobile = window.innerWidth < 900 && window.innerHeight < 500;
-
-  // const handleResize = () => {
-  //   //setstate ismobile
-  // }
-
-  // useEffect(() => {
-  //   window.addEventListener('resize', handleResize);
-  //   return window.removeEventListener('resize', handleResize);
-  // }, [])
 
   return (
     <StyledDiv> 
@@ -141,7 +125,6 @@ export default Homepage;
 const StyledDiv = styled.div`
   display: flex;
   flex-direction: column;
-  /* justify-content: space-between; */
   height: 100vh;
   min-width: 1000px;
   min-height: 700px;
@@ -162,12 +145,10 @@ const MainContent = styled.div`
 const LeftPanel = styled.div`
   position: relative;
   width: 16vw;
-  /* min-width: 150px; */
   height: 80vh;
   min-height: 500px;
   background: transparent;
   margin: 1rem 0;
-  /* border: 1px solid goldenrod; */
 `;
 const LeftBackground = styled.div`
   position: absolute;
@@ -184,10 +165,7 @@ const LeftBackground = styled.div`
   overflow: hidden;
   background-image: url(${paper});
   background-size: cover;
-  /* box-shadow: 0 0 10px 3px rgba(0,0,0,0.43); */
-  /* border: 3px solid #674c47; */
   border-left: none;
-  /* border-radius: 5px 20% 20% 5px; */
   border-radius: 5px 3rem 80% 5px;
   opacity: 0.9;
   padding: 1rem;
@@ -201,7 +179,6 @@ const RightPanel = styled.div`
   min-height: 500px;
   background: transparent;
   margin: 1rem 0;
-  /* border: 1px solid goldenrod; */
 `;
 const RightBackground = styled.div`
   position: absolute;
@@ -219,10 +196,7 @@ const RightBackground = styled.div`
   overflow: hidden;
   background-image: url(${paper});
   background-size: cover;
-  /* box-shadow: 0 0 10px 3px rgba(0,0,0,0.43); */
-  /* border: 3px solid #674c47; */
   border-right: none;
-  /* border-radius: 5px 20% 20% 5px; */
   border-radius: 3rem 5px 5px 80%;
   opacity: 0.9;
   padding: 1rem;
@@ -230,15 +204,9 @@ const RightBackground = styled.div`
 `;
 const BottomPanel = styled.div`
   position: relative;
-  /* bottom: 0;
-  left: 16vw; */
   height: 20vh;
   width: 100%;
-  /* right: 0%; */
-  /* margin: 0 auto 0 auto; */
   background: transparent;
-  /* border: 1px solid goldenrod; */
-  /* z-index: 200; */
   
 `;
 const BottomBackground = styled.div`
@@ -247,20 +215,15 @@ const BottomBackground = styled.div`
   bottom: 0;
   display: flex;
   flex-direction: column;
-  /* justify-content: center; */
   align-items:center;
   width: 100%;
   min-width: 700px;
-  /* max-width: 850px; */
   height: 100%;
   min-height: 150px;
   overflow: hidden;
   background-image: url(${paper});
   background-size: cover;
-  /* box-shadow: 0 0 20px 5px rgba(0,0,0,0.33); */
-  /* border: 3px solid #674c47; */
   border-bottom: none;
-  /* border-radius: 5px 20% 20% 5px; */
   border-radius: 80% 80% 5px 5px;
   opacity: 0.9;
   padding: 1rem;

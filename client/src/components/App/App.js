@@ -104,19 +104,7 @@ const CloudBackground = styled.div`
   min-height: 700px;
   z-index: -100;
   overflow: hidden;
-  /*background:  
-    linear-gradient(180deg, 
-    rgba(0,122,235,1) 0%, 
-  rgba(157,207,255,1) 83%);*/
-
-  /* background: rgb(0,3,34);
-  background: linear-gradient(180deg, rgba(0,3,34,1) 0%, rgba(0,18,54,1) 83%); */
-
-  /* background: rgb(0,21,87);
-  background: linear-gradient(180deg, rgba(0,21,87,1) 0%, rgba(255,164,126,1) 100%); */
   
-  /* background: rgb(9,0,85);
-  background: linear-gradient(180deg, rgba(9,0,85,1) 0%, rgba(0,63,181,1) 50%, rgba(255,252,171,1) 100%); */
   @media(max-width: 800px) {
     min-width: 100vw;
     min-height: 100vh;

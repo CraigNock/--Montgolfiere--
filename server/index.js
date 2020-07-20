@@ -7,9 +7,7 @@ const cors = require('cors');
 
 //DATABASE HANDLERS
 const { 
-  // getUserProfile, 
   createUserProfile,
-  // changeProfileLocation,
   changeBalloonIcon, 
   getLastVector,
   newLastVector,
@@ -50,13 +48,11 @@ express()
   .use(express.urlencoded({ extended: false }))
   .use('/', express.static(__dirname + '/'))
 
-  // don't need a sign in as googleSignIn is a method in firebase(unless you build your own)
-  // endpoints
+  // googleSignIn is a method in firebase, can add additional signin methods
+
 //USER ENDPOINTS
-  // .get('/getuser', getUserProfile)
   .post('/createuser', createUserProfile)
   .put('/changeBalloon', changeBalloonIcon)
-  // .put('/changeProfileLocation', changeProfileLocation)
 //USER VECTOR ENDPOINTS
   .get('/getLastVector/:userId', getLastVector)
   .put('/newLastVector', newLastVector)

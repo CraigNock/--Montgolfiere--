@@ -1,6 +1,5 @@
 import React, {useState, useEffect} from 'react'; 
 import styled, {keyframes} from 'styled-components'; 
-
 import { useDispatch, useSelector } from 'react-redux';
 
 import { GiAirBalloon } from "react-icons/gi";
@@ -9,9 +8,7 @@ import { toggleModal, setModalValue
 } from '../../reducersActions/appActions';
 import { distanceTo } from '../../utils';
 import NearImage from './NearImage';
-// import paper from '../../assets/paper.jpg';
 import { IP } from '../../constants';
-// import { GiSextant } from "react-icons/gi";
 import altitude from '../../assets/placeicons/altitude.svg';
 import buildings from '../../assets/placeicons/buildings.svg';
 import cities from '../../assets/placeicons/cities.svg';
@@ -22,18 +19,15 @@ const NearbyDisplay = ({children}) => {
   const { location } = useSelector((state) => state.user.profile);
   const dispatch = useDispatch();
   const { modalValue } = useSelector(state => state.app);
-  // console.log('nearestCity', nearestCity);
   const [toggle, setToggle] = useState(true);
 
   const [imageArray, setImageArray ] = useState([]);
 
   useEffect(() => {
-    // console.log('nearestCity', nearestCity);
     if(nearestCity !== 'Atlantis')
     fetch(`${IP}/api/retrieveImages/${nearestCity.tags.name}`)
       .then(data => data.json())
       .then(data => {
-        // console.log('data', data.images);
         setImageArray(data.images);
       }).catch(err => console.log('cond err', err))
   }, [nearestCity]);
@@ -104,34 +98,28 @@ const panelSlide = keyframes`
 const StyledDiv = styled.div`
   animation: ${panelSlide} 2s ease-in-out;
   transition: transform 2000ms ease-in-out;
-  /* margin: 0 100px; */
   position: absolute;
   left: 0;
   bottom: 0;
   display: flex;
-  /* flex-direction: column; */
   justify-content: center;
   align-items:center;
   width: 100%;
   min-width: 700px;
-  /* max-width: 850px; */
   height: 100%;
   min-height: 150px;
   box-shadow: 0 0 20px 5px rgba(0,0,0,0.33);
   border: 3px solid #674c47;
   border-bottom: none;
-  /* border-radius: 5px 20% 20% 5px; */
   border-radius: 80% 80% 5px 5px;
   padding: 1rem;
   p {
     font-family: 'Rye', cursive;
     color: #36454f;
-    /* color: maroon; */
     margin: .25rem 0;
   }
   span{
     font-family: 'Rye', cursive;
-    /* color: #36454f; */
     color: black;
   }
 `;
@@ -165,13 +153,11 @@ const CenterDiv = styled.div`
   p {
     font-family: 'Rye', cursive;
     color: #36454f;
-    /* color: maroon; */
     margin: .25rem 0;
     
   }
   span{
     font-family: 'Rye', cursive;
-    /* color: #36454f; */
     color: black;
   }
 `;
@@ -200,16 +186,3 @@ const ImageDiv = styled.div`
   align-items: center;
 
 `;
-// const StyledImg = styled.img`
-//   height: 5rem;
-//   width: 5rem;
-//   object-fit: cover;
-//   border-radius: 50%;
-//   border: 3px ridge dimgray;
-//   margin: -.5rem 1rem 0 0;
-//   transition: all 1500ms ease-in-out;
-//   &:hover {
-//     transform: scale(2) translateY(-1.2rem);
-    
-//   }
-// `;

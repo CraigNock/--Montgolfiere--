@@ -58,7 +58,6 @@ const StyledDiv = styled.div`
   display: flex;
   flex-direction: column;
   justify-content: flex-start;
-  /* align-items: center; */
   padding: 1rem;
   width: 100%;
   height: 100%;
@@ -67,19 +66,13 @@ const StyledDiv = styled.div`
 const SubDiv = styled.div`
   display: flex;
   flex-direction: column;
-  /* justify-content: center; */
   align-items: center;
-  /* width: 50%; */
   padding: 1rem;
   color: black;
   background: rgba(0,0,0, .1);
   font-family: 'Fredericka the Great', cursive;
-  /* overflow: hidden; */
   a {
     color: black;
-  }
-  p {
-    /* text-align: center; */
   }
 `;
 const Headings = styled.p`

@@ -3,12 +3,6 @@ import styled from 'styled-components';
 import { useSelector } from 'react-redux';
 import {format} from 'date-fns';
 
-
-
-// import tipRec from '../../assets/tip-received.svg';
-// import tipSent from '../../assets/tip-sent.svg';
-
-
 // {
 // chatId: currentChat.chatId,
 // userId: userId,
@@ -28,7 +22,6 @@ const ChatMessage = ( {message} ) => {
         <UserName>{message.displayName}</UserName>
         <OtherMess>
             {message.content}
-            {/* <OtherTip src={tipRec} alt="speechtip"/> */}
         </OtherMess>
         <Time>{format(message.timeStamp, 'hh:mm')}</Time>
       </>
@@ -39,7 +32,6 @@ const ChatMessage = ( {message} ) => {
         <Stacker>
           <UserMess>
             {message.content}
-            {/* <UserTip src={tipSent} alt="speechtip"/> */}
           </UserMess>
           <Time>{format(message.timeStamp, 'hh:mm')}</Time>
         </Stacker>
@@ -48,9 +40,7 @@ const ChatMessage = ( {message} ) => {
   };
 };
 
-
 export default ChatMessage;
-
 
 const UserName = styled.p`
   font-weight: bold;
@@ -64,7 +54,6 @@ const Time = styled.p`
   margin: 0 .5rem;
   color: lightgray;
   padding: 0;
-  /* font-weight: bold; */
 `;
 const UserMess = styled.p`
   position: relative;
@@ -79,9 +68,6 @@ const UserMess = styled.p`
   color: black;
   background-color: goldenrod;
   word-wrap: break-word;
-
-  /* flex: none; */
-  
 `;
 const OtherMess = styled(UserMess)`
   background-color: #E9E9EB;
@@ -90,7 +76,6 @@ const OtherMess = styled(UserMess)`
 const MessLine = styled.div`
   display: inline-flex;
   justify-content: flex-end;
-  /* align-items: flex-end; */
   width: 100%;
 `;
 const Stacker = styled.div`
@@ -98,13 +83,3 @@ const Stacker = styled.div`
   flex-direction: column;
   align-items: flex-end;
 `;
-// const UserTip = styled.img`
-//   position: absolute;
-//   right: -8px;
-//   top: .9rem;
-// `;
-// const OtherTip = styled.img`
-//   position: absolute;
-//   left: -8px;
-//   top: 1.1rem;
-// `;

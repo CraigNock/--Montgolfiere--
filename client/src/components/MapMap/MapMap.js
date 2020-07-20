@@ -1,11 +1,8 @@
 import React, { useRef, useEffect, useState } from 'react'; 
 import styled, {keyframes} from 'styled-components'; 
 import { useDispatch, useSelector } from 'react-redux';
-
 import { Map, TileLayer, AttributionControl } from "react-leaflet";
-// import L, { Icon } from "leaflet";
 
-// import balloon from '../../assets/balloon.svg';
 import balloonIconArray from '../MultiModal/balloonArray';
 
 import useInterval from '../../hooks/use-interval-hook';
@@ -14,11 +11,12 @@ import { updateLocation
 import { updateCurrentConditions, updateSunTimes, updateNearestCity, 
 } from '../../reducersActions/conditionsActions';
 
+//Functions
 import fetchConditions from './fetchConditions';
 import findClosestCity from './findClosestCity';
 import findNextLoc from './findNextLoc';
 import nearbyBalloonSync from './nearbyBalloonSync';
-
+//Components
 import OtherBalloons from './OtherBalloons';
 import LensEffect from './LensEffect';
 
@@ -26,34 +24,24 @@ import { IP } from '../../constants';
 
 
 const MapMap = () => { 
-  // console.log('LOAD MAP');
 
   const { profile } = useSelector((state) => state.user);
-  //add if active===false stop everything(toggle active else where)
-  // console.log('profile', profile);
   const { windSum, windBearing } = useSelector((state) => state.conditions.current);
   const { nearestCity } = useSelector((state) => state.conditions);
   const dispatch = useDispatch();
-
   const [launch, setLaunch] = useState(false);
   const [anchored, setAnchored] = useState(true);
-
   const [nearbyBalloons, setNearbyBalloons] = useState([]);
-
   const [newLoc, setNewLoc] = useState(profile.location);
-  // const [currentCenter, setCurrentCenter] = useState(profile.location);
-  const [ggg, setggg] = useState(false);
+  const [refreshCalc, setRefreshCalc] = useState(false);
 
 //ON MOUNT FETCH CONDITIONS & CLOSEST CITY
   const handleConditions = async () => {
     try {
       let conditions = await fetchConditions(profile.location);
-      // console.log('conditions', conditions);
       if(conditions[0]) {dispatch( updateCurrentConditions(conditions[0]) )};
       if(conditions[1]) {dispatch( updateSunTimes(conditions[1]) )};
-      
       let nearCity = await findClosestCity(profile.location);
-      // console.log('nearCity', nearCity);
       if(nearCity && nearCity !== nearestCity) dispatch( updateNearestCity(nearCity) )
     } catch (err) {
       console.log('handlecond error', err)
@@ -63,11 +51,10 @@ const MapMap = () => {
     handleConditions();
 //on dismount clear the intervals below
     return ()=> {
-      // console.log('clean intervals'); 
       clearInterval(freshBreeze);
       clearInterval(checkpoint); 
       clearInterval(updateDestination);
-      clearInterval(beef);
+      clearInterval(syncGlobalBalloons);
     };
 // eslint-disable-next-line
   }, []);
@@ -78,29 +65,25 @@ const MapMap = () => {
   
 //TRIGGERS PAN METHOD ON DESTINATION CHANGE, ZOOM
   const mapRef = useRef();
-  // const markRef = useRef();
   const panToOptions = {
         animate: true,
         duration: 60, //seconds
         easeLinearity: 1,
       };
   useEffect(() => {
-  //   console.log('useeffect mapRef', mapRef);
     const { current } = mapRef;
     const { leafletElement } = current;
     if (newLoc[0])
     setTimeout(()=>{
-      // console.log('panTo');
       leafletElement.panTo(newLoc, panToOptions)
     }, 100);
 // eslint-disable-next-line
-  }, [mapRef, newLoc, ggg]);
+  }, [mapRef, newLoc, refreshCalc]);
 
 
 //KEEPS BALLOON MOVING - Trigged on Launch
 //use findNextLoc on stored speed and bearing with current center then set as newloc
   const newLeg = async (toggle) => {
-    // console.log('newLeg windSum, windBearing', windSum, windBearing, profile.elevation, launch, anchored);
     const modBearing = (windBearing + profile.direction)>360? 
     (windBearing + profile.direction -360) 
     : (windBearing + profile.direction);
@@ -111,7 +94,6 @@ const MapMap = () => {
       modBearing,
       (windSum * 10 *  profile.elevation) 
     );
-    // console.log('newDest', newDest);
     setNewLoc(newDest);
     } else {
       setNewLoc(mapRef.current.viewport.center);
@@ -120,7 +102,6 @@ const MapMap = () => {
   }
 
   const updateDestination = useInterval(()=>{
-    // console.log('minint');
     if(launch) newLeg();
   },59000);
 
@@ -131,7 +112,6 @@ const MapMap = () => {
 
 //STORES BALLOON LOCATION EVERY 10 SECONDS lastVector
   const updateVector = () => {
-    // console.log('vector update');
     const modBearing = (windBearing + profile.direction)>360? 
     (windBearing + profile.direction -360) 
     : (windBearing + profile.direction);
@@ -153,7 +133,6 @@ const MapMap = () => {
       }).catch(err => {console.log('udv err', err);})
   };
   const checkpoint = useInterval(()=>{
-    // console.log('int 10s ', mapRef.current);
     if(mapRef.current.viewport.center) {
     dispatch(updateLocation([...mapRef.current.viewport.center ]));
     updateVector();
@@ -162,8 +141,7 @@ const MapMap = () => {
 
 
 //SYNC GLOBAL BALLOON LOCATIONS
-  const beef = useInterval(async ()=>{
-    // console.log('syncsync');
+  const syncGlobalBalloons = useInterval(async ()=>{
     const modBearing = (windBearing + profile.direction)>360? 
     (windBearing + profile.direction -360) 
     : (windBearing + profile.direction);
@@ -176,7 +154,6 @@ const MapMap = () => {
     timeStamp: Date.now(),
     });
     setNearbyBalloons(newBalloons) ;
-    // console.log('nearbyBalloons', nearbyBalloons);
   }, 15000);
 
 
@@ -193,10 +170,8 @@ const MapMap = () => {
         doubleClickZoom={'center'}
         scrollWheelZoom={'center'}
         touchZoom={'center'}
-        onZoomEnd={()=> setggg(!ggg)}
+        onZoomEnd={()=> setRefreshCalc(!refreshCalc)}
         attributionControl={false}
-        // onClick={()=>newnew()}
-        // onMove={centerMark}
       >
         {/* <TileLayer
           url="https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png"
@@ -215,7 +190,6 @@ const MapMap = () => {
           onClick={()=>{
             setAnchored(false);
             setLaunch(true);
-            // console.log('anchored, launch', anchored, launch);
             newLeg(false);
           }}
           style={{display: launch? 'none' : 'flex'}}
@@ -264,11 +238,8 @@ const StyledDiv = styled.div`
   justify-content: center;
   align-items: center;
   margin: 1rem auto 1rem;
-  /* padding: .5rem; */
-  /* background: gray; */
   height: 65vh;
   width: 60vw;
-  /* width: 100%; */
   min-width: 600px;
   min-height: 400px;
   border: 15px ridge #b78727;

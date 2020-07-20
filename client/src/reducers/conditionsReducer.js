@@ -12,6 +12,7 @@ const initialState = {
   nearestCity: 'Atlantis',
 };
 
+////EXPECTED FORMATS////
 //suntimes = [ currentTime, sunriseTime, sunsetTime ]
 //sunTimes: [1588863914, 1589103360, 1589157060]
 //sample of current
@@ -43,17 +44,14 @@ const initialState = {
 const conditionsReducer = (state = initialState, action) => {
   switch (action.type) {
     case 'UPDATE_CURRENT_CONDITIONS': 
-      // console.log('action.conditions', action.conditions);
       return produce(state, draftState => {
         draftState.current = {...action.conditions};
       });
     case 'UPDATE_SUNTIMES': 
-      // console.log('action.conditions', action.conditions);
       return produce(state, draftState => {
         draftState.sunTimes = [...action.sunTimes];
       });
     case 'UPDATE_NEAREST_CITY': 
-      // console.log('action.conditions', action.conditions);
       return produce(state, draftState => {
         draftState.nearestCity = {...action.nearestCity};
       });

@@ -39,7 +39,6 @@ const ConditionsDisplay = ({children}) => {
 
   const handleHelp = () => {
     if(modalValue !== 'instructions') dispatch(setModalValue('instructions'));
-    // setShowMenu(false);
     dispatch(toggleModal());
   };
 
@@ -98,14 +97,9 @@ const StyledDiv = styled.div`
   height: 80vh;
   min-height: 500px;
   max-height: 600px;
-  /* overflow: hidden; */
-  /* background-image: url(${paper});
-  background-size: cover;
-  opacity: 0.9; */
   box-shadow: 0 0 10px 3px rgba(0,0,0,0.43);
   border: 3px solid #674c47;
   border-right: none;
-  /* border-radius: 5px 20% 20% 5px; */
   border-radius: 3rem 5px 5px 80%;
   padding: 1rem;
   
@@ -124,14 +118,11 @@ const StyledSubDiv2 = styled.div`
   overflow: hidden;
 `;
 const P1 = styled.p`
-  /* font-size: .95rem; */
   font-family: 'Rye', cursive;
   color: black;
-  /* color: maroon; */
   margin: .25rem 0;
 `;
 const P2 = styled(P1)`
-  /* font-size: .85rem; */
   color: #36454f;
 `;
 const StyledButton = styled.button`

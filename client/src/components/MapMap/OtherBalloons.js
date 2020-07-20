@@ -1,24 +1,16 @@
 import React, { useEffect, useState } from 'react'; 
 import styled from 'styled-components'; 
 import { useDispatch, useSelector } from 'react-redux';
-
 import { Marker, Popup } from "react-leaflet";
 import { Icon } from "leaflet";
 
-// import useInterval from '../../hooks/use-interval-hook';
-// import pointInCircle from './pointInCircle';
 import markerFilter from './markerfilter';
 
 import { addChat, changeCurrentChat } from '../../reducersActions/chatActions';
 import { IP } from '../../constants';
-// import balloon from '../../assets/balloon.svg';
 import balloon2 from '../../assets/Balloon Icons/hot-air-balloon (6).svg';
 import balloon3 from '../../assets/Balloon Icons/hot-air-balloon (20).svg';
 
-// const ballooon = new Icon({
-//   iconUrl: balloon,
-//   iconSize: [20, 20]
-// });
 const ballooon22 = new Icon({
   iconUrl: balloon2,
   iconSize: [25, 25]
@@ -35,7 +27,6 @@ const OtherBalloons = ({balloons}) => {
   const { location, userId } = useSelector((state) => state.user.profile);
   const { viewRange } = useSelector((state) => state.app);
 
-  // if(balloons.length > 0) console.log('balloons', balloons);
   const [disable, setDisable] = useState(false);
 //to match popups
   const [activeBalloon, setActiveBalloon] = useState(null);
@@ -51,11 +42,9 @@ const OtherBalloons = ({balloons}) => {
     const timeCutoff = (Date.now()) - .5 * 60 * 60 * 1000;
     
     await array.forEach(async (item) => {
-      // console.log('item.timeStamp , timeCutoff', item.timeStamp , timeCutoff);
       const label = (item.timeStamp > timeCutoff && item.elevation < 3)? 
         await markerFilter(location, rangeMin, rangeMax, item.location) 
         : '';
-        // console.log('item, label', item, label);
       switch (label) {
         case 'far':
           far.push(item);
@@ -69,7 +58,6 @@ const OtherBalloons = ({balloons}) => {
         default:
           break;
       }
-    //   console.log('far, nearOuter, nearInner',far,nearOuter,nearInner);
     });
     setNearInnerBalloons(nearInner);
     setNearOuterBalloons(nearOuter);
@@ -102,7 +90,6 @@ const OtherBalloons = ({balloons}) => {
       }),
     }).then(res => res.json())
       .then(json => {
-        // console.log('json', json);
         dispatch(changeCurrentChat({
           chatId: json.chatId,
           conversation: [
@@ -114,7 +101,7 @@ const OtherBalloons = ({balloons}) => {
             // }
           ],
         }));
-        dispatch(addChat(json.chatId)); //status change to ask?
+        dispatch(addChat(json.chatId)); 
       })
   };
   

@@ -79,7 +79,6 @@ export default ProfileDetails;
 const StyledDiv = styled.div`
   display: flex;
   justify-content: center;
-  /* align-items: center; */
   padding: 1rem;
   width: 100%;
   height: 100%;
@@ -88,7 +87,6 @@ const StyledDiv = styled.div`
 const SubDiv = styled.div`
   display: flex;
   flex-direction: column;
-  /* justify-content: center; */
   align-items: center;
   width: 50%;
   padding: 1rem;
@@ -99,7 +97,6 @@ const SubDiv = styled.div`
 `;
 const UserInfo = styled.div`
   display: flex;
-  /* justify-content: center; */
   align-items: flex-start;
   width:100%;
   margin-bottom: 1rem;
@@ -107,19 +104,16 @@ const UserInfo = styled.div`
 const SubUser = styled.div`
   display: flex;
   flex-direction: column;
-  /* justify-content: center; */
   align-items: center;
   margin-left: 1rem;
 `;
 const StyledImg = styled.img`
-  /* height: 10%; */
   width: 40%;
   max-width: 8rem;
   border-radius: 50%;
   margin-bottom: 1rem;
   object-fit: contain;
   background: skyblue;
-  /* padding:.5rem; */
   border: 5px double darkgoldenrod;
 `;
 const Headings = styled.p`

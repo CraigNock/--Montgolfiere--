@@ -39,7 +39,6 @@ export const AuthContext = createContext(null);
 
 // {signInWithGoogle, signOut, user} are provided/imported with firebase
 const AuthProvider = ({ children, signInWithGoogle, signOut, user }) => { 
-  //replace with redux state? No. Keep separate, avoid misfire. 
   //Homepage renders on currentUser.email
   const [currentUser, setCurrentUser] = useState({});
   
@@ -53,19 +52,15 @@ const AuthProvider = ({ children, signInWithGoogle, signOut, user }) => {
   const handleLastVector = async (lastVector) => {
     if (!lastVector.lastActive) return false;
     let activeDiff = Date.now() - lastVector.lastActive
-    // console.log('type', typeof lastVector.lastElevation);
-    // console.log('activeDiff', activeDiff, lastVector.lastElevation, lastVector.lastWindSum);
     activeDiff = (activeDiff < 3600000) ? activeDiff/3600000 : 1;
     const adjustedSpeed = 
       (lastVector.lastWindSum * lastVector.lastElevation) * activeDiff;
-    // console.log('adjustedSpeed', adjustedSpeed);
     const start = await findNextLoc(
       lastVector.lastLocation[0],
       lastVector.lastLocation[1],
       lastVector.lastBearing,
       adjustedSpeed
     );
-    // console.log('start', start);
     return start;
   }
 
@@ -92,7 +87,6 @@ const AuthProvider = ({ children, signInWithGoogle, signOut, user }) => {
     })
       .then((res) => res.json())
       .then((json) => {
-        // console.log('guestjson.data', json.data);
         setCurrentUser(json.data);
         dispatch(updateCurrentUser(json.data));
       })
@@ -118,18 +112,15 @@ const AuthProvider = ({ children, signInWithGoogle, signOut, user }) => {
       })
         .then((res) => res.json())
         .then((json) => {
-          // console.log('json.data', json.data);
           setCurrentUser(json.data);
           dispatch(updateCurrentUser(json.data));
         //grabs last known vector and updates the starting location
           fetch(`${IP}/getLastVector/${json.data.userId}`)
             .then(vector => vector.json())
             .then(last =>{ 
-              // console.log('last', last.data);
               return handleLastVector(last.data)
             })
             .then(start => {
-              // console.log('start', start);
               if(start[0]) dispatch(updateLocation(start));
             })
             .then(()=>dispatch(setStatusLogged()))
@@ -139,7 +130,6 @@ const AuthProvider = ({ children, signInWithGoogle, signOut, user }) => {
 // eslint-disable-next-line
   }, [user])
 
-///useeffect current user grab user lastVector data
 
   return (
     <AuthContext.Provider 
@@ -149,8 +139,6 @@ const AuthProvider = ({ children, signInWithGoogle, signOut, user }) => {
     </AuthContext.Provider> 
   ) 
 }; 
-
-
 
 
 export default withFirebaseAuth({

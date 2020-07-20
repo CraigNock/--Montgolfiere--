@@ -6,7 +6,6 @@ import { useSelector } from 'react-redux';
 
 const Cloud = ( props ) => { 
   const { current } = useSelector( state => state.conditions);
-  // console.log('props', props.speed);
   let tinto = 'whitesmoke';
   let lining = 'lightgray';
   if(current.icon && 

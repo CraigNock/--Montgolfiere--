@@ -90,7 +90,6 @@ const StyledDiv = styled.div`
   opacity: 0.9;
   box-sizing: border-box;
   background-size: cover;
-  /* background: whitesmoke; */
   border: 10px ridge peru;
   border-radius: 10px;
   color: black;
@@ -122,6 +121,9 @@ const Title = styled.p`
   margin-bottom: 1rem;
   text-decoration: underline;
   color: darkgoldenrod;
+  @media (max-width: 440px) {
+    font-size: 1.5rem;
+  }
 `;
 const SignIn = styled.div`
   p {

@@ -1,7 +1,6 @@
 import React from 'react'; 
 import styled from 'styled-components'; 
 import { useDispatch, useSelector } from 'react-redux';
-// import { GrSettingsOption } from "react-icons/gr";
 import Icon from 'react-icons-kit';
 import {cogs} from 'react-icons-kit/icomoon/cogs'
 
@@ -29,7 +28,6 @@ const Header = () => {
     dispatch(toggleModal());
   };
 
-//style={{opacity: modalToggle? 1 : 0}}
   return (
     <StyledBar >
       <Title> 
@@ -71,7 +69,6 @@ const StyledBar = styled.div`
   z-index: 2;
   color: whitesmoke;
   background: rgba(0,0,0,.5);
-  /* margin-bottom: 1rem; */
   height: 2.5rem;
   opacity: 0.1;
   transition: opacity 1.5s;
@@ -85,7 +82,6 @@ const StyledBar = styled.div`
 `;
 const Title = styled.div`
   padding: .5rem 1rem;
-  /* cursor: context-menu; */
   font-size: 1.2rem;
   font-family: 'Fredericka the Great', cursive;
   span{
@@ -97,7 +93,6 @@ const Settings = styled.div`
   position: relative;
   display: flex;
   align-items: center;
-  /* padding: 0 2rem 0 2rem; */
   height: 100%;
   box-sizing: border-box;
   &:hover{

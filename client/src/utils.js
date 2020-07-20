@@ -7,3 +7,8 @@ export const distanceTo = (pointA, pointB) => {
   const distance = Math.acos( Math.sin(φ1)*Math.sin(φ2) + Math.cos(φ1)*Math.cos(φ2) * Math.cos(Δλ) ) * R;
   return distance;
 };
+
+// const randy = (min, max) => { 
+//   let rand = Math.floor((Math.random()*(max - min)) + min);
+//   return rand;
+// };

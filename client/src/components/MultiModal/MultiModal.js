@@ -14,8 +14,6 @@ import parchment2 from '../../assets/parchment2.png';
 
 const MultiModal = () => { 
   const dispatch = useDispatch();
-  // const [disable, setDisable] = useState(false);
-  // const { profile } = useSelector(state => state.user);
   const { modalToggle, modalValue } = useSelector(state => state.app);
 
   return (  
@@ -24,7 +22,6 @@ const MultiModal = () => {
         style={{background:(modalValue === 'instructions')? 
         'rgba(0,0,0, .1)':'rgba(0,0,0, .5)'}}
         onClick={()=>{
-          // console.log('togmod');
           dispatch(toggleModal());
         }}></ModalBack>
 
@@ -59,7 +56,6 @@ const ModalBack = styled.div`
   position: absolute;
   height: 100%;
   width: 100%;
-  /* position: relative; */
   display: flex;
   justify-content: center;
   align-items: center;
@@ -83,7 +79,6 @@ const ModalFront = styled.div`
   top: 3rem;
   background-image: url(${parchment2});
   background-size: cover;
-  /* border-radius: 10%; */
   border: 10px ridge peru;
   
   

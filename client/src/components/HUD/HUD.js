@@ -11,8 +11,6 @@ import { GoFlame } from "react-icons/go";
 import { GiFlame } from "react-icons/gi";
 import { GiFire } from "react-icons/gi";
 import { GiGlobe } from "react-icons/gi";
-// import { GoTelescope } from "react-icons/go";
-// import { GiSextant } from "react-icons/gi";
 import { GiShipWheel } from "react-icons/gi";
 import { GiSpyglass } from "react-icons/gi";
 import { IoIosBasket } from "react-icons/io";
@@ -20,12 +18,7 @@ import { FiArrowUpLeft } from "react-icons/fi";
 import { FiArrowUpRight } from "react-icons/fi";
 import { FiArrowUp } from "react-icons/fi";
 
-// TiArrowUpThick TiArrowBack TiArrowForward TiArrowDownThick
-// GiHandheldFan GiRadarSweep GiSail GiSpyglass GiEmptyHourglass IoIosCog
-//GiKite GiTreasureMap MdMap GiBurningEmbers GiFireZone GiPulleyHook GiOldLantern
-//GiLibertyWing GiLever GiPadlock AiFillVideoCamera GiMagnifyingGlass
-//GiPaperWindmill GiAnchor GiBatWing GiHourglass FaTelegramPlane
-//GiSextant  GiSpeedometer GiSteampunkGoggles GiWindsock GiWindTurbine
+
 
 import paper from '../../assets/paper.jpg';
 
@@ -42,12 +35,10 @@ const HUD = ({children}) => {
 
   const handleElevation = async (e) => {
     const value = Number(e.target.value);
-    // console.log('value', value);
     dispatch(changeElevation(value));
   };
   const handleViewRange = async (e) => {
     const value = Number(e.target.value);
-    // console.log('value', value);
     dispatch(setViewRange(value));
   };
   const handleDirection = async (val) => {
@@ -229,33 +220,25 @@ const StyledDiv = styled.div`
   top: 0;
   display: flex;
   flex-direction: column;
-  /* justify-content: center; */
   width: 15vw;
   min-width: 150px;
   max-width: 200px;
   height: 80vh;
   min-height: 500px;
   max-height: 600px;
-  /* overflow: hidden; */
-  /* background-image: url(${paper}); */
-  /* background-size: cover; */
-  /* opacity: 0.9; */
   box-shadow: 0 0 10px 3px rgba(0,0,0,0.43);
   border: 3px solid #674c47;
   border-left: none;
-  /* border-radius: 5px 20% 20% 5px; */
   border-radius: 5px 3rem 80% 5px;
   padding: 1rem;
   p {
     font-family: 'Rye', cursive;
     color: #36454f;
-    /* color: maroon; */
     margin: .25rem 0;
     
   }
   span{
     font-family: 'Rye', cursive;
-    /* color: #36454f; */
     color: black;
   }
 `;
@@ -266,7 +249,6 @@ const InvisRadio = styled.input`
 `;
 const FlexDiv = styled.div`
   display: flex;
-  /* justify-content: space-around; */
   align-items: center;
   flex-wrap: none;
   margin-bottom: .5rem;
@@ -295,9 +277,7 @@ const ElevUl = styled.ul`
   font-family: 'Rye', cursive;
   label {
     font-family: 'Rye', cursive;
-
   }
-  /* color: #36454f; */
   color: black;
   
 `;
@@ -329,7 +309,6 @@ const ViewCircle = styled.div`
   padding: .35rem;
   border-radius: 50%;
   color: #36454f;
-  /* color: #dbd7d2; */
   box-shadow: 0 0 20px 5px rgba(0,0,0,0.53), 
   0 0 10px 2px rgba(0,0,0,0.33) inset;
   
@@ -355,12 +334,10 @@ const StyledButton = styled.button`
   }
 `;
 const Sail = styled.div`
-  /* filter: grayscale(100%); */
   display: flex;
   flex-direction: column;
   justify-content: center;
   align-items: flex-start;
-  /* margin-left: -2.5rem; */
   width: 70%;
   border-top: 2px solid gray;
   padding-top: .75rem;
@@ -383,7 +360,6 @@ const WheelDiv = styled.div`
 const SailButton = styled(StyledButton)`
   width: 2rem;
   margin: 0 .25rem 0 0;
-  /* border: 2px solid silver; */
 `;
 const UnderButton = styled(SailButton)`
   margin: 0 0 0 1.1rem;

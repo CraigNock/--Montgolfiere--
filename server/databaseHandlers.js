@@ -1,7 +1,5 @@
 'use strict';
 
-//RENAME TO DATABASE HANDLERS
-
 const {startingLocations} = require('./data.js');
 
 const randy = (min, max) => { 
@@ -53,11 +51,9 @@ const queryDatabase = async (key) => {
 const getUserProfile = async (email) => { 
   const data = (await queryDatabase('userProfiles')) || {};
   //note: data includes db generated key for profile
-  // console.log('getuserprofile data ', data); 
   const dataValue = Object.keys(data)
     .map((item) => data[item])
     .find((obj) => obj.email === email);
-  // console.log('dataValue', dataValue);
   return dataValue || false;
 };
 
@@ -65,9 +61,7 @@ const getUserProfile = async (email) => {
 //type:POST
 //receives:google user data
 const createUserProfile = async (req, res) => {
-  // console.log('createUserProfile');
   const returningUser = (await getUserProfile(req.body.email));
-  // console.log('returningUser ',returningUser);
 
   if (returningUser) {
     //dispatch currentuserupdate logged in and active?
@@ -81,7 +75,6 @@ const createUserProfile = async (req, res) => {
   } else {
     const userProfilesRef = db.ref('userProfiles');
     const start = startingLocations[randy(0, 10)];
-    // const start = startingLocations[0];
     //pre creates a key in desired node, 
     //can then include this key value in data placed in that location
     const userId = await userProfilesRef.push().key; 
@@ -146,13 +139,13 @@ const createUserProfile = async (req, res) => {
 const changeProfileLocation = async (userId, newLocation) => {
   try {
     await db.ref('userProfiles/' + userId + '/location').set(newLocation);
-    // res.status(204).json({status:204}); //fixed with json (.status doesnt actually send, needs a .send or .json)
+    // res.status(204).json({status:204}); 
     } catch (err) {console.log('err', err);}
 };
 const changeProfileDirection = async (userId, newDirection) => {
   try {
     await db.ref('userProfiles/' + userId + '/direction').set(newDirection);
-    // res.status(204).json({status:204}); //fixed with json (.status doesnt actually send, needs a .send or .json)
+    // res.status(204).json({status:204}); 
     } catch (err) {console.log('err', err);}
 };
 
@@ -160,7 +153,7 @@ const changeProfileDirection = async (userId, newDirection) => {
 const changeBalloonIcon = async (req, res) => {
   try {
     await db.ref('userProfiles/' + req.body.userId + '/balloonIcon').set(req.body.newBalloon);
-    // res.status(204).json({status:204}); //fixed with json (.status doesnt actually send, needs a .send or .json)
+    // res.status(204).json({status:204}); 
     } catch (err) {console.log('err', err);}
 };
 
@@ -170,7 +163,6 @@ const changeBalloonIcon = async (req, res) => {
 
 // type: GET
 const getLastVector = async (req, res) => {
-  // console.log('getLastVector');
   const { userId } = req.params
   const data = (await queryDatabase('lastVectors/' + userId)) || {};
   res.status(200).json({
@@ -179,6 +171,7 @@ const getLastVector = async (req, res) => {
   }) 
 };
 
+////EXPECTED FORMAT////
 // type: POST
 // example lastVector= {
 //   email: blah@blah,
@@ -224,21 +217,18 @@ const pointInCircle = (center, radius, point) => {
   const centerY = center[0];
   const centerX = center[1];
   const y = point[0];
-  const x = point[1] ; // long 180 vs lat 90??
+  const x = point[1] ; 
   const squareDist = (centerX - x) ** 2 + (centerY - y) ** 2
     return ( squareDist < (radius ** 2) )
 };
 // type: POST
 const syncAllBalloons = async (req, res) => {
   await updateGlobalPosition(req.body);
-
   const allObj = (await queryDatabase('allLocations')) || {};
-  // console.log('allBalloons data ', allObj); 
   const allArray = Object.keys(allObj)
     .map((item) => allObj[item])
     .filter((obj) => ( obj.userId !== req.body.userId ) );
     // .filter((obj) => ( pointInCircle(req.body.location , 1, obj.location) ) );
-  // console.log('allArray', allArray);
 
   res.status(200).json({
     status: 200,
@@ -247,13 +237,11 @@ const syncAllBalloons = async (req, res) => {
 };
 
 
-
 /////////////////////////
 /// CHAT INTERACTIONS ///
 /////////////////////////
 
 const startConversation = async (req, res) => {
-  // console.log('create convo');
   const chatId = await db.ref('/conversations').push().key;
   const newChat = {
     chatId: chatId,
@@ -277,11 +265,9 @@ const startConversation = async (req, res) => {
 };
 
 const getConversation = async (req, res) => {
-  // console.log('get convo');
   const { chatId } = req.params;
   try {
     const data = (await queryDatabase('conversations/' + chatId)) || {};
-    // console.log('get conv data', data);
     if(data.conversation) data.conversation = Object.values(data.conversation);
     res.status(200).json({
       status:200,
@@ -291,7 +277,6 @@ const getConversation = async (req, res) => {
 };
 
 const sendNewMessage = async (req, res) => {
-  // console.log('sendmsg req.body', req.body);
   try {
     await db.ref('conversations/' + req.body.chatId + '/conversation').push(req.body);
     res.status(200).json({
@@ -301,7 +286,6 @@ const sendNewMessage = async (req, res) => {
 };
 
 const removeConversation = async (req, res) => {
-  // console.log('remove convo');
   const { chatId } = req.params;
   try {
     await db.ref('conversations/' + chatId).set(null);
@@ -311,7 +295,6 @@ const removeConversation = async (req, res) => {
   } catch (err) {console.log('smsg err', err);}
 
 };
-
 
 //db chat structure
 // { chatId : {

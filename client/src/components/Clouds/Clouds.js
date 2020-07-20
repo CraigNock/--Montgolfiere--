@@ -3,11 +3,6 @@ import styled from 'styled-components';
 import { useSelector } from 'react-redux';
 import Cloud from './Cloud';
 
-// const randy = (min, max) => { 
-//   let rand = Math.floor((Math.random()*(max - min)) + min);
-//   return rand;
-// };
-
 
 const Clouds = () => { 
   const { current } = useSelector( state => state.conditions);
@@ -31,7 +26,6 @@ const Clouds = () => {
     }
   };
   randSpeeds(8, 24);
-
 
 
   return (
@@ -80,7 +74,6 @@ const StyledDiv = styled.div`
 const CloudTrack = styled.div`
   height: fit-content;
   overflow: hidden;
-  /* background: skyblue; */
   width: 100%;
   margin: 0%;
 `;

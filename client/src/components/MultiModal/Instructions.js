@@ -79,7 +79,6 @@ export default Instructions;
 const StyledDiv = styled.div`
   display: flex;
   justify-content: center;
-  /* align-items: center; */
   padding: .5rem;
   width: 100%;
   height: 100%;
@@ -94,7 +93,6 @@ const StyledDiv = styled.div`
 const SubDiv = styled.div`
   display: flex;
   flex-direction: column;
-  /* justify-content: space-between; */
   align-items: center;
   width: 30%;
   color: black;
