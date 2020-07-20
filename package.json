@@ -1,7 +1,7 @@
 {
   "scripts": {
-    "fullinstall": "yarn install && concurrently \"cd client && yarn install\" \"cd server && yarn install\"",
-    "fullstart": "concurrently \"cd client && yarn start\" \"cd server && node index.js\""
+    "full-install": "yarn install && concurrently \"cd client && yarn install\" \"cd server && yarn install\"",
+    "full-start": "concurrently \"cd client && yarn start\" \"cd server && node index.js\""
   },
   "dependencies": {
     "concurrently": "^5.2.0",

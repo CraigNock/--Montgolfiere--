@@ -32,17 +32,17 @@ This project was borne of the question of what happens to those escaped party ba
 Note that a firebase RealTime Database will need to be set up and various API keys will be required for full functionality.
 1. Open up your favourite code editor (such as Visual Studio Code) and git clone the repository.
 2. Change directory to the project folder and open the terminal there.
-3. In the terminal enter $yarn fullinstall. Concurrently will be installed, then this dependancy will install all the necessary dependancies for both the Server and the React app. (for your convenience!)
+3. In the terminal enter $yarn full-install. Concurrently will be installed, then this dependancy will install all the necessary dependancies for both the Server and the React app. (for your convenience!)
 4. Head to Firebase and create a Real Time Database! 
     - https://firebase.google.com/products/realtime-database
-5. Create a <strong>.env</strong> file in the <strong>client</strong> folder containing the following information & keys:
+5. Once firebase database is created, Create App to get the Firebase SDK Snippet.
+6. Create a <strong>.env</strong> file in the <strong>client</strong> folder containing the following information & keys:
     - Firebase information: 
     (Once a Firebase Realtime database is created, this info can be found in the Firebase Console sidebar under "Project Settings" {look for the cog!} ) 
     - Located under the heading "Firebase SDK Snippet" Simply copy over the matching values.
-      - FB_DATABASE_URL=
+      - REACT_APP_FB_DATABASEURL=
       - REACT_APP_FB_APIKEY=
       - REACT_APP_FB_AUTHDOMAIN=
-      - REACT_APP_FB_DATABASEURL=
       - REACT_APP_FB_PROJECTID=
       - REACT_APP_FB_STORAGEBUCKET=
       - REACT_APP_FB_MESSAGINSENDERID=
@@ -54,16 +54,17 @@ Note that a firebase RealTime Database will need to be set up and various API ke
   
     - API keys: You will need to obtain your own key for this service
       - REACT_APP_THUNDERFOREST_MAPTILES_KEY=
-        - Provides map tiles (<strong>Without</strong>: defaults to OpenStreetMap tiles)
+        - Provides map tiles (<strong>Optional</strong>: defaults to OpenStreetMap tiles)
         - https://www.thunderforest.com/docs/apikeys/
 
-4. Create a <strong>.env</strong> file in the <strong>server</strong> folder containing the following information & keys:
+7. Create a <strong>.env</strong> file in the <strong>server</strong> folder containing the following information & keys:
     - Firebase information: 
     (Once a Firebase Realtime database is created, this info can be found in the Firebase Console sidebar under "Project Settings" {look for the cog!} )
 
-    - Navigate to the "Service Accounts" tab and you should see a button down the bottom labelled "Generate New Key". Press this and a .JSON file will be downloaded to your computer. Open this .JSON file and copy over the matching information and keys.
+    - Navigate to the "Service Accounts" tab and you should see a button down the bottom labelled "Generate New Key". Press this and a .JSON file will be downloaded to your computer. Open this .JSON file and copy over the matching information and keys (excepting FB_DATABASE_URL).
 
       - FB_DATABASE_URL=
+          - This entry is not included in the .JSON file, however it's value is the same as the "REACT_APP_FB_DATABASEURL" entry in the <strong>client .env file</strong> and can be copied from there or the same source.
       - FIREBASE_PROJECT_ID=
       - FIREBASE_PRIVATE_KEY_ID=
       - FIREBASE_PRIVATE_KEY=
@@ -73,18 +74,15 @@ Note that a firebase RealTime Database will need to be set up and various API ke
   
     - API keys: You will need to obtain your own keys for these services
       - DARKSKY_API_KEY= 
-        - Provides <strong>wind</strong>, weather and sunrise/set data. <strong>(Essential)</strong>
+        - Provides <strong>wind</strong>, weather and sunrise/set data. <strong>(Required)</strong>
         - (Darksky no longer accepts new signups, can use alternative: "Openweather One Call API" ) https://openweathermap.org/api/one-call-api
-      - THUNDERFOREST_MAPTILES_KEY=
-        - Provides map tiles (<strong>Without</strong>: defaults to OpenStreetMap tiles)
-        - https://www.thunderforest.com/docs/apikeys/
       - AZURE_COGNITIVE_KEY=
-        - Provides nearby location images (<strong>Without</strong>: defaults to built in icons)
+        - Provides nearby location images (<strong>Optional</strong>: defaults to built in icons)
         - https://docs.microsoft.com/en-us/azure/cognitive-services/
 
 
-6. In the terminal enter $yarn dev. Concurrently will start both the Server and the React app (which will open automatically in the browser).
-7. Sign In using Google or Guest button. Then launch your balloon!
+8. In the terminal enter $yarn full-start. Concurrently will start both the Server and the React app (which will open automatically in the browser).
+9. Sign In using Google or Guest button. Then launch your balloon!
 
 ---
 ## Technologies
