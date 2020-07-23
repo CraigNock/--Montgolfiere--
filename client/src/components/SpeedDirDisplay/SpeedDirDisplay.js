@@ -12,9 +12,11 @@ const SpeedDirDisplay = () => {
     <StyledDiv> 
       <p>
         <span>Bearing: </span>
-        {(windBearing + direction)>360? 
+        {(windBearing + direction) > 360? 
         (windBearing + direction -360) 
-        : (windBearing + direction)}°
+        : ((windBearing + direction) < 0? 
+          (360 + (windBearing + direction)) 
+          :(windBearing + direction))}°
       </p>
       <p>
         <span>Velocity: </span>

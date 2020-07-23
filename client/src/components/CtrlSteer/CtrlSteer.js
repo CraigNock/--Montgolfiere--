@@ -1,4 +1,4 @@
-import React, { useState } from 'react'; 
+import React, { useState, useEffect } from 'react'; 
 import styled from 'styled-components'; 
 import { useDispatch, useSelector } from 'react-redux';
 
@@ -14,7 +14,15 @@ import { FiArrowUp } from "react-icons/fi";
 const CtrlSteer = () => { 
   const dispatch = useDispatch();
   const { direction } = useSelector( state => state.user.profile);
+  const { windBearing } = useSelector( state => state.conditions.current);
   const [activeModifier, setActiveModifier] = useState(0);
+
+// on mount set modified back to zero if previously left otherwise
+  useEffect(()=> {
+    if (windBearing + activeModifier !== direction) {
+      handleDirection(0);
+    }
+  }, []);
 
   const handleDirection = async (val) => {
     setActiveModifier(val);

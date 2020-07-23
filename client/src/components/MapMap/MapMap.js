@@ -144,7 +144,9 @@ const MapMap = () => {
   const syncGlobalBalloons = useInterval(async ()=>{
     const modBearing = (windBearing + profile.direction)>360? 
     (windBearing + profile.direction -360) 
-    : (windBearing + profile.direction);
+    : ((windBearing + profile.direction) < 0? 
+    (360 + (windBearing + profile.direction)) 
+    :(windBearing + profile.direction));
     let newBalloons = await nearbyBalloonSync({
     elevation: profile.elevation,
     location: profile.location,
