@@ -11,9 +11,9 @@ import { GoFlame } from "react-icons/go";
 import { GiFlame } from "react-icons/gi";
 import { GiFire } from "react-icons/gi";
 import { GiGlobe } from "react-icons/gi";
-import { GiShipWheel } from "react-icons/gi";
 import { GiSpyglass } from "react-icons/gi";
 import { IoIosBasket } from "react-icons/io";
+import { GiShipWheel } from "react-icons/gi";
 import { FiArrowUpLeft } from "react-icons/fi";
 import { FiArrowUpRight } from "react-icons/fi";
 import { FiArrowUp } from "react-icons/fi";
@@ -88,7 +88,7 @@ const HUD = ({children}) => {
               onChange={(e) => handleElevation(e)} 
               checked={(elevation === 1)} />Low
               </label>
-            </li>
+            </li> 
             </ElevUl>
             <FlameoHotman>
               <GiFlame 
@@ -113,7 +113,6 @@ const HUD = ({children}) => {
                 marginTop: '.6rem' 
                 }}  />
             </FlameoHotman>
-
         </FlexDiv>
         
         <span>View range</span>

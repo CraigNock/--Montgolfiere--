@@ -7,7 +7,7 @@ import * as firebase from 'firebase';
 import Header from '../../components/Header';
 import MultiModal from '../../components/MultiModal';
 import MapMap from '../../components/MapMap';
-import HUD from '../../components/HUD';
+import ControlPanel from '../../components/ControlPanel';
 import NearbyDisplay from '../../components/NearbyDisplay';
 import ConditionsDisplay from '../../components/ConditionsDisplay';
 import ChatInterface from '../../components/ChatInterface';
@@ -95,9 +95,9 @@ const Homepage = () => {
       <>
       <MainContent>
         <LeftPanel>
-          <HUD>
+          <ControlPanel>
             <LeftBackground/>
-          </HUD>
+          </ControlPanel>
         </LeftPanel>
         <CenterDiv>
           <MapMap />

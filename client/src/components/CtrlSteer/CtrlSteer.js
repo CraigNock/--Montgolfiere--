@@ -1,0 +1,101 @@
+import React, { useState } from 'react'; 
+import styled from 'styled-components'; 
+import { useDispatch, useSelector } from 'react-redux';
+
+///// CONTROLS STEERING (only +- 45 degrees to bearing) /////
+
+import { changeDirection } from '../../reducersActions/userActions';
+
+import { GiShipWheel } from "react-icons/gi";
+import { FiArrowUpLeft } from "react-icons/fi";
+import { FiArrowUpRight } from "react-icons/fi";
+import { FiArrowUp } from "react-icons/fi";
+
+const CtrlSteer = () => { 
+  const dispatch = useDispatch();
+  const { direction } = useSelector( state => state.user.profile);
+  const [activeModifier, setActiveModifier] = useState(0);
+
+  const handleDirection = async (val) => {
+    setActiveModifier(val);
+    dispatch(changeDirection(val));
+  };
+
+  return (
+    <StyledDiv> 
+      <UnderButton 
+        disabled={(activeModifier === 0)}
+        style={{borderColor: (activeModifier === 0)? '#00563f': 'goldenrod'}}
+        onClick={()=> handleDirection(0)}
+      >
+        <FiArrowUp/>
+      </UnderButton>
+      <SubDiv>
+        <StyledButton 
+          disabled={(activeModifier === -45)}
+          style={{borderColor: (activeModifier === -45)? '#00563f': 'goldenrod'}}
+          onClick={()=> handleDirection(-45)}
+        >
+          <FiArrowUpLeft/>
+        </StyledButton>
+        <StyledButton
+          disabled={(activeModifier === 45)}
+          style={{borderColor: (activeModifier === 45)? '#00563f': 'goldenrod'}}
+          onClick={()=> handleDirection(45)}
+        >
+        <FiArrowUpRight/>
+        </StyledButton>
+      </SubDiv>
+      
+      <WheelDiv><GiShipWheel/></WheelDiv>
+    </StyledDiv> 
+  ) 
+}; 
+
+
+export default CtrlSteer;
+
+
+const StyledDiv = styled.div`
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: flex-start;
+  width: 70%;
+  border-top: 2px solid gray;
+  padding-top: .75rem;
+`;
+const SubDiv = styled.div`
+  display: flex;
+  justify-content: flex-start;
+  align-items: center;
+  margin-bottom: .25rem;
+`;
+const WheelDiv = styled.div`
+  width: 100%;
+  margin-left: .4rem;
+  font-size: 3.5rem;
+  color: #2b0b13;
+  
+`;
+const StyledButton = styled.button`
+  display: inline-flex;
+  justify-content: center;
+  align-items: center;
+  width: 2rem;
+  margin: 0 .25rem 0 0;
+  border: 2px outset goldenrod;
+  border-radius: 10px;
+  color: white;
+  background: gray;
+  font-family: 'Rye', cursive;
+  &:hover {
+    cursor: pointer;
+    color: black;
+    background: whitesmoke;
+  }
+`;
+const UnderButton = styled(StyledButton)`
+  margin: 0 0 0 1.1rem;
+  
+`;
