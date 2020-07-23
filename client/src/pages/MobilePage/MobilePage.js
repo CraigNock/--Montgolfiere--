@@ -6,7 +6,6 @@ import * as firebase from 'firebase';
 
 import Loader from '../../components/Loader';
 import MobileHeader from '../../components/MobileHeader';
-import MobileModal from '../../components/MobileModal';
 import MapMap from '../../components/MapMap';
 import MobileMultiPanel from '../../components/MobileMultiPanel';
 
@@ -14,6 +13,9 @@ import { addChat, setStatusAskChat, setStatusNoChat, changeCurrentChat } from '.
 
 import paper from '../../assets/paper.jpg';
 import { IP } from '../../constants';
+
+
+//////////TEMPORARY MOBILE PAGE, WITH TEMPORARY MOBILE COMPONENTS FOR TESTING DESIRED LAYOUT, RESULT WILL BE ACHIEVED VIA EXISTING COMPONENTS AND MEDIA QUERIES////
 
 const MobilePage = () => { 
 
@@ -95,7 +97,7 @@ const MobilePage = () => {
         <MobileHeader />
         <MapMap/>
         <MobileMultiPanel/>
-        <MobileModal/>
+        
       </>
       : <Loader/>}
     </StyledDiv> 
