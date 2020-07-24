@@ -93,6 +93,7 @@ const StyledDiv = styled.div`
   @media(max-width: 440px) {
     min-width: 100vw;
     width: 100vw;
+    min-height: fit-content;
   }
 `;
 const Tab = styled.div`
@@ -105,6 +106,7 @@ const Tab = styled.div`
   background: tan;
   box-sizing: border-box;
   border: 3px solid #674c47;
+  border-bottom: none;
   border-radius: 50% 50% 0 0;
   text-align: center;
   color: gray;
@@ -118,8 +120,8 @@ const Tab = styled.div`
   @media(max-width: 440px) {
     width: 6rem;
     left: calc(50% - 3rem);
-    height: 3rem;
-    top: -3rem;
+    height: 2.5rem;
+    top: -2.5rem;
   }
 `;
 const ImageDiv = styled.div`

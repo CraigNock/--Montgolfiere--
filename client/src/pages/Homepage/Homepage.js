@@ -86,34 +86,26 @@ const Homepage = () => {
     }
   }, [status]);
 
-//////MOBILE RESPONSIVE////
-const [isMobile, setIsMobile] = useState(window.innerWidth < 440);
-  
+///// MOBILE RESPONSIVE /////
+  const [screenWidth, setScreenWidth] = useState(window.innerWidth);
 
-// const isPortraitTablet = window.innerWidth < 800;
-// or prevent flipping on mobile, portraitTablet
-// const isLandscapeMobile = window.innerWidth < 900 && window.innerHeight < 500;
+  useEffect(() => {
+    const handleResize = () => {
+      console.log('resizing', window.innerWidth);
+      setScreenWidth(window.innerWidth);
+    };
+    window.addEventListener('resize', handleResize);
 
-const handleResize = () => {
-  if(window.innerWidth < 440 && isMobile !== true) {
-    setIsMobile(true);
-  } else if(window.innerWidth > 439 && isMobile !== false) {
-    setIsMobile(false);
-  }
-}
-
-useEffect(() => {
-  window.addEventListener('resize', handleResize);
-  return window.removeEventListener('resize', handleResize);
-}, [])
-
+    return () => {window.removeEventListener('resize', handleResize);}
+  }, []);
+/////
 
   return (
     <StyledDiv> 
       {(appStatus==='logged in')? 
       <>
       <Header />
-      {(isMobile)? 
+      {(screenWidth < 441)? /* mobile */
         <CenterDiv> 
           <MapMap />
           <BottomPanel>
@@ -123,9 +115,7 @@ useEffect(() => {
         :
         <MainContent>
           <LeftPanel>
-            <ControlPanel>
-              <LeftBackground/>
-            </ControlPanel>
+            <ControlPanel><LeftBackground/> </ControlPanel>
           </LeftPanel>
           <CenterDiv>
             <MapMap />
@@ -169,7 +159,10 @@ const MainContent = styled.div`
   justify-content: space-between;
   overflow: hidden;
   height: 100%;
-  
+  @media (max-width: 440px) {
+    margin-top: 1rem;
+    padding-top: 1rem;
+  }
 `;
 const LeftPanel = styled.div`
   position: relative;
@@ -241,6 +234,7 @@ const BottomPanel = styled.div`
   @media(max-width: 440px) {
     min-width: 100vw;
     width: 100vw;
+    /* height: 15vh; */
   }
 `;
 const BottomBackground = styled.div`
@@ -266,6 +260,7 @@ const BottomBackground = styled.div`
   z-index: -1;
   @media(max-width: 440px) {
     min-width: 100vw;
+    min-height: fit-content;
     width: 100vw;
     border-radius: 15px 15px 0 0;
   }

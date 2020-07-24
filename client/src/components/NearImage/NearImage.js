@@ -28,4 +28,8 @@ const StyledImg = styled.img`
     transform: scale(2) translateY(-1.2rem);
     
   }
+  @media(max-width: 440px){
+    height: 4rem;
+    width: 4rem;
+  }
 `;
