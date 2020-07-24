@@ -1,26 +1,21 @@
 import React, {useState, useEffect} from 'react'; 
 import styled, {keyframes} from 'styled-components'; 
-import { useDispatch, useSelector } from 'react-redux';
+import { useSelector } from 'react-redux';
 
-import { GiAirBalloon } from "react-icons/gi";
-
-import { toggleModal, setModalValue 
-} from '../../reducersActions/appActions';
-import { distanceTo } from '../../utils';
-import NearImage from './NearImage';
+import NearImage from '../NearImage';
+import NearCity from '../NearCity';
 import { IP } from '../../constants';
+
 import altitude from '../../assets/placeicons/altitude.svg';
 import buildings from '../../assets/placeicons/buildings.svg';
 import cities from '../../assets/placeicons/cities.svg';
 import constructions from '../../assets/placeicons/constructions.svg';
-import NearCity from './NearCity';
 
 ///// DISPLAYS THE NEAREST CITY'S NAME, DISTANCE AND IMAGES ///// 
 
 const NearbyDisplay = ({children}) => { 
   const { nearestCity } = useSelector(state => state.conditions);
-  const dispatch = useDispatch();
-  const { modalValue } = useSelector(state => state.app);
+
   const [toggle, setToggle] = useState(true);
 
   const [imageArray, setImageArray ] = useState([]);
@@ -34,11 +29,6 @@ const NearbyDisplay = ({children}) => {
       }).catch(err => console.log('cond err', err))
   }, [nearestCity]);
 
-  const handleProfile = () => {
-    if(modalValue !== 'profile') dispatch(setModalValue('profile'));
-    // setShowMenu(false);
-    dispatch(toggleModal());
-  };
 
   return ( 
     <StyledDiv style={{transform: toggle? 'translateY(0)' : 'translateY(100%)'}}> 
@@ -54,7 +44,6 @@ const NearbyDisplay = ({children}) => {
         <NearImage image={imageArray[2]} token={cities} />
         <NearImage image={imageArray[3]} token={constructions} />
       </ImageDiv>
-
       {children}
     </StyledDiv> 
   ) 
@@ -88,7 +77,6 @@ const StyledDiv = styled.div`
   height: 100%;
   min-height: 150px;
   box-shadow: 0 0 20px 5px rgba(0,0,0,0.33);
-  border: 3px solid #674c47;
   border-bottom: none;
   border-radius: 80% 80% 5px 5px;
   padding: 1rem;
@@ -121,25 +109,6 @@ const Tab = styled.div`
   &:hover {
     cursor: pointer;
     opacity: .5;
-  }
-`;
-const StyledButton = styled.button`
-  display: inline-flex;
-  justify-content: center;
-  align-items: center;
-  width: 3.5rem;
-  height: 3rem;
-  margin: .5rem 0;
-  font-size: 2rem;
-  border: 3px outset slategray;
-  border-radius: 15px;
-  color: whitesmoke;
-  background: gray;
-  font-family: 'Rye', cursive;
-  &:hover {
-    cursor: pointer;
-    color: black;
-    background: whitesmoke;
   }
 `;
 const ImageDiv = styled.div`

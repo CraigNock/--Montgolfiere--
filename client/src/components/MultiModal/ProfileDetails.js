@@ -15,6 +15,7 @@ const ProfileDetails = () => {
 
   const { profile } = useSelector(state => state.user);
 
+  const [profileImgErr, setProfileImgErr] = useState(false);
   const [selected, setSelected] = useState(profile.balloonIcon);
 
   const saveBalloonChoice = async (index) => {
@@ -30,7 +31,7 @@ const ProfileDetails = () => {
         userId: profile.userId,
         newBalloon: index,
       }),
-    }).catch(err => {console.log('udv err', err);})
+    }).catch(err => {console.log('changeBalloon err', err);})
     setSelected(index);
   };
 
@@ -38,7 +39,10 @@ const ProfileDetails = () => {
     <StyledDiv> 
       <SubDiv> 
         <UserInfo>
-          <StyledImg src={profile.imageSrc || gentleman} />
+          <StyledImg 
+            src={(profileImgErr === true || profile.imageSrc === undefined)? gentleman : profile.imageSrc} 
+            onError={()=> setProfileImgErr(true)}
+          />
           <SubUser>
             <InfoHeading>Display Name</InfoHeading>
             <InfoValue>{profile.displayName}</InfoValue>

@@ -64,7 +64,6 @@ const StyledDiv = styled.div`
   min-height: 500px;
   max-height: 600px;
   box-shadow: 0 0 10px 3px rgba(0,0,0,0.43);
-  border: 3px solid #674c47;
   border-left: none;
   border-radius: 5px 3rem 80% 5px;
   padding: 1rem;

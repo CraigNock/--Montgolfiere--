@@ -37,6 +37,8 @@ const About = () => {
         <p>
           Nearby City Images: <a href='https://azure.microsoft.com/en-us/services/cognitive-services/bing-image-search-api/'>Bing Image Search</a> 
         </p>
+        <Headings>Map Tiles by:</Headings>
+        <p><a href='thunderforest.com'>Thunderforest</a></p>
         <Headings>Balloon Icons by:</Headings> 
         <ul>
           <li>Pixel Perfect from www.flaticon.com</li>
@@ -45,8 +47,6 @@ const About = () => {
           <li>DinosoftLabs from www.flaticon.com</li>
           <li>Smashicons from www.flaticon.com</li>
         </ul>
-        <Headings>Map Tiles by:</Headings>
-        <p><a href='thunderforest.com'>Thunderforest</a></p>
       </SubDiv>
     </StyledDiv> 
   ) 

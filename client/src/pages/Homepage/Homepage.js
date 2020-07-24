@@ -11,8 +11,7 @@ import ControlPanel from '../../components/ControlPanel';
 import NearbyDisplay from '../../components/NearbyDisplay';
 import ConditionsDisplay from '../../components/ConditionsDisplay';
 import ChatInterface from '../../components/ChatInterface';
-
-// import TradeInterface from '../../components/TradeInterface';
+import Loader from '../../components/Loader';
 
 import { addChat, setStatusAskChat, setStatusNoChat, changeCurrentChat } from '../../reducersActions/chatActions';
 
@@ -90,9 +89,9 @@ const Homepage = () => {
 
   return (
     <StyledDiv> 
-      <Header />
       {(appStatus==='logged in')? 
       <>
+      <Header />
       <MainContent>
         <LeftPanel>
           <ControlPanel>
@@ -112,7 +111,7 @@ const Homepage = () => {
       </MainContent>
       <MultiModal/>
       </>
-      : ''}
+      : <Loader/>}
       
     </StyledDiv> 
   ) 
@@ -128,10 +127,10 @@ const StyledDiv = styled.div`
   height: 100vh;
   min-width: 1000px;
   min-height: 700px;
-  /* @media (max-width: 800px) {
-    min-width: 400px;
-    min-height: 300px;
-  } */
+  @media (max-width: 440px) {
+    min-width: 100vw;
+    min-height: 100%;
+  }
 
 `;
 const MainContent = styled.div`
@@ -165,6 +164,7 @@ const LeftBackground = styled.div`
   overflow: hidden;
   background-image: url(${paper});
   background-size: cover;
+  border: 3px solid #674c47;
   border-left: none;
   border-radius: 5px 3rem 80% 5px;
   opacity: 0.9;
@@ -196,6 +196,7 @@ const RightBackground = styled.div`
   overflow: hidden;
   background-image: url(${paper});
   background-size: cover;
+  border: 3px solid #674c47;
   border-right: none;
   border-radius: 3rem 5px 5px 80%;
   opacity: 0.9;
@@ -223,6 +224,7 @@ const BottomBackground = styled.div`
   overflow: hidden;
   background-image: url(${paper});
   background-size: cover;
+  border: 3px solid #674c47;
   border-bottom: none;
   border-radius: 80% 80% 5px 5px;
   opacity: 0.9;

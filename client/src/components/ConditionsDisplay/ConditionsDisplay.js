@@ -2,12 +2,7 @@ import React, {useState} from 'react';
 import styled, {keyframes} from 'styled-components'; 
 import { useDispatch, useSelector } from 'react-redux';
 
-import { toggleModal, setModalValue 
-} from '../../reducersActions/appActions';
-
-import paper from '../../assets/paper.jpg';
-
-
+///// DISPLAYS CONDITIONS AT BALLOON /////
 
 const ConditionsDisplay = ({children}) => { 
   const { 
@@ -32,15 +27,7 @@ const ConditionsDisplay = ({children}) => {
     // ozone,
   } = useSelector( state => state.conditions.current);
 
-  const dispatch = useDispatch();
-  const { modalValue } = useSelector(state => state.app);
-
   const [toggle, setToggle] = useState(true);
-
-  const handleHelp = () => {
-    if(modalValue !== 'instructions') dispatch(setModalValue('instructions'));
-    dispatch(toggleModal());
-  };
 
   return ( time? 
     <StyledDiv style={{transform: toggle? 'translateX(0)' : 'translateX(100%)'}}>
@@ -59,9 +46,6 @@ const ConditionsDisplay = ({children}) => {
         <P1>Humidity:</P1> <P2>{humidity.toFixed(1)}</P2>
         <P1>UV Index:</P1> <P2>{uvIndex}</P2>
       </StyledSubDiv2>
-      <StyledButton onClick={ () => handleHelp() }>
-        ?
-      </StyledButton>
       {children}
     </StyledDiv> 
     : ''
@@ -98,7 +82,6 @@ const StyledDiv = styled.div`
   min-height: 500px;
   max-height: 600px;
   box-shadow: 0 0 10px 3px rgba(0,0,0,0.43);
-  border: 3px solid #674c47;
   border-right: none;
   border-radius: 3rem 5px 5px 80%;
   padding: 1rem;
@@ -125,26 +108,6 @@ const P1 = styled.p`
 const P2 = styled(P1)`
   color: #36454f;
 `;
-const StyledButton = styled.button`
-  display: inline-flex;
-  justify-content: center;
-  align-items: center;
-  width: 3rem;
-  height: 2rem;
-  font-size: 1.2rem;
-  margin: .5rem 0;
-  border: 3px outset whitesmoke;
-  border-radius: 10px;
-  color: whitesmoke;
-  background: gray;
-  font-family: 'Rye', cursive;
-  &:hover {
-    cursor: pointer;
-    color: black;
-    background: whitesmoke;
-  }
-`;
-
 const Tab = styled.div`
   position: absolute;
   display: flex;

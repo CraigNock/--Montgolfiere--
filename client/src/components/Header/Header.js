@@ -1,14 +1,27 @@
 import React from 'react'; 
 import styled from 'styled-components'; 
 import { useDispatch, useSelector } from 'react-redux';
-import Icon from 'react-icons-kit';
-import {cogs} from 'react-icons-kit/icomoon/cogs'
 
 import { AuthContext } from '../AuthContext/AuthContext';
 
 import { toggleModal, setModalValue } 
 from '../../reducersActions/appActions';
 
+import { GiCaptainHatProfile } from "react-icons/gi"; //profile
+import { GiAirBalloon } from "react-icons/gi"; //customize balloon
+import { GoQuestion } from "react-icons/go";//instruct
+import { FaCogs } from "react-icons/fa"; //settings
+import { FaInfoCircle } from "react-icons/fa"; //about
+import { GoSignOut } from "react-icons/go";
+
+const iconStyle = {
+  color: 'white', 
+  fontSize: '2rem',
+  padding: '2px',
+  border: '2px outset goldenrod',
+  borderRadius:'50%',
+  background: 'gray',
+};
 
 const Header = () => { 
   const dispatch = useDispatch();
@@ -27,135 +40,193 @@ const Header = () => {
     // setShowMenu(false);
     dispatch(toggleModal());
   };
+  const instructionsHandle = () => {
+    if(modalValue !== 'instructions') dispatch(setModalValue('instructions'));
+    // setShowMenu(false);
+    dispatch(toggleModal());
+  };
 
   return (
-    <StyledBar >
-      <Title> 
-        <StyledP>
-          Where <span>is</span> my Balloon? 
-        </StyledP>
+    <StyledDiv> 
+      <Title>
+        <p>Where <span>is</span> my</p>
+        <p> Balloon?</p>
       </Title>
-      <Settings 
-      onMouseLeave={()=>setShowMenu(!showMenu)}
-      onMouseEnter={()=>setShowMenu(!showMenu)}>
-        <IconDiv >
-          <Icon icon={cogs} size={30} />
+      <ModalButtons>
+        <IconDiv
+          onClick={()=> profileHandle()}
+        >
+          <GiCaptainHatProfile
+            style={iconStyle}
+          />
+        </IconDiv>
+        <IconDiv
+          onClick={()=> profileHandle()}
+        >
+          <GiAirBalloon
+            style={iconStyle}
+          />
+        </IconDiv>
+        <IconDiv
+          onClick={()=> instructionsHandle()}
+        >
+          <GoQuestion
+            style={iconStyle}
+          />
+        </IconDiv>
+        
+      </ModalButtons>
+      <SignOut
+        onClick={()=>setShowMenu(!showMenu)}
+      >
+        <IconDiv>
+          <FaCogs
+            style={{
+              color: 'whitesmoke', 
+              fontSize: '1.5rem' 
+              }}
+          />
         </IconDiv>
         <Menu style={{display: showMenu? 'flex' : 'none' }}>
-          <ProButton onClick={()=> profileHandle()}>
-            Profile
-          </ProButton>
-          <ProButton onClick={()=> aboutHandle()}>
-            About
-          </ProButton>
-          <StylishSpace></StylishSpace>
-          <StyledButton onClick={handleSignOut}>
-            Sign Out
+          <StyledButton
+            onClick={()=> aboutHandle()}
+          >
+            <span>About </span>
+            <FaInfoCircle
+              style={{
+                color: 'whitesmoke', 
+                fontSize: '1rem' 
+                }}
+            />
           </StyledButton>
+          <StyledButton onClick={handleSignOut}>
+            <span> Sign Out </span>
+            <GoSignOut
+              style={{
+                color: 'whitesmoke', 
+                fontSize: '1rem' 
+                }}
+            />
+          </StyledButton>
+          
         </Menu>
-      </Settings>
-    </StyledBar> 
+      </SignOut>
+    </StyledDiv> 
   ) 
 }; 
 
 
 export default Header;
 
-//opacity default 0
-const StyledBar = styled.div`
+
+const StyledDiv = styled.div`
   display: flex;
   justify-content: space-between;
   align-items: center;
-  z-index: 2;
-  color: whitesmoke;
-  background: rgba(0,0,0,.5);
+  width: 100vw;
+  max-width: 100vw;
   height: 2.5rem;
-  /* opacity: 0.1;
-  transition: opacity 1.5s;
-  &:hover {
-    opacity: 1;
-    transition: opacity 1.5s;
-  } */
-  @media(max-width: 440px) {
-    opacity: 1;
-  }
+  color: whitesmoke;
+  background: rgba(0,0,0,.6);
 `;
 const Title = styled.div`
-  padding: .5rem 1rem;
-  font-size: 1.2rem;
-  font-family: 'Fredericka the Great', cursive;
+  width: 100%;
+  margin: .3rem auto .3rem 1rem;
+  font-size: 1.25rem;
+  p {
+    display: inline-block;
+    font-family: 'Fredericka the Great', cursive;
+    text-align: left;
+    white-space: pre;
+  }
   span{
     font-style: italic;
     font-family: 'Fredericka the Great', cursive;
   }
-`;
-const Settings = styled.div`
-  position: relative;
-  display: flex;
-  align-items: center;
-  height: 100%;
-  box-sizing: border-box;
   &:hover{
-    background: rgba(0,0,0,.25);
+    cursor: context-menu;
+  }
+  @media(max-width: 440px){
+    width: fit-content;
+    margin: .3rem 1rem;
+    p {
+      display: block;
+      text-align: center;
+      font-size: 1rem;
+    }
   }
 `;
+const ModalButtons = styled.div`
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 100%;
+`;
 const IconDiv = styled.div`
-  width:100%;
-  padding: 0 2rem 0 2rem;
-  &:hover{
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 100%;
+  padding: 0 .9rem;
+  margin: 0 .2rem;
+  span {
+    font-family: 'Fredericka the Great', cursive;
+    margin-right: .25rem;
+  }
+  &:hover {
     cursor: pointer;
+    opacity: .8;
+  }
+`;
+const SignOut = styled.div`
+  position: relative;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 100%;
+  width: 8rem;
+  min-width: 8rem;
+  box-sizing: border-box;
+  border-left: 2px solid gray;
+  @media(max-width: 440px){
+    width: 4rem;
   }
 `;
 const Menu = styled.div`
-  display: none;
   position: absolute;
   top: 100%;
-  left: 0;
-  width: 100%;
+  left: -2px;
+  width: 8rem;
+  max-width: 8rem;
   display: flex;
   flex-direction: column;
-  box-sizing: border-box;
-  background: rgba(0,0,0,.75);
+  align-items: flex-start;
+  background: rgba(0,0,0,.8);
+  padding-top: .5rem;
   border-radius: 0 0 0 7px;
-  padding: 0 0 .25rem 0;
+  border: 2px solid gray;
+  border-top: 2px solid gray;
+  border-right: none;
   z-index: 10000;
-  &:hover{
-    display: flex;
+  @media(max-width: 440px){
+    width: 4rem;
   }
-`;
-const StyledP = styled.p`
-  color: whitesmoke;
-  font-family: 'Fredericka the Great', cursive;
-  padding: .25rem .5rem .25rem .75rem;
-  
-`;
-const ProButton = styled.button`
-  color: whitesmoke;
-  font-family: 'Fredericka the Great', cursive;
-  padding: .25rem .5rem .25rem .75rem;
-  border: none;
-  background: none;
-  color: whitesmoke;
-  text-align: left;
-  font-size: 1rem;
-  &:hover{
-    background: rgba(0,0,0,.25);
-    cursor: pointer;
-  }
-`;
-const StylishSpace = styled.div`
-  height: .5rem;
 `;
 const StyledButton = styled.button`
   background: transparent;
+  box-sizing: border-box;
+  width: 100%;
+  margin: 1rem 0;
+  color: white;
   border: none;
-  color: lightgray;
-  text-align: left;
-  font-size: .75rem;
-  padding-left: .75rem;
-  font-family: 'Fredericka the Great', cursive;
-  &:hover{
-    background: rgba(0,0,0,.25);
+  span{
+    /* text-decoration: underline; */
+    font-family: 'Fredericka the Great', cursive;
+    font-size: 1rem;
+  }
+  
+  &:hover {
     cursor: pointer;
+    opacity: .8;
   }
 `;
