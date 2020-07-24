@@ -1,6 +1,8 @@
 import React from 'react'; 
 import styled from 'styled-components'; 
 
+import CloseModal from './CloseModal';
+
 import { GoArrowLeft } from "react-icons/go";
 import { GoArrowRight } from "react-icons/go";
 import { GoArrowUp } from "react-icons/go";
@@ -15,6 +17,7 @@ const Instructions = () => {
 
   return (
     <StyledDiv> 
+        <CloseModal/>
         <LeftDiv>
           <div>
             <p><GoArrowLeft/><BoldSpan>Bearing</BoldSpan>
@@ -77,6 +80,7 @@ export default Instructions;
 
 
 const StyledDiv = styled.div`
+  position: relative;
   display: flex;
   justify-content: center;
   padding: .5rem;
@@ -106,11 +110,11 @@ const RightDiv = styled(SubDiv)`
   align-items: flex-end;
   text-align: right;
   width: 35%;
+  margin-top: 1.5rem;
 `;
-const LeftDiv = styled(SubDiv)`
-  justify-content: space-between;
+const LeftDiv = styled(RightDiv)`
   align-items: flex-start;
-  width: 35%;
+  text-align: left;
 `;
 
 const ImageDiv = styled.div`

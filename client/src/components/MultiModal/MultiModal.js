@@ -44,12 +44,13 @@ const ModalFrame = styled.div`
   position: absolute;
   height: 100vh;
   width: 100vw;
-  min-width: 1000px;
-  min-height: 700px;
+  /* min-width: 1000px; */
+  /* min-height: 700px; */
   display: flex;
   justify-content: center;
   align-items: center;
-  z-index: 100000;
+  z-index: 100000; /*extreme due to conflicting z-index usage built into Leaflet Maps for tile and marker layering  */
+  
 `;
 
 const ModalBack = styled.div`
@@ -73,14 +74,16 @@ const ModalFront = styled.div`
   align-items: center;
   z-index: 100002;
   height: 70vh;
-  min-height: 400px;
   width: 65vw;
+  min-height: 400px;
   min-width: 600px;
   top: 3rem;
   background-image: url(${parchment2});
   background-size: cover;
   border: 10px ridge peru;
-  
-  
-
+  @media (max-width: 440px) {
+    min-height: 10px;
+    min-width: 10px;
+    width: 90vw;
+  }
 `;

@@ -13,10 +13,12 @@ import altitude from '../../assets/placeicons/altitude.svg';
 import buildings from '../../assets/placeicons/buildings.svg';
 import cities from '../../assets/placeicons/cities.svg';
 import constructions from '../../assets/placeicons/constructions.svg';
+import NearCity from './NearCity';
+
+///// DISPLAYS THE NEAREST CITY'S NAME, DISTANCE AND IMAGES ///// 
 
 const NearbyDisplay = ({children}) => { 
   const { nearestCity } = useSelector(state => state.conditions);
-  const { location } = useSelector((state) => state.user.profile);
   const dispatch = useDispatch();
   const { modalValue } = useSelector(state => state.app);
   const [toggle, setToggle] = useState(true);
@@ -38,8 +40,8 @@ const NearbyDisplay = ({children}) => {
     dispatch(toggleModal());
   };
 
-  return ( nearestCity.tags?
-    <StyledDiv style={{transform: toggle? 'translateY(0)' : 'translateY(calc(100% - 2.5rem))'}}> 
+  return ( 
+    <StyledDiv style={{transform: toggle? 'translateY(0)' : 'translateY(100%)'}}> 
       <Tab onClick={() => setToggle(!toggle)}>
         *
       </Tab>
@@ -47,19 +49,7 @@ const NearbyDisplay = ({children}) => {
         <NearImage image={imageArray[0]} token={buildings} />
         <NearImage image={imageArray[1]} token={altitude} />
       </ImageDiv>
-      <CenterDiv>
-        <p> 
-          <span>Nearest City: </span>
-          {nearestCity.tags.name}
-        </p>
-        <p> 
-          <span>Distance: </span>
-          {(distanceTo([nearestCity.lat, nearestCity.lon], location)/1000).toFixed()} km
-        </p>
-        <StyledButton onClick={ () => handleProfile() }>
-          <GiAirBalloon/>
-        </StyledButton>
-      </CenterDiv>
+      <NearCity/>
       <ImageDiv>
         <NearImage image={imageArray[2]} token={cities} />
         <NearImage image={imageArray[3]} token={constructions} />
@@ -67,17 +57,6 @@ const NearbyDisplay = ({children}) => {
 
       {children}
     </StyledDiv> 
-
-    : <StyledDiv>
-        <Tab onClick={() => setToggle(!toggle)}>*</Tab>
-        <CenterDiv>
-        <p><span>Nearest City: </span>Atlantis</p>
-        <StyledButton onClick={ () => handleProfile() }>
-          <GiAirBalloon/>
-        </StyledButton>
-        </CenterDiv>
-        {children}
-      </StyledDiv>
   ) 
 }; 
 
@@ -142,23 +121,6 @@ const Tab = styled.div`
   &:hover {
     cursor: pointer;
     opacity: .5;
-  }
-`;
-const CenterDiv = styled.div`
-  display: flex;
-  flex-direction: column;
-  justify-content: flex-start;
-  align-items: center;
-  height: 100%;
-  p {
-    font-family: 'Rye', cursive;
-    color: #36454f;
-    margin: .25rem 0;
-    
-  }
-  span{
-    font-family: 'Rye', cursive;
-    color: black;
   }
 `;
 const StyledButton = styled.button`

@@ -12,10 +12,10 @@ from '../../reducersActions/appActions';
 
 const Header = () => { 
   const dispatch = useDispatch();
-  const { currentUser, handleSignOut } = React.useContext(AuthContext);
+  const { handleSignOut } = React.useContext(AuthContext);
   const [showMenu, setShowMenu] = React.useState(false);
 
-  const { modalToggle, modalValue } = useSelector(state => state.app);
+  const { modalValue } = useSelector(state => state.app);
 
   const profileHandle = () => {
     if(modalValue !== 'profile') dispatch(setModalValue('profile'));
@@ -70,12 +70,12 @@ const StyledBar = styled.div`
   color: whitesmoke;
   background: rgba(0,0,0,.5);
   height: 2.5rem;
-  opacity: 0.1;
+  /* opacity: 0.1;
   transition: opacity 1.5s;
   &:hover {
     opacity: 1;
     transition: opacity 1.5s;
-  }
+  } */
   @media(max-width: 440px) {
     opacity: 1;
   }

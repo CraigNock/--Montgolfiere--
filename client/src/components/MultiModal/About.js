@@ -1,11 +1,13 @@
 import React from 'react'; 
 import styled from 'styled-components'; 
+import CloseModal from './CloseModal';
 
 const About = () => { 
 
   return (
     <StyledDiv> 
       <AboutDiv>
+      <CloseModal/>
         <Headings>About</Headings>
         <p>
           Developed by Craig Nockels as a final project for Concordia Bootcamps.
@@ -55,6 +57,7 @@ export default About;
 
 
 const StyledDiv = styled.div`
+  
   display: flex;
   flex-direction: column;
   justify-content: flex-start;
@@ -64,6 +67,7 @@ const StyledDiv = styled.div`
   overflow-y: scroll;
 `;
 const SubDiv = styled.div`
+  position: relative;
   display: flex;
   flex-direction: column;
   align-items: center;

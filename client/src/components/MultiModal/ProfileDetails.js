@@ -8,6 +8,7 @@ import { changeBalloon
 
 import balloonIconArray from './balloonArray';
 import gentleman from '../../assets/gentleman.svg';
+import CloseModal from './CloseModal';
 
 const ProfileDetails = () => { 
   const dispatch = useDispatch();
@@ -56,10 +57,11 @@ const ProfileDetails = () => {
 
       </SubDiv>
       <SubDiv> 
+        <CloseModal/>
         <Headings>Customize Balloon</Headings>
         <BalloonGallery>
           {balloonIconArray.map((icon, index) => {
-            return <Bicon 
+            return <BalloonImg 
                       src={icon} 
                       key={index+1}
                       onClick={ ()=> saveBalloonChoice(index) }
@@ -85,6 +87,7 @@ const StyledDiv = styled.div`
   
 `;
 const SubDiv = styled.div`
+  position: relative;
   display: flex;
   flex-direction: column;
   align-items: center;
@@ -159,7 +162,7 @@ const BalloonGallery = styled.div`
   border: 3px solid var(#CFD8DC);
   };
 `;
-const Bicon = styled.img`
+const BalloonImg = styled.img`
   height: 4rem;
   width: 4rem;
   padding: .45rem;

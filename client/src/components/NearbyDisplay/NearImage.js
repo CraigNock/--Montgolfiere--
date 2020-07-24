@@ -22,7 +22,7 @@ const StyledImg = styled.img`
   object-fit: cover;
   border-radius: 50%;
   border: 3px ridge dimgray;
-  margin: -.5rem 1rem 0 0;
+  margin: -.5rem .5rem 0 .5rem;
   transition: all 1500ms ease-in-out;
   &:hover {
     transform: scale(2) translateY(-1.2rem);

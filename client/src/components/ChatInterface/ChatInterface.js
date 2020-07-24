@@ -11,10 +11,10 @@ import ChatMessage from './ChatMessage';
 import { IP } from '../../constants';
 
 import { 
-  addChat, 
+  // addChat, 
+  // setStatusAskChat, 
   updateCurrentChat,
   changeCurrentChat, 
-  setStatusAskChat, 
   setStatusNoChat, 
   setStatusInChat 
 } from '../../reducersActions/chatActions';
@@ -22,7 +22,7 @@ import {
 const ChatInterface = () => { 
   const dispatch = useDispatch();
   const { userId, displayName } = useSelector(state => state.user.profile);
-  const { status, currentChat, chats } = useSelector(state => state.chat);
+  const { status, currentChat } = useSelector(state => state.chat);
 
   const [content, setContent] = useState('');
   const [disable, setDisable] = useState(false);
