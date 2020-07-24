@@ -11,7 +11,7 @@ const initialState = {
 };
 //status'= 'awaiting signin' , 'loading' , 'logged in'
 //viewRange = 'global', 'radius', 'local'
-//modalValue = 'profile', 'instructions', 'about'
+//modalValue = 'profile', 'customise', 'instructions', 'about'
 
 const appReducer = (state = initialState, action) => {
   switch (action.type) {

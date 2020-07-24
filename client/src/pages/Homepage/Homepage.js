@@ -86,12 +86,11 @@ const Homepage = () => {
     }
   }, [status]);
 
-///// MOBILE RESPONSIVE /////
+///// MOBILE RESPONSIVE LISTENER/////
   const [screenWidth, setScreenWidth] = useState(window.innerWidth);
 
   useEffect(() => {
     const handleResize = () => {
-      console.log('resizing', window.innerWidth);
       setScreenWidth(window.innerWidth);
     };
     window.addEventListener('resize', handleResize);
@@ -112,7 +111,7 @@ const Homepage = () => {
             <NearbyDisplay><BottomBackground/></NearbyDisplay>
           </BottomPanel>
         </CenterDiv>
-        :
+        : /* tablet & desktop */
         <MainContent>
           <LeftPanel>
             <ControlPanel><LeftBackground/> </ControlPanel>

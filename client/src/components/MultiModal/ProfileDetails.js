@@ -1,79 +1,43 @@
 import React, { useState } from 'react'; 
 import styled from 'styled-components'; 
-import { useDispatch, useSelector } from 'react-redux';
+import { useSelector } from 'react-redux';
 import {format} from 'date-fns';
 
-import { changeBalloon 
-} from '../../reducersActions/userActions';
+///// DISPLAYS USER PROFILE INFORMATION /////
 
-import balloonIconArray from './balloonArray';
 import gentleman from '../../assets/gentleman.svg';
 import CloseModal from './CloseModal';
 
 const ProfileDetails = () => { 
-  const dispatch = useDispatch();
-
   const { profile } = useSelector(state => state.user);
-
   const [profileImgErr, setProfileImgErr] = useState(false);
-  const [selected, setSelected] = useState(profile.balloonIcon);
-
-  const saveBalloonChoice = async (index) => {
-    if (selected === index) return;
-    dispatch(changeBalloon(index));
-    fetch('/changeBalloon', {
-      method: 'PUT',
-      headers: {
-        'Accept': 'application/json',
-        'Content-Type': 'application/json',
-      },
-      body: JSON.stringify({
-        userId: profile.userId,
-        newBalloon: index,
-      }),
-    }).catch(err => {console.log('changeBalloon err', err);})
-    setSelected(index);
-  };
 
   return (
     <StyledDiv> 
-      <SubDiv> 
-        <UserInfo>
-          <StyledImg 
-            src={(profileImgErr === true || profile.imageSrc === undefined)? gentleman : profile.imageSrc} 
-            onError={()=> setProfileImgErr(true)}
-          />
-          <SubUser>
-            <InfoHeading>Display Name</InfoHeading>
-            <InfoValue>{profile.displayName}</InfoValue>
-            <InfoHeading>Email</InfoHeading>
-            <InfoValue>{profile.email}</InfoValue>
-          </SubUser>
-        </UserInfo>
-        <Headings>Starting Location</Headings>
-        <Values>{profile.startingLocation.city}</Values>
-        <Headings>Began Journey</Headings>
-        <Values>{format(profile.startDate, 'do MMMM yyyy')}</Values>
-        <Headings>Collectables</Headings>
-        <Values>0/100</Values>
-        <Headings>Friends</Headings>
-        <Values>No Friends Yet</Values>
-
-      </SubDiv>
-      <SubDiv> 
-        <CloseModal/>
-        <Headings>Customize Balloon</Headings>
-        <BalloonGallery>
-          {balloonIconArray.map((icon, index) => {
-            return <BalloonImg 
-                      src={icon} 
-                      key={index+1}
-                      onClick={ ()=> saveBalloonChoice(index) }
-                      style={{borderColor: (profile.balloonIcon === index)? 'goldenrod' : 'transparent'}}
-                    />
-          })}
-        </BalloonGallery>
-      </SubDiv>
+      <CloseModal/>
+      <Title>
+        Aeronaut Licence #{`${profile.displayName.length}${profile.email.length}${profile.startingLocation.city.length}`}
+      </Title>
+      <UserInfo>
+        <StyledImg 
+          src={(profileImgErr === true || profile.imageSrc === undefined)? gentleman : profile.imageSrc} 
+          onError={()=> setProfileImgErr(true)}
+        />
+        <SubUser>
+          <InfoHeading>Display Name</InfoHeading>
+          <InfoValue>{profile.displayName}</InfoValue>
+          <InfoHeading>Email</InfoHeading>
+          <InfoValue>{profile.email}</InfoValue>
+        </SubUser>
+      </UserInfo>
+      <Headings>Starting Location</Headings>
+      <Values>{profile.startingLocation.city}</Values>
+      <Headings>Began Journey</Headings>
+      <Values>{format(profile.startDate, 'do MMMM yyyy')}</Values>
+      <Headings>Collectables</Headings>
+      <Values>0/100</Values>
+      <Headings>Friends</Headings>
+      <Values>No Friends Yet</Values>
     </StyledDiv> 
   ) 
 }; 
@@ -82,31 +46,45 @@ const ProfileDetails = () => {
 export default ProfileDetails;
 
 
+
 const StyledDiv = styled.div`
-  display: flex;
-  justify-content: center;
-  padding: 1rem;
-  width: 100%;
-  height: 100%;
-  
-`;
-const SubDiv = styled.div`
   position: relative;
   display: flex;
   flex-direction: column;
   align-items: center;
-  width: 50%;
+  width: 80%;
+  height: 80%;
   padding: 1rem;
   color: black;
   background: rgba(0,0,0, .1);
   font-family: 'Fredericka the Great', cursive;
   overflow: hidden;
+  @media(max-width: 440px){
+    width: 100%;
+    height: 100%;
+    padding: .5rem ;
+  }
+`;
+const Title = styled.p`
+  width: 100%;
+  font-size: 1.5rem;
+  font-family: 'Fredericka the Great', cursive;
+  font-weight: bold;
+  text-decoration: underline;
+  margin-bottom: 2rem;
+  @media(max-width: 440px){
+    margin-bottom: 1rem;
+  }
 `;
 const UserInfo = styled.div`
   display: flex;
   align-items: flex-start;
+  justify-content: center;
   width:100%;
   margin-bottom: 1rem;
+  @media(max-width: 440px){
+    align-items: center;
+  }
 `;
 const SubUser = styled.div`
   display: flex;
@@ -122,6 +100,10 @@ const StyledImg = styled.img`
   object-fit: contain;
   background: skyblue;
   border: 5px double darkgoldenrod;
+  @media(max-width: 440px){
+    max-width: 5rem;
+    margin-bottom: 0;
+  }
 `;
 const Headings = styled.p`
   font-weight:bold;
@@ -143,43 +125,4 @@ const Values = styled.p`
 `;
 const InfoValue = styled(Values)`
   width:90%;
-`;
-const BalloonGallery = styled.div`
-  display: flex;
-  justify-content: space-evenly;
-  align-items: flex-start;
-  flex-wrap: wrap;
-  width: 100%;
-  height: 100%;
-  overflow-Y: auto;
-  padding: 1rem;
-  scrollbar-width: thin;
-  &::-webkit-scrollbar {
-    width: 11px;
-  };
-  &::-webkit-scrollbar-track {
-  background: var(--scrollbarBG);
-  };
-  &::-webkit-scrollbar-thumb {
-  background-color: var(#90A4AE) ;
-  border-radius: 6px;
-  border: 3px solid var(#CFD8DC);
-  };
-`;
-const BalloonImg = styled.img`
-  height: 4rem;
-  width: 4rem;
-  padding: .45rem;
-  box-sizing: border-box;
-  border-radius: 30%;
-  border-width: 3px;
-  border-style: dashed;
-  border-color: transparent;
-  &:hover {
-    cursor: pointer;
-    transform: scale(1.1);
-    transition: transform 1s ease-in-out;
-    border-color: gray;
-    
-  }
 `;

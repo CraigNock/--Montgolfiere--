@@ -12,7 +12,9 @@ import { GiAirBalloon } from "react-icons/gi"; //customize balloon
 import { GoQuestion } from "react-icons/go";//instruct
 import { FaCogs } from "react-icons/fa"; //settings
 import { FaInfoCircle } from "react-icons/fa"; //about
-import { GoSignOut } from "react-icons/go";
+import { GoSignOut } from "react-icons/go"; //signout
+
+///// HEADER FOR APP - contains buttons to display the modals /////
 
 const iconStyle = {
   color: 'white', 
@@ -32,17 +34,18 @@ const Header = () => {
 
   const profileHandle = () => {
     if(modalValue !== 'profile') dispatch(setModalValue('profile'));
-    // setShowMenu(false);
+    dispatch(toggleModal());
+  };
+  const customiseHandle = () => {
+    if(modalValue !== 'customise') dispatch(setModalValue('customise'));
     dispatch(toggleModal());
   };
   const aboutHandle = () => {
     if(modalValue !== 'about') dispatch(setModalValue('about'));
-    // setShowMenu(false);
     dispatch(toggleModal());
   };
   const instructionsHandle = () => {
     if(modalValue !== 'instructions') dispatch(setModalValue('instructions'));
-    // setShowMenu(false);
     dispatch(toggleModal());
   };
 
@@ -61,7 +64,7 @@ const Header = () => {
           />
         </IconDiv>
         <IconDiv
-          onClick={()=> profileHandle()}
+          onClick={()=> customiseHandle()}
         >
           <GiAirBalloon
             style={iconStyle}

@@ -8,7 +8,7 @@ const About = () => {
     <StyledDiv> 
       <AboutDiv>
       <CloseModal/>
-        <Headings>About</Headings>
+      <Title>About</Title>
         <p>
           Developed by Craig Nockels as a final project for Concordia Bootcamps.
         </p>
@@ -56,7 +56,6 @@ export default About;
 
 
 const StyledDiv = styled.div`
-  
   display: flex;
   flex-direction: column;
   justify-content: flex-start;
@@ -64,6 +63,17 @@ const StyledDiv = styled.div`
   width: 100%;
   height: 100%;
   overflow-y: scroll;
+`;
+const Title = styled.p`
+  width: 100%;
+  font-size: 1.5rem;
+  font-family: 'Fredericka the Great', cursive;
+  font-weight: bold;
+  text-decoration: underline;
+  margin-bottom: 2rem;
+  @media(max-width: 440px){
+    margin-bottom: 1rem;
+  }
 `;
 const SubDiv = styled.div`
   position: relative;

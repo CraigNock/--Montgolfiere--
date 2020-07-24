@@ -6,8 +6,10 @@ import { toggleModal }
 from '../../reducersActions/appActions';
 
 import ProfileDetails from './ProfileDetails';
-import About from './About';
+import CustomiseBalloon from './CustomiseBalloon';
 import Instructions from './Instructions';
+import About from './About';
+import Loader from '../Loader';
 
 import parchment2 from '../../assets/parchment2.png';
 
@@ -15,6 +17,22 @@ import parchment2 from '../../assets/parchment2.png';
 const MultiModal = () => { 
   const dispatch = useDispatch();
   const { modalToggle, modalValue } = useSelector(state => state.app);
+
+  const contentSelector = () => {
+    switch (modalValue) {
+      case "profile":
+        return <ProfileDetails/>;
+      case "customise":
+        return <CustomiseBalloon/>;
+      case "instructions":
+        return <Instructions/>;
+      case "about":
+        return <About/>;
+      default:
+        return <Loader/>;
+    }
+  }
+
 
   return (  
     <ModalFrame style={{visibility:modalToggle? 'visible' : 'hidden'}} >
@@ -26,11 +44,14 @@ const MultiModal = () => {
         }}></ModalBack>
 
       <ModalFront onClick={(e)=>e.stopPropagation()}> 
-        {(modalValue === 'profile')?
+        {/* {(modalValue === 'profile')?
           <ProfileDetails/>
         : (modalValue === 'instructions')?
           <Instructions/>
-          :<About/> }
+          :<About/> } */}
+        {
+          contentSelector()
+        }
       </ModalFront> 
     </ModalFrame>
   ) 
