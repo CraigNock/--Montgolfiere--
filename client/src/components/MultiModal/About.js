@@ -19,15 +19,14 @@ const About = () => {
           "Where is My Balloon?" Takes real time wind data at your balloon's location to allow players to naturally explore the globe and meet other aeronauts.
         </p>
         <p>
-          Notable Features include: 
+          Notable Features include: </p>
           <StyledUl>
             <li>Persistant balloon location, icon and control settings.</li>
             <li>Dynamic background that changes with your balloon's local time and weather.</li>
             <li>Range restricted balloon-to-balloon vision and chat. (Currently Global for alpha)</li>
             <li>If unanchored; balloon will continue to travel for up to an hour.</li>
           </StyledUl>
-          
-        </p>
+
       </AboutDiv>
       <SubDiv>
         <Headings>Resources</Headings>
@@ -77,6 +76,9 @@ const SubDiv = styled.div`
   font-family: 'Fredericka the Great', cursive;
   a {
     color: black;
+  }
+  p {
+    text-align: center;
   }
 `;
 const Headings = styled.p`

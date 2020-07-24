@@ -1,13 +1,10 @@
 import React, {useState, useEffect} from 'react';
 import styled from 'styled-components';
-// import { BrowserRouter as Router, Switch, Route } from 'react-router-dom';
 import { useSelector } from 'react-redux';
-// import {format} from 'date-fns';
 
 import GlobalStyles from '../../GlobalStyles';
 import WelcomeSignin from '../WelcomeSignin';
 import Homepage from '../../pages/Homepage';
-import MobilePage from '../../pages/MobilePage';
 import Clouds from '../../components/Clouds';
 
 
@@ -41,28 +38,6 @@ const App = () => {
     };
 // eslint-disable-next-line
   }, [sunTimes])
-  
-  //////MOBILE RESPONSIVE////
-  const [isMobile, setIsMobile] = useState(window.innerWidth < 440);
-  
-
-  // const isPortraitTablet = window.innerWidth < 800;
-  // or prevent flipping on mobile, portraitTablet
-  // const isLandscapeMobile = window.innerWidth < 900 && window.innerHeight < 500;
-
-  const handleResize = () => {
-    if(window.innerWidth < 440 && isMobile !== true) {
-      setIsMobile(true);
-    } else if(window.innerWidth > 439 && isMobile !== false) {
-      setIsMobile(false);
-    }
-  }
-
-  useEffect(() => {
-    window.addEventListener('resize', handleResize);
-    return window.removeEventListener('resize', handleResize);
-  }, [])
-
 
 
 //***currently darkness filter causes background rerender clipping, disabled with string condition rather than actual variable 'night'
@@ -70,10 +45,10 @@ const App = () => {
       <Wrapper style={{filter: (timeOfDay === 'night')? 'brightness(75%)' : 'none'}}>
         <GlobalStyles />
         <CloudBackground style={{background: `${timeOfDay}`}}>
-          {isMobile? '' : <Clouds/>}
+          <Clouds/>
         </CloudBackground>
         {currentUser && currentUser.email? (
-          isMobile? <MobilePage /> : <Homepage /> 
+          <Homepage /> 
         ) : (
           <WelcomeSignin />
         )}

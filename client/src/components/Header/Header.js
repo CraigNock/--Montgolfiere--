@@ -189,7 +189,8 @@ const SignOut = styled.div`
   box-sizing: border-box;
   border-left: 2px solid gray;
   @media(max-width: 440px){
-    width: 4rem;
+    width: 5rem;
+    min-width: 5rem;
   }
 `;
 const Menu = styled.div`
@@ -209,7 +210,7 @@ const Menu = styled.div`
   border-right: none;
   z-index: 10000;
   @media(max-width: 440px){
-    width: 4rem;
+    width: 5rem;
   }
 `;
 const StyledButton = styled.button`

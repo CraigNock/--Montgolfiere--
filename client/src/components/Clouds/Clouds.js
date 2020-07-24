@@ -61,7 +61,9 @@ export default Clouds;
 
 const Container = styled.div`
   overflow: hidden;
-  
+  @media(max-width: 440px){
+    display: none;
+  }
 `;
 
 const StyledDiv = styled.div`

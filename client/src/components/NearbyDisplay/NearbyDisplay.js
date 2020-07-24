@@ -80,6 +80,7 @@ const StyledDiv = styled.div`
   border-bottom: none;
   border-radius: 80% 80% 5px 5px;
   padding: 1rem;
+  text-align: center;
   p {
     font-family: 'Rye', cursive;
     color: #36454f;
@@ -88,6 +89,10 @@ const StyledDiv = styled.div`
   span{
     font-family: 'Rye', cursive;
     color: black;
+  }
+  @media(max-width: 440px) {
+    min-width: 100vw;
+    width: 100vw;
   }
 `;
 const Tab = styled.div`
@@ -109,6 +114,12 @@ const Tab = styled.div`
   &:hover {
     cursor: pointer;
     opacity: .5;
+  }
+  @media(max-width: 440px) {
+    width: 6rem;
+    left: calc(50% - 3rem);
+    height: 3rem;
+    top: -3rem;
   }
 `;
 const ImageDiv = styled.div`

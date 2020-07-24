@@ -1,4 +1,4 @@
-import React, {useEffect} from 'react'; 
+import React, {useState, useEffect} from 'react'; 
 import { useDispatch, useSelector } from 'react-redux';
 import styled from 'styled-components'; 
 
@@ -86,29 +86,59 @@ const Homepage = () => {
     }
   }, [status]);
 
+//////MOBILE RESPONSIVE////
+const [isMobile, setIsMobile] = useState(window.innerWidth < 440);
+  
+
+// const isPortraitTablet = window.innerWidth < 800;
+// or prevent flipping on mobile, portraitTablet
+// const isLandscapeMobile = window.innerWidth < 900 && window.innerHeight < 500;
+
+const handleResize = () => {
+  if(window.innerWidth < 440 && isMobile !== true) {
+    setIsMobile(true);
+  } else if(window.innerWidth > 439 && isMobile !== false) {
+    setIsMobile(false);
+  }
+}
+
+useEffect(() => {
+  window.addEventListener('resize', handleResize);
+  return window.removeEventListener('resize', handleResize);
+}, [])
+
 
   return (
     <StyledDiv> 
       {(appStatus==='logged in')? 
       <>
       <Header />
-      <MainContent>
-        <LeftPanel>
-          <ControlPanel>
-            <LeftBackground/>
-          </ControlPanel>
-        </LeftPanel>
-        <CenterDiv>
+      {(isMobile)? 
+        <CenterDiv> 
           <MapMap />
           <BottomPanel>
             <NearbyDisplay><BottomBackground/></NearbyDisplay>
           </BottomPanel>
         </CenterDiv>
-        <RightPanel>
-          {(status !== 'noChat')? <ChatInterface/> 
-          : <ConditionsDisplay><RightBackground/></ConditionsDisplay>}
-        </RightPanel>
-      </MainContent>
+        :
+        <MainContent>
+          <LeftPanel>
+            <ControlPanel>
+              <LeftBackground/>
+            </ControlPanel>
+          </LeftPanel>
+          <CenterDiv>
+            <MapMap />
+            <BottomPanel>
+              <NearbyDisplay><BottomBackground/></NearbyDisplay>
+            </BottomPanel>
+          </CenterDiv>
+          <RightPanel>
+            {(status !== 'noChat')? <ChatInterface/> 
+            : <ConditionsDisplay><RightBackground/></ConditionsDisplay>}
+          </RightPanel>
+        </MainContent>
+      }
       <MultiModal/>
       </>
       : <Loader/>}
@@ -208,7 +238,10 @@ const BottomPanel = styled.div`
   height: 20vh;
   width: 100%;
   background: transparent;
-  
+  @media(max-width: 440px) {
+    min-width: 100vw;
+    width: 100vw;
+  }
 `;
 const BottomBackground = styled.div`
   position: absolute;
@@ -231,6 +264,11 @@ const BottomBackground = styled.div`
   padding: 1rem;
   margin: 0 auto;
   z-index: -1;
+  @media(max-width: 440px) {
+    min-width: 100vw;
+    width: 100vw;
+    border-radius: 15px 15px 0 0;
+  }
 `;
 const CenterDiv = styled.div`
   display: flex;
