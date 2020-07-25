@@ -19,62 +19,66 @@ const CtrlElevation = () => {
     dispatch(changeElevation(value));
   };
 
-  return (
+  return (<div>
+    <StyledSpan>Elevation</StyledSpan>
     <StyledDiv> 
       <ElevUl>
-        <li style={{color: (elevation===3)? '#00563f' : 'slategray'}} >
+        <li style={(elevation===3)?{color: '#00563f', borderBottom:'2px solid #00563f'} : {color:'slategray'}} >
           <label>
           <InvisRadio type='radio' name={'High'} value={3} 
           onChange={(e) => handleElevation(e)}
           checked={(elevation === 3)} />High
           </label>
         </li>
-        <li style={{color: (elevation===2)? '#00563f' : 'slategray'}} >
+        <li style={(elevation===2)?{color: '#00563f', borderBottom:'2px solid #00563f'} : {color:'slategray'}} >
           <label>
           <InvisRadio type='radio' name={'Med'} value={2} 
           onChange={(e) => handleElevation(e)}
           checked={(elevation === 2)} />Med
           </label>
         </li>
-        <li style={{color: (elevation===1)? '#00563f' : 'slategray'}} >
+        <li style={(elevation===1)?{color: '#00563f', borderBottom:'2px solid #00563f'} : {color:'slategray'}} >
           <label>
           <InvisRadio type='radio' name={'Low'} value={1}
           onChange={(e) => handleElevation(e)} 
           checked={(elevation === 1)} />Low
           </label>
         </li> 
-        </ElevUl>
-        <FlameoHotman>
-          <GiFlame 
-          style={{
-            display: (elevation > 2)? 'block' : 'none',
-            position: 'absolute', 
-            color: '#ff6700',
-            fontSize: '3rem',
-            marginTop: '-.25rem'
-            }}/>
-          <GiFire style={{
-            display: (elevation > 1)? 'block' : 'none',
-            position: 'absolute', 
-            color: '#f4c430', 
-            fontSize: '2.25rem',
-            marginTop: '.25rem' 
-            }}/>
-          <GoFlame style={{
-            position: 'absolute', 
-            color: '#4169e1', 
-            fontSize: '1.5rem',
-            marginTop: '.6rem' 
-            }}  />
-        </FlameoHotman>
+      </ElevUl>
+      <FlameoHotman>
+        <GiFlame 
+        style={{
+          display: (elevation > 2)? 'block' : 'none',
+          position: 'absolute', 
+          color: '#ff6700',
+          fontSize: '3rem',
+          marginTop: '-.25rem'
+          }}/>
+        <GiFire style={{
+          display: (elevation > 1)? 'block' : 'none',
+          position: 'absolute', 
+          color: '#f4c430', 
+          fontSize: '2.25rem',
+          marginTop: '.25rem' 
+          }}/>
+        <GoFlame style={{
+          position: 'absolute', 
+          color: '#4169e1', 
+          fontSize: '1.5rem',
+          marginTop: '.6rem' 
+          }}/>
+      </FlameoHotman>
     </StyledDiv> 
-  ) 
+  </div>) 
 }; 
 
 
 export default CtrlElevation;
 
-
+const StyledSpan = styled.span`
+  font-family: 'Rye', cursive;
+  color: black;
+`;
 const StyledDiv = styled.div`
   display: flex;
   align-items: center;
@@ -92,11 +96,12 @@ const ElevUl = styled.ul`
     font-family: 'Rye', cursive;
     cursor: pointer;
     &:hover {
-      cursor: pointer;
       color: black;
     }
   }
-  color: black;
+  @media(max-width: 440px) {
+    margin: .25rem 0 0;
+  }
 `;
 const InvisRadio = styled.input`
   visibility: hidden;
@@ -104,7 +109,7 @@ const InvisRadio = styled.input`
 `;
 const FlameoHotman = styled.div`
   position: relative;
-  margin: 0 0 0 1.5rem ;
+  margin: 0 0 0 1.25rem ;
   display: flex;
   justify-content: center;
   align-items: center;
@@ -116,4 +121,9 @@ const FlameoHotman = styled.div`
   0 0 10px 2px rgba(0,0,0,0.33)inset;
   border-radius: 50% 50%;
   filter: grayscale(40%);
+  @media(max-width: 440px) {
+    height: 2rem;
+    width: 1.75rem;
+    margin: 0 0 .5rem 1.25rem ;
+  }
 `;

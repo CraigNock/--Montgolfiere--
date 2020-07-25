@@ -38,7 +38,7 @@ const GlassDiv = styled.div`
                     0 5px 10px rgba(0,0,0,0.5);
   overflow: hidden;
   @media (max-width: 440px) {
-    border-radius: 0%;
+    border-radius: 2%;
     height: 100%;
     width: 100%;
     min-width: 100%;

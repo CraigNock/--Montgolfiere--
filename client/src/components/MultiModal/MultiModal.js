@@ -44,14 +44,13 @@ const MultiModal = () => {
         }}></ModalBack>
 
       <ModalFront onClick={(e)=>e.stopPropagation()}> 
-        {/* {(modalValue === 'profile')?
-          <ProfileDetails/>
-        : (modalValue === 'instructions')?
-          <Instructions/>
-          :<About/> } */}
-        {
-          contentSelector()
-        }
+        {/* {
+          profile: <ProfileDetails/>,
+          customise: <CustomiseBalloon/>,
+          instructions: <Instructions/>,
+          about: <About/>,
+        }[modalValue] || <Loader/>*/}
+        { contentSelector() }
       </ModalFront> 
     </ModalFrame>
   ) 

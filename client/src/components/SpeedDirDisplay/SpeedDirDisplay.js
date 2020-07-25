@@ -36,9 +36,15 @@ const StyledDiv = styled.div`
     font-family: 'Rye', cursive;
     color: #36454f;
     margin: .25rem 0;
-  }
+  };
   span{
     font-family: 'Rye', cursive;
     color: black;
-  }
+  };
+  @media(max-width: 440px) {
+    p {
+      display: inline-block;
+      margin: .3rem .5rem 0 0;
+    };
+  };
 `;

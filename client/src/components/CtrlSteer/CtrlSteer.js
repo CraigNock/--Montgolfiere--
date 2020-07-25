@@ -29,8 +29,10 @@ const CtrlSteer = () => {
     dispatch(changeDirection(val));
   };
 
-  return (
+  return (<Wrap>
+    <span>Direction</span>
     <StyledDiv> 
+      <div>
       <UnderButton 
         disabled={(activeModifier === 0)}
         style={{borderColor: (activeModifier === 0)? '#00563f': 'goldenrod'}}
@@ -54,24 +56,35 @@ const CtrlSteer = () => {
         <FiArrowUpRight/>
         </StyledButton>
       </SubDiv>
-      
+      </div>
       <WheelDiv><GiShipWheel/></WheelDiv>
     </StyledDiv> 
-  ) 
+  </Wrap>) 
 }; 
 
 
 export default CtrlSteer;
 
-
+const Wrap = styled.div`
+  display: flex;
+  flex-direction: column;
+  span{
+    font-family: 'Rye', cursive;
+    color: black;
+  }
+`;
 const StyledDiv = styled.div`
   display: flex;
   flex-direction: column;
   justify-content: center;
   align-items: flex-start;
   width: 70%;
-  border-top: 2px solid gray;
   padding-top: .75rem;
+  @media(max-width: 440px) {
+    flex-direction: row;
+    width: fit-content;
+    max-width: fit-content;
+  }
 `;
 const SubDiv = styled.div`
   display: flex;
@@ -84,7 +97,10 @@ const WheelDiv = styled.div`
   margin-left: .4rem;
   font-size: 3.5rem;
   color: #2b0b13;
-  
+  @media(max-width: 440px) {
+    margin: -.5rem 0 0 0;
+    width: fit-content;
+  }
 `;
 const StyledButton = styled.button`
   display: inline-flex;

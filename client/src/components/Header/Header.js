@@ -32,20 +32,8 @@ const Header = () => {
 
   const { modalValue } = useSelector(state => state.app);
 
-  const profileHandle = () => {
-    if(modalValue !== 'profile') dispatch(setModalValue('profile'));
-    dispatch(toggleModal());
-  };
-  const customiseHandle = () => {
-    if(modalValue !== 'customise') dispatch(setModalValue('customise'));
-    dispatch(toggleModal());
-  };
-  const aboutHandle = () => {
-    if(modalValue !== 'about') dispatch(setModalValue('about'));
-    dispatch(toggleModal());
-  };
-  const instructionsHandle = () => {
-    if(modalValue !== 'instructions') dispatch(setModalValue('instructions'));
+  const modalContentHandle = (contentType) => {
+    if(modalValue !== contentType) dispatch(setModalValue(contentType));
     dispatch(toggleModal());
   };
 
@@ -57,21 +45,21 @@ const Header = () => {
       </Title>
       <ModalButtons>
         <IconDiv
-          onClick={()=> profileHandle()}
+          onClick={()=> modalContentHandle('profile')}
         >
           <GiCaptainHatProfile
             style={iconStyle}
           />
         </IconDiv>
         <IconDiv
-          onClick={()=> customiseHandle()}
+          onClick={()=> modalContentHandle('customise')}
         >
           <GiAirBalloon
             style={iconStyle}
           />
         </IconDiv>
         <IconDiv
-          onClick={()=> instructionsHandle()}
+          onClick={()=> modalContentHandle('instructions')}
         >
           <GoQuestion
             style={iconStyle}
@@ -92,7 +80,7 @@ const Header = () => {
         </IconDiv>
         <Menu style={{display: showMenu? 'flex' : 'none' }}>
           <StyledButton
-            onClick={()=> aboutHandle()}
+            onClick={()=> modalContentHandle('about')}
           >
             <span>About </span>
             <FaInfoCircle

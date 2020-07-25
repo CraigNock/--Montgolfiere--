@@ -19,24 +19,25 @@ const CtrlRange = () => {
     dispatch(setViewRange(value));
   };
 
-  return (
+  return (<div>
+    <StyledSpan>View Range</StyledSpan>
     <StyledDiv> 
       <ViewRange>
-        <li style={{color: (viewRange === 3)? '#00563f' : 'slategray'}}>
+        <li style={(viewRange === 3)?{color: '#00563f', borderBottom:'2px solid #00563f'} : {color:'slategray'}}>
           <label>
           <InvisRadio type='radio' name={'global'} value={3} 
           onChange={(e) => handleViewRange(e)}
           checked={(viewRange === 3)} />Global
           </label>
         </li>
-        <li style={{color: (viewRange === 2)? '#00563f' : 'slategray'}}>
+        <li style={(viewRange === 2)?{color: '#00563f', borderBottom:'2px solid #00563f'} : {color:'slategray'}}>
           <label>
           <InvisRadio type='radio' name={'radius'} value={2} 
           onChange={(e) => handleViewRange(e)}
           checked={(viewRange === 2)} />Abroad
           </label>
         </li>
-        <li style={{color: (viewRange === 1)? '#00563f' : 'slategray'}}>
+        <li style={(viewRange === 1)?{color: '#00563f', borderBottom:'2px solid #00563f'} : {color:'slategray'}}>
           <label>
           <InvisRadio type='radio' name={'local'} value={1}
           onChange={(e) => handleViewRange(e)} 
@@ -61,13 +62,16 @@ const CtrlRange = () => {
         
       </ViewCircle>
     </StyledDiv> 
-  ) 
+  </div>) 
 }; 
 
 
 export default CtrlRange;
 
-
+const StyledSpan = styled.span`
+  font-family: 'Rye', cursive;
+  color: black;
+`;
 const StyledDiv = styled.div`
   display: flex;
   align-items: center;
@@ -92,12 +96,11 @@ position: relative;
       cursor: pointer;
       color: black;
     }
-  }
-  color: black;
+  };
 `;
 const ViewCircle = styled.div`
   position: relative;
-  margin: 0 0 0 1rem;
+  margin: 0 0 .25rem 1rem ;
   display: flex;
   justify-content: center;
   align-items: center;
@@ -108,4 +111,7 @@ const ViewCircle = styled.div`
   color: #36454f;
   box-shadow: 0 0 20px 5px rgba(0,0,0,0.53), 
   0 0 10px 2px rgba(0,0,0,0.33) inset;
+  @media(max-width: 440px) {
+    font-size: 1.5rem;
+  }
 `;

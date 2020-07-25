@@ -31,10 +31,14 @@ const NearbyDisplay = ({children}) => {
 
 
   return ( 
-    <StyledDiv style={{transform: toggle? 'translateY(0)' : 'translateY(100%)'}}> 
+    <StyledDiv 
+      show={toggle}
+    > 
       <Tab onClick={() => setToggle(!toggle)}>
         *
       </Tab>
+      {/* <TabL>L</TabL>
+      <TabR>R</TabR> */}
       <ImageDiv>
         <NearImage image={imageArray[0]} token={buildings} />
         <NearImage image={imageArray[1]} token={altitude} />
@@ -53,9 +57,9 @@ const NearbyDisplay = ({children}) => {
 export default NearbyDisplay;
 
 
-const panelSlide = keyframes`
+const panelSlideUp = keyframes`
   from {
-    transform: translateY(calc(100% - 2.5rem))
+    transform: translateY(100%)
   }
   to {
     transform: translateY(0)
@@ -64,8 +68,10 @@ const panelSlide = keyframes`
 
 
 const StyledDiv = styled.div`
-  animation: ${panelSlide} 2s ease-in-out;
-  transition: transform 2000ms ease-in-out;
+  ${props => `transform:${props.show? 'translateY(0)' : 'translateY(100%)'}` };
+
+  animation: ${panelSlideUp} 1.5s ease-in-out;
+  transition: transform 1500ms ease-in-out;
   position: absolute;
   left: 0;
   bottom: 0;
@@ -77,7 +83,6 @@ const StyledDiv = styled.div`
   height: 100%;
   min-height: 150px;
   box-shadow: 0 0 20px 5px rgba(0,0,0,0.33);
-  border-bottom: none;
   border-radius: 80% 80% 5px 5px;
   padding: 1rem;
   text-align: center;
@@ -94,10 +99,14 @@ const StyledDiv = styled.div`
     min-width: 100vw;
     width: 100vw;
     min-height: fit-content;
+    
   }
 `;
 const Tab = styled.div`
   position: absolute;
+  display: flex;
+  align-items: center;
+  justify-content: center;
   top: -1.2rem;
   left: calc(50% - 2rem);
   width: 4rem;
@@ -112,16 +121,29 @@ const Tab = styled.div`
   color: gray;
   font-family: 'Rye', cursive;
   font-weight: bold;
-  z-index: 5;
+  /* z-index: 5; */
   &:hover {
     cursor: pointer;
     opacity: .5;
   }
   @media(max-width: 440px) {
+    opacity: .8;
     width: 6rem;
-    left: calc(50% - 3rem);
     height: 2.5rem;
+    left: calc(50% - 3rem);
     top: -2.5rem;
+  }
+`;
+const TabL = styled(Tab)`
+  display: none;
+  @media(max-width: 440px) {
+    display: block;
+    left: calc(50% - 10rem);
+  }
+`;
+const TabR = styled(TabL)`
+  @media(max-width: 440px) {
+    left: calc(50% + 4rem);
   }
 `;
 const ImageDiv = styled.div`

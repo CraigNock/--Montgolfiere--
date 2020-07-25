@@ -4,10 +4,9 @@ import produce from 'immer';
 const initialState = {
   appStatus: 'awaiting signin',
   lens: true,
-  viewRange: 1,
-  modalToggle: true,
+  viewRange: 2,
+  modalToggle: false,
   modalValue: 'instructions',
-  aboutToggle: false,
 };
 //status'= 'awaiting signin' , 'loading' , 'logged in'
 //viewRange = 'global', 'radius', 'local'

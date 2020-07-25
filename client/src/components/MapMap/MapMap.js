@@ -248,7 +248,6 @@ const StyledDiv = styled.div`
   box-shadow: 5px 5px 15px 5px rgba(0,0,0,0.53);
   overflow:hidden;
   border-radius: 25%;
-  
   @media (max-width: 800px) {
     min-width: 400px;
     min-height: 300px;
@@ -256,12 +255,14 @@ const StyledDiv = styled.div`
   @media (max-width: 440px) {
     width: 100vw;
     min-width: 100vw;
-    /* min-height: 100%; */
-    margin: 0;
+    min-height: 100px;
+    margin: 1rem 0 0 0;
     border: none;
     border-top: 10px ridge #b78727;
     border-bottom: 10px ridge #b78727;
-    border-radius: 0%;
+    border-left: 2px ridge #b78727;
+    border-right: 2px ridge #b78727;
+    border-radius: 5%;
     /* border: 10px ridge #b78727; */
   }
 `;

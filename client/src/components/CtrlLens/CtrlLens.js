@@ -30,7 +30,11 @@ const StyledDiv = styled.div`
   span{
     font-family: 'Rye', cursive;
     color: black;
-  }
+  };
+  @media(max-width: 440px) {
+    display: inline-block;
+    margin: 0;
+  };
 `;
 const StyledButton = styled.button`
   display: inline-flex;

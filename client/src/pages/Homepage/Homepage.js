@@ -109,6 +109,7 @@ const Homepage = () => {
           <MapMap />
           <BottomPanel>
             <NearbyDisplay><BottomBackground/></NearbyDisplay>
+            <ControlPanel><BottomBackground/></ControlPanel>
           </BottomPanel>
         </CenterDiv>
         : /* tablet & desktop */
@@ -262,6 +263,7 @@ const BottomBackground = styled.div`
     min-height: fit-content;
     width: 100vw;
     border-radius: 15px 15px 0 0;
+    opacity: 1;
   }
 `;
 const CenterDiv = styled.div`
