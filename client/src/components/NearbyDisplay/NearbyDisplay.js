@@ -2,6 +2,9 @@ import React, {useState, useEffect} from 'react';
 import styled, {keyframes} from 'styled-components'; 
 import { useSelector } from 'react-redux';
 
+///// DISPLAYS THE NEAREST CITY'S NAME, DISTANCE AND IMAGES ///// 
+
+import PanelSelectors from '../PanelSelectors';
 import NearImage from '../NearImage';
 import NearCity from '../NearCity';
 import { IP } from '../../constants';
@@ -11,9 +14,8 @@ import buildings from '../../assets/placeicons/buildings.svg';
 import cities from '../../assets/placeicons/cities.svg';
 import constructions from '../../assets/placeicons/constructions.svg';
 
-///// DISPLAYS THE NEAREST CITY'S NAME, DISTANCE AND IMAGES ///// 
-
 const NearbyDisplay = ({children}) => { 
+  const { selectedPanel } = useSelector( state => state.app);
   const { nearestCity } = useSelector(state => state.conditions);
 
   const [toggle, setToggle] = useState(true);
@@ -32,13 +34,12 @@ const NearbyDisplay = ({children}) => {
 
   return ( 
     <StyledDiv 
-      show={toggle}
+      show={toggle && (selectedPanel === 'nearby' || selectedPanel === 'all')}
     > 
+      <PanelSelectors/>
       <Tab onClick={() => setToggle(!toggle)}>
         *
       </Tab>
-      {/* <TabL>L</TabL>
-      <TabR>R</TabR> */}
       <ImageDiv>
         <NearImage image={imageArray[0]} token={buildings} />
         <NearImage image={imageArray[1]} token={altitude} />
@@ -69,7 +70,7 @@ const panelSlideUp = keyframes`
 
 const StyledDiv = styled.div`
   ${props => `transform:${props.show? 'translateY(0)' : 'translateY(100%)'}` };
-
+  ${props => `z-index:${props.show? '2' : '1'}` };
   animation: ${panelSlideUp} 1.5s ease-in-out;
   transition: transform 1500ms ease-in-out;
   position: absolute;
@@ -96,10 +97,10 @@ const StyledDiv = styled.div`
     color: black;
   }
   @media(max-width: 440px) {
+    ${props => `transform:${props.show? 'translateY(0)' : 'translateY(calc(100% + 3rem))'}` };
     min-width: 100vw;
     width: 100vw;
     min-height: fit-content;
-    
   }
 `;
 const Tab = styled.div`
@@ -127,23 +128,13 @@ const Tab = styled.div`
     opacity: .5;
   }
   @media(max-width: 440px) {
+    display: none;
+
     opacity: .8;
     width: 6rem;
     height: 2.5rem;
     left: calc(50% - 3rem);
     top: -2.5rem;
-  }
-`;
-const TabL = styled(Tab)`
-  display: none;
-  @media(max-width: 440px) {
-    display: block;
-    left: calc(50% - 10rem);
-  }
-`;
-const TabR = styled(TabL)`
-  @media(max-width: 440px) {
-    left: calc(50% + 4rem);
   }
 `;
 const ImageDiv = styled.div`

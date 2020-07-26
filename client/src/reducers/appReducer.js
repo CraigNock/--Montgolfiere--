@@ -7,10 +7,12 @@ const initialState = {
   viewRange: 2,
   modalToggle: false,
   modalValue: 'instructions',
+  selectedPanel: 'all',
 };
 //status'= 'awaiting signin' , 'loading' , 'logged in'
 //viewRange = 'global', 'radius', 'local'
 //modalValue = 'profile', 'customise', 'instructions', 'about'
+//selectedPanel = 'all', 'controls', 'nearby', 'conditions
 
 const appReducer = (state = initialState, action) => {
   switch (action.type) {
@@ -41,6 +43,10 @@ const appReducer = (state = initialState, action) => {
     case 'SET_MODAL_VALUE':
       return produce(state, draftState => {
         draftState.modalValue = action.modalValue;
+      });
+    case 'SET_SELECTED_PANEL':
+      return produce(state, draftState => {
+        draftState.selectedPanel = action.selectedPanel;
       });
     default:
       return state ;

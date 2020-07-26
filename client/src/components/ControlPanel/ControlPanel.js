@@ -1,8 +1,10 @@
 import React, { useState } from 'react'; 
 import styled, {keyframes} from 'styled-components'; 
+import { useSelector } from 'react-redux';
 
 ///// PANEL TO DISPLAY CONTROLS /////
 
+import PanelSelectors from '../PanelSelectors';
 import SpeedDirDisplay from '../SpeedDirDisplay';
 import CtrlElevation from '../CtrlElevation';
 import CtrlRange from '../CtrlRange/CtrlRange';
@@ -11,11 +13,13 @@ import CtrlSteer from '../CtrlSteer/CtrlSteer';
 
 
 const ControlPanel = ({children}) => { 
+  const { selectedPanel } = useSelector( state => state.app);
   //toggles panel slide in/out
   const [toggle, setToggle] = useState(true);
   
   return (<>
-    <StyledDiv show={toggle}> 
+    <StyledDiv show={toggle && (selectedPanel === 'controls' || selectedPanel === 'all')}> 
+      <PanelSelectors/>
       <Tab onClick={() => setToggle(!toggle)}>
         *
       </Tab>
@@ -48,6 +52,7 @@ const panelSlideLeft = keyframes`
 
 const StyledDiv = styled.div`
   ${props => `transform:${props.show? 'translateX(0)' : 'translateX(-100%)'}` };
+  ${props => `z-index:${props.show? '2' : '1'}` };
   animation: ${panelSlideLeft} 1.5s ease-in-out;
   transition: transform 1500ms ease-in-out;
   position: absolute;
@@ -65,10 +70,10 @@ const StyledDiv = styled.div`
   border-radius: 5px 3rem 80% 5px;
   padding: 1rem .75rem;
   @media(max-width: 440px) {
-    ${props => `transform:${props.show? 'translateY(0)' : 'translateY(100%)'}` };
+    ${props => `transform:${props.show? 'translateY(0)' : 'translateY(calc(100% + 3rem))'}` };
     bottom: 0;
-    min-width: 100vw;
     width: 100vw;
+    min-width: 100vw;
     height: 100%;
     min-height: fit-content;
     /* justify-content: center; */
@@ -122,6 +127,8 @@ const Tab = styled.div`
     opacity: .5;
   }
   @media(max-width: 440px) {
+    display: none;
+
     opacity: .8;
     width: 6rem;
     height: 2.5rem;

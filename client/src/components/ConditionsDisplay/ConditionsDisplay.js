@@ -1,8 +1,10 @@
 import React, {useState} from 'react'; 
 import styled, {keyframes} from 'styled-components'; 
-import { useDispatch, useSelector } from 'react-redux';
+import { useSelector } from 'react-redux';
 
 ///// DISPLAYS CONDITIONS AT BALLOON /////
+
+import PanelSelectors from '../PanelSelectors';
 
 const ConditionsDisplay = ({children}) => { 
   const { 
@@ -27,25 +29,31 @@ const ConditionsDisplay = ({children}) => {
     // ozone,
   } = useSelector( state => state.conditions.current);
 
+  const { selectedPanel } = useSelector( state => state.app);
   const [toggle, setToggle] = useState(true);
 
   return ( time? 
-    <StyledDiv style={{transform: toggle? 'translateX(0)' : 'translateX(100%)'}}>
+    <StyledDiv show={toggle && (selectedPanel === 'conditions' || selectedPanel === 'all')}>
+      <PanelSelectors/>
       <Tab onClick={() => setToggle(!toggle)}>
         *
       </Tab> 
-        <P1>Local Time:</P1> <P2>{time}</P2>
-      <StyledSubDiv1>
-        <P1>Temperature:</P1> <P2>{temperature.toFixed(1)}°C</P2>
-        <P1>Feels Like:</P1> <P2>{apparentTemperature.toFixed(1)}°C</P2>
-        <P1>Conditions:</P1> <P2>{summary}</P2>
-      </StyledSubDiv1>
-      <StyledSubDiv2>
-        <P1>Rain Chance:</P1> <P2>{precipProbability}%</P2>
-        <P1>Rainfall:</P1> <P2>{precipIntensity.toFixed(1)} mm/hr</P2>
-        <P1>Humidity:</P1> <P2>{humidity.toFixed(1)}</P2>
-        <P1>UV Index:</P1> <P2>{uvIndex}</P2>
-      </StyledSubDiv2>
+      <Time>
+        <P1>Local Time: <S1>{time}</S1></P1>
+      </Time>
+      <Weather>
+        <StyledSubDiv1>
+          <P1>Temperature: <S1>{temperature.toFixed(1)}°C</S1></P1>
+          <P1>Feels Like: <S1>{apparentTemperature.toFixed(1)}°C</S1></P1>
+          <P1>Conditions:</P1> <S1>{summary}</S1> 
+        </StyledSubDiv1>
+        <StyledSubDiv2>
+          <P1>Rain Chance: <S1>{precipProbability}%</S1></P1>
+          <P1>Rainfall: <S1>{precipIntensity.toFixed(1)} mm/hr</S1></P1>
+          <P1>Humidity: <S1>{humidity.toFixed(1)}</S1></P1>
+          <P1>UV Index: <S1>{uvIndex}</S1></P1>
+        </StyledSubDiv2>
+      </Weather>
       {children}
     </StyledDiv> 
     : ''
@@ -67,6 +75,8 @@ const panelSlide = keyframes`
 
 
 const StyledDiv = styled.div`
+  ${props => `transform:${props.show? 'translateX(0)' : 'translateX(100%)'}` };
+  ${props => `z-index:${props.show? '2' : '1'}` };
   animation: ${panelSlide} 1.5s ease-in-out;
   transition: transform 1500ms ease-in-out;
   position: absolute;
@@ -85,28 +95,76 @@ const StyledDiv = styled.div`
   border-right: none;
   border-radius: 3rem 5px 5px 80%;
   padding: 1rem;
-  
+  @media(max-width: 440px) {
+    ${props => `transform:${props.show? 'translateY(0)' : 'translateY(calc(100% + 3rem))'}` };
+    /* flex-direction: row; */
+    align-items: center;
+    /* justify-content: space-evenly; */
+    bottom: 0;
+    width: 100vw;
+    min-width: 100vw;
+    height: 100%;
+    min-height: fit-content;
+    padding: 1rem;
+    box-shadow: 0 0 20px 5px rgba(0,0,0,0.33);
+    border-radius: 80% 80% 5px 5px;
+  }
+`;
+const Time = styled.div`
+  text-align: right;
+  @media(max-width: 440px) {
+    width: 100%;
+    text-align: left;
+    margin-bottom: .25rem;
+  }
+`;
+const Weather = styled.div`
+  display: flex;
+  flex-direction: column;
+  align-items: flex-end;
+  @media(max-width: 440px) {
+    width: 100%;
+    flex-direction: row;
+    align-items: flex-start;
+  }
 `;
 const StyledSubDiv1 = styled.div`
   text-align: right;
   border-top: 2px solid gray;
   overflow: hidden;
+  @media(max-width: 440px) {
+    text-align: left;
+    padding-top: .5rem;
+    width: 100%;
+  }
 `;
-const StyledSubDiv2 = styled.div`
-  text-align: right;
-  font-size: .85rem;
+const StyledSubDiv2 = styled(StyledSubDiv1)`
   margin: .5rem 0;
-  border-top: 2px solid gray;
+  font-size: .85rem;
   border-bottom: 2px solid gray;
-  overflow: hidden;
+  @media(max-width: 440px) {
+    margin: 0;
+    font-size: 1rem;
+    border-bottom: none;
+  }
 `;
 const P1 = styled.p`
-  font-family: 'Rye', cursive;
   color: black;
+  font-family: 'Rye', cursive;
   margin: .25rem 0;
+  @media(max-width: 440px) {
+    margin: 0;
+  }
 `;
-const P2 = styled(P1)`
+const S1 = styled.span`
+  display: block;
   color: #36454f;
+  font-family: 'Rye', cursive;
+  margin: .25rem 0;
+  @media(max-width: 440px) {
+    display: inline-block;
+    margin: 0;
+  }
 `;
 const Tab = styled.div`
   position: absolute;
@@ -130,5 +188,16 @@ const Tab = styled.div`
   &:hover {
     cursor: pointer;
     opacity: .5;
+  }
+  @media(max-width: 440px) {
+    display: none;
+    
+    opacity: .8;
+    width: 6rem;
+    height: 2.5rem;
+    left: calc(50% + 4rem);
+    top: -2.5rem;
+    border-bottom: none;
+    border-radius: 50% 50% 0 0;
   }
 `;

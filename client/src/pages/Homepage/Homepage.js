@@ -4,6 +4,8 @@ import styled from 'styled-components';
 
 import * as firebase from 'firebase';
 
+import PanelSelectors from '../../components/PanelSelectors';
+
 import Header from '../../components/Header';
 import MultiModal from '../../components/MultiModal';
 import MapMap from '../../components/MapMap';
@@ -13,6 +15,7 @@ import ConditionsDisplay from '../../components/ConditionsDisplay';
 import ChatInterface from '../../components/ChatInterface';
 import Loader from '../../components/Loader';
 
+import { setSelectedPanel } from '../../reducersActions/appActions';
 import { addChat, setStatusAskChat, setStatusNoChat, changeCurrentChat } from '../../reducersActions/chatActions';
 
 import paper from '../../assets/paper.jpg';
@@ -21,6 +24,7 @@ import { IP } from '../../constants';
 const Homepage = () => { 
   const dispatch = useDispatch();
   const { appStatus } = useSelector((state) => state.app);
+  const { selectedPanel } = useSelector( state => state.app);
   const { profile } = useSelector(state => state.user);
   const { status, chats } = useSelector(state => state.chat);
 
@@ -90,6 +94,13 @@ const Homepage = () => {
   const [screenWidth, setScreenWidth] = useState(window.innerWidth);
 
   useEffect(() => {
+    if(screenWidth < 441 && selectedPanel === 'all') {
+      dispatch(setSelectedPanel('controls'));
+    } else if(screenWidth > 440 && selectedPanel !== 'all'){
+      dispatch(setSelectedPanel('all'))}
+  }, [screenWidth]);
+
+  useEffect(() => {
     const handleResize = () => {
       setScreenWidth(window.innerWidth);
     };
@@ -108,8 +119,11 @@ const Homepage = () => {
         <CenterDiv> 
           <MapMap />
           <BottomPanel>
+            {/* <PanelSelectors/>
+            <BottomBackground/> */}
             <NearbyDisplay><BottomBackground/></NearbyDisplay>
             <ControlPanel><BottomBackground/></ControlPanel>
+            <ConditionsDisplay><BottomBackground/></ConditionsDisplay>
           </BottomPanel>
         </CenterDiv>
         : /* tablet & desktop */

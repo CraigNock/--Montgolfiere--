@@ -42,3 +42,10 @@ export const setModalValue = (newValue) => (
     modalValue: newValue,
   }
 );
+//PANELS IN MOBILE
+export const setSelectedPanel = (newPanel) => (
+  {
+    type: 'SET_SELECTED_PANEL',
+    selectedPanel: newPanel,
+  }
+);
