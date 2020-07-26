@@ -53,7 +53,7 @@ const panelSlideLeft = keyframes`
 const StyledDiv = styled.div`
   ${props => `transform:${props.show? 'translateX(0)' : 'translateX(-100%)'}` };
   ${props => `z-index:${props.show? '2' : '1'}` };
-  animation: ${panelSlideLeft} 1.5s ease-in-out;
+  animation: ${props =>props.show? panelSlideLeft : 'none'} 1.5s ease-in-out;
   transition: transform 1500ms ease-in-out;
   position: absolute;
   left: 0;

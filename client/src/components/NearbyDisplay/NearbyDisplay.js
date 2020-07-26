@@ -31,7 +31,6 @@ const NearbyDisplay = ({children}) => {
       }).catch(err => console.log('cond err', err))
   }, [nearestCity]);
 
-
   return ( 
     <StyledDiv 
       show={toggle && (selectedPanel === 'nearby' || selectedPanel === 'all')}
@@ -54,7 +53,6 @@ const NearbyDisplay = ({children}) => {
   ) 
 }; 
 
-
 export default NearbyDisplay;
 
 
@@ -67,11 +65,10 @@ const panelSlideUp = keyframes`
   }
 `;
 
-
 const StyledDiv = styled.div`
   ${props => `transform:${props.show? 'translateY(0)' : 'translateY(100%)'}` };
   ${props => `z-index:${props.show? '2' : '1'}` };
-  animation: ${panelSlideUp} 1.5s ease-in-out;
+  animation: ${props =>props.show? panelSlideUp : 'none'} 1.5s ease-in-out;
   transition: transform 1500ms ease-in-out;
   position: absolute;
   left: 0;

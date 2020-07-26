@@ -64,7 +64,7 @@ const ConditionsDisplay = ({children}) => {
 export default ConditionsDisplay;
 
 
-const panelSlide = keyframes`
+const panelSlideRight = keyframes`
   from {
     transform: translateX(100%)
   }
@@ -77,7 +77,7 @@ const panelSlide = keyframes`
 const StyledDiv = styled.div`
   ${props => `transform:${props.show? 'translateX(0)' : 'translateX(100%)'}` };
   ${props => `z-index:${props.show? '2' : '1'}` };
-  animation: ${panelSlide} 1.5s ease-in-out;
+  animation: ${props =>props.show? panelSlideRight : 'none'} 1.5s ease-in-out;
   transition: transform 1500ms ease-in-out;
   position: absolute;
   right: 0;
