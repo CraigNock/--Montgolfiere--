@@ -1,6 +1,8 @@
 import React from 'react'; 
 import styled from 'styled-components'; 
 import { useSelector } from 'react-redux';
+
+import { MEDIA_GATE } from '../../constants';
 import Cloud from './Cloud';
 
 
@@ -61,7 +63,7 @@ export default Clouds;
 
 const Container = styled.div`
   overflow: hidden;
-  @media(max-width: 440px){
+  @media(max-width: ${`${MEDIA_GATE.mobile}px`}){
     display: none;
   }
 `;
@@ -84,7 +86,7 @@ const StyledDiv2 = styled.div`
   overflow: hidden;
   width: 100%;
   z-index: -2;
-  @media(max-width: 800px) {
+  @media(max-width: ${MEDIA_GATE.tablet}) {
     display: none;
   }
 `;

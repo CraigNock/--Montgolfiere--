@@ -4,6 +4,7 @@ import { useDispatch, useSelector } from 'react-redux';
 
 ///// SELECTOR TABS FOR PANEL SWITCHING IN MOBILE /////
 
+import { MEDIA_GATE } from '../../constants';
 import { setSelectedPanel } from '../../reducersActions/appActions';
 
 import { GiJoystick } from "react-icons/gi";
@@ -70,7 +71,7 @@ const SelectorTab1 = styled.div`
   font-size: 2rem;
   font-family: 'Rye', cursive;
   /* font-weight: bold; */
-  @media(max-width: 440px) {
+  @media(max-width: ${`${MEDIA_GATE.mobile}px`}) {
     display: flex;
   }
 `;

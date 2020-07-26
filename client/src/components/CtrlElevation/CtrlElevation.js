@@ -4,6 +4,7 @@ import { useDispatch, useSelector } from 'react-redux';
 
 ///// CONTROLS TO CHANGE THE ELEVATION(affects speed) /////
 
+import { MEDIA_GATE } from '../../constants';
 import { changeElevation } from '../../reducersActions/userActions';
 
 import { GoFlame } from "react-icons/go";
@@ -99,7 +100,7 @@ const ElevUl = styled.ul`
       color: black;
     }
   }
-  @media(max-width: 440px) {
+  @media(max-width: ${`${MEDIA_GATE.mobile}px`}) {
     margin: .25rem 0 0;
   }
 `;
@@ -121,7 +122,7 @@ const FlameoHotman = styled.div`
   0 0 10px 2px rgba(0,0,0,0.33)inset;
   border-radius: 50% 50%;
   filter: grayscale(40%);
-  @media(max-width: 440px) {
+  @media(max-width: ${`${MEDIA_GATE.mobile}px`}) {
     height: 2rem;
     width: 1.75rem;
     margin: 0 0 .5rem 1.25rem ;

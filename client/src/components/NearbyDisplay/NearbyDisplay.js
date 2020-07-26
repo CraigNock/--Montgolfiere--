@@ -7,7 +7,7 @@ import { useSelector } from 'react-redux';
 import PanelSelectors from '../PanelSelectors';
 import NearImage from '../NearImage';
 import NearCity from '../NearCity';
-import { IP } from '../../constants';
+import { IP, MEDIA_GATE } from '../../constants';
 
 import altitude from '../../assets/placeicons/altitude.svg';
 import buildings from '../../assets/placeicons/buildings.svg';
@@ -58,7 +58,7 @@ export default NearbyDisplay;
 
 const panelSlideUp = keyframes`
   from {
-    transform: translateY(100%)
+    transform: translateY(calc(100% + 3rem))
   }
   to {
     transform: translateY(0)
@@ -93,7 +93,7 @@ const StyledDiv = styled.div`
     font-family: 'Rye', cursive;
     color: black;
   }
-  @media(max-width: 440px) {
+  @media(max-width: ${`${MEDIA_GATE.mobile}px`}) {
     ${props => `transform:${props.show? 'translateY(0)' : 'translateY(calc(100% + 3rem))'}` };
     min-width: 100vw;
     width: 100vw;
@@ -124,14 +124,8 @@ const Tab = styled.div`
     cursor: pointer;
     opacity: .5;
   }
-  @media(max-width: 440px) {
+  @media(max-width: ${`${MEDIA_GATE.mobile}px`}) {
     display: none;
-
-    opacity: .8;
-    width: 6rem;
-    height: 2.5rem;
-    left: calc(50% - 3rem);
-    top: -2.5rem;
   }
 `;
 const ImageDiv = styled.div`

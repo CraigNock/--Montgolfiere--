@@ -4,6 +4,7 @@ import { useDispatch, useSelector } from 'react-redux';
 
 ///// CONTROLS TO SET VIEW RANGE(affects range other user balloons are visible) /////
 
+import { MEDIA_GATE } from '../../constants';
 import { setViewRange } from '../../reducersActions/appActions';
 
 import { GiGlobe } from "react-icons/gi";
@@ -111,7 +112,7 @@ const ViewCircle = styled.div`
   color: #36454f;
   box-shadow: 0 0 20px 5px rgba(0,0,0,0.53), 
   0 0 10px 2px rgba(0,0,0,0.33) inset;
-  @media(max-width: 440px) {
+  @media(max-width: ${`${MEDIA_GATE.mobile}px`}) {
     font-size: 1.5rem;
   }
 `;

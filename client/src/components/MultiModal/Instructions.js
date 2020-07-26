@@ -1,6 +1,9 @@
 import React from 'react'; 
 import styled from 'styled-components'; 
 
+///// INSTRUCTIONS ON HOW TO USE APP /////
+
+// import { MEDIA_GATE } from '../../constants';
 import CloseModal from './CloseModal';
 
 import { GoArrowLeft } from "react-icons/go";

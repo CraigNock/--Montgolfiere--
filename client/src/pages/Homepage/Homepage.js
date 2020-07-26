@@ -19,7 +19,7 @@ import { setSelectedPanel } from '../../reducersActions/appActions';
 import { addChat, setStatusAskChat, setStatusNoChat, changeCurrentChat } from '../../reducersActions/chatActions';
 
 import paper from '../../assets/paper.jpg';
-import { IP } from '../../constants';
+import { IP, MEDIA_GATE } from '../../constants';
 
 const Homepage = () => { 
   const dispatch = useDispatch();
@@ -94,9 +94,9 @@ const Homepage = () => {
   const [screenWidth, setScreenWidth] = useState(window.innerWidth);
 
   useEffect(() => {
-    if(screenWidth < 441 && selectedPanel === 'all') {
+    if(screenWidth <= MEDIA_GATE.mobile && selectedPanel === 'all') {
       dispatch(setSelectedPanel('controls'));
-    } else if(screenWidth > 440 && selectedPanel !== 'all'){
+    } else if(screenWidth > MEDIA_GATE.mobile && selectedPanel !== 'all'){
       dispatch(setSelectedPanel('all'))}
   }, [screenWidth]);
 
@@ -115,12 +115,10 @@ const Homepage = () => {
       {(appStatus==='logged in')? 
       <>
       <Header />
-      {(screenWidth < 441)? /* mobile */
+      {(screenWidth <= MEDIA_GATE.mobile)? /* mobile */
         <CenterDiv> 
           <MapMap />
           <BottomPanel>
-            {/* <PanelSelectors/>
-            <BottomBackground/> */}
             <NearbyDisplay><BottomBackground/></NearbyDisplay>
             <ControlPanel><BottomBackground/></ControlPanel>
             <ConditionsDisplay><BottomBackground/></ConditionsDisplay>
@@ -161,11 +159,10 @@ const StyledDiv = styled.div`
   height: 100vh;
   min-width: 1000px;
   min-height: 700px;
-  @media (max-width: 440px) {
+  @media (max-width: ${`${MEDIA_GATE.mobile}px`}) {
     min-width: 100vw;
     min-height: 100%;
   }
-
 `;
 const MainContent = styled.div`
   display: flex;
@@ -173,7 +170,7 @@ const MainContent = styled.div`
   justify-content: space-between;
   overflow: hidden;
   height: 100%;
-  @media (max-width: 440px) {
+  @media (max-width: ${`${MEDIA_GATE.mobile}px`}) {
     margin-top: 1rem;
     padding-top: 1rem;
   }
@@ -245,10 +242,9 @@ const BottomPanel = styled.div`
   height: 20vh;
   width: 100%;
   background: transparent;
-  @media(max-width: 440px) {
+  @media(max-width: ${`${MEDIA_GATE.mobile}px`}) {
     min-width: 100vw;
     width: 100vw;
-    /* height: 15vh; */
   }
 `;
 const BottomBackground = styled.div`
@@ -272,7 +268,7 @@ const BottomBackground = styled.div`
   padding: 1rem;
   margin: 0 auto;
   z-index: -1;
-  @media(max-width: 440px) {
+  @media(max-width: ${`${MEDIA_GATE.mobile}px`}) {
     min-width: 100vw;
     min-height: fit-content;
     width: 100vw;
@@ -287,5 +283,4 @@ const CenterDiv = styled.div`
   width: 100%;
   height: 100%;
   min-height: 600px;
-
 `;

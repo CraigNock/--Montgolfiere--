@@ -3,6 +3,9 @@ import styled, {keyframes} from 'styled-components';
 import { useDispatch, useSelector } from 'react-redux';
 import { Map, TileLayer, AttributionControl } from "react-leaflet";
 
+///// MAP DISPLAY /////
+
+import { MEDIA_GATE } from '../../constants';
 import balloonIconArray from '../MultiModal/balloonArray';
 
 import useInterval from '../../hooks/use-interval-hook';
@@ -248,11 +251,11 @@ const StyledDiv = styled.div`
   box-shadow: 5px 5px 15px 5px rgba(0,0,0,0.53);
   overflow:hidden;
   border-radius: 25%;
-  @media (max-width: 800px) {
+  @media (max-width: ${MEDIA_GATE.tablet}) {
     min-width: 400px;
     min-height: 300px;
   }
-  @media (max-width: 440px) {
+  @media (max-width: ${`${MEDIA_GATE.mobile}px`}) {
     width: 100vw;
     min-width: 100vw;
     min-height: 100px;
@@ -291,17 +294,7 @@ const StyledButton = styled.button`
   color: white;
   background: gray;
   font-family: 'Rye', cursive;
-  @media (max-width: 440px) {
+  @media (max-width: ${`${MEDIA_GATE.mobile}px`}) {
     padding: .5rem;
   }
 `;
-
-// const Pinpoint = styled.div`
-//   height:1px;
-//   width: 1px;
-//   position: absolute;
-//   top: 50% ;
-//   left: 50%;
-//   z-index: 2002;
-//   background: pink;
-// `;

@@ -5,6 +5,7 @@ import {format} from 'date-fns';
 
 ///// DISPLAYS USER PROFILE INFORMATION /////
 
+import { MEDIA_GATE } from '../../constants';
 import gentleman from '../../assets/gentleman.svg';
 import CloseModal from './CloseModal';
 
@@ -59,7 +60,7 @@ const StyledDiv = styled.div`
   background: rgba(0,0,0, .1);
   font-family: 'Fredericka the Great', cursive;
   overflow: hidden;
-  @media(max-width: 440px){
+  @media(max-width: ${`${MEDIA_GATE.mobile}px`}){
     width: 100%;
     height: 100%;
     padding: .5rem ;
@@ -72,7 +73,7 @@ const Title = styled.p`
   font-weight: bold;
   text-decoration: underline;
   margin-bottom: 2rem;
-  @media(max-width: 440px){
+  @media(max-width: ${`${MEDIA_GATE.mobile}px`}){
     margin-bottom: 1rem;
   }
 `;
@@ -82,7 +83,7 @@ const UserInfo = styled.div`
   justify-content: center;
   width:100%;
   margin-bottom: 1rem;
-  @media(max-width: 440px){
+  @media(max-width: ${`${MEDIA_GATE.mobile}px`}){
     align-items: center;
   }
 `;
@@ -100,7 +101,7 @@ const StyledImg = styled.img`
   object-fit: contain;
   background: skyblue;
   border: 5px double darkgoldenrod;
-  @media(max-width: 440px){
+  @media(max-width: ${`${MEDIA_GATE.mobile}px`}){
     max-width: 5rem;
     margin-bottom: 0;
   }

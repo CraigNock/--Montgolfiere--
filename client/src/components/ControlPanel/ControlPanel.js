@@ -4,6 +4,7 @@ import { useSelector } from 'react-redux';
 
 ///// PANEL TO DISPLAY CONTROLS /////
 
+import { MEDIA_GATE } from '../../constants';
 import PanelSelectors from '../PanelSelectors';
 import SpeedDirDisplay from '../SpeedDirDisplay';
 import CtrlElevation from '../CtrlElevation';
@@ -69,7 +70,7 @@ const StyledDiv = styled.div`
   box-shadow: 0 0 10px 3px rgba(0,0,0,0.43);
   border-radius: 5px 3rem 80% 5px;
   padding: 1rem .75rem;
-  @media(max-width: 440px) {
+  @media(max-width: ${`${MEDIA_GATE.mobile}px`}) {
     ${props => `transform:${props.show? 'translateY(0)' : 'translateY(calc(100% + 3rem))'}` };
     bottom: 0;
     width: 100vw;
@@ -85,7 +86,7 @@ const StyledDiv = styled.div`
 const TopDiv = styled.div`
   display: flex;
   flex-direction: column;
-  @media(max-width: 440px) {
+  @media(max-width: ${`${MEDIA_GATE.mobile}px`}) {
     flex-direction: row;
     justify-content: space-between;
     align-items: center;
@@ -97,7 +98,7 @@ const TopDiv = styled.div`
 const ControlsDiv = styled.div`
   padding: .5rem 0;
   border-top: 2px solid gray;
-  @media(max-width: 440px) {
+  @media(max-width: ${`${MEDIA_GATE.mobile}px`}) {
     display: flex;
     justify-content: space-evenly;
     padding: .25rem 0;
@@ -126,16 +127,8 @@ const Tab = styled.div`
     cursor: pointer;
     opacity: .5;
   }
-  @media(max-width: 440px) {
+  @media(max-width: ${`${MEDIA_GATE.mobile}px`}) {
     display: none;
-
-    opacity: .8;
-    width: 6rem;
-    height: 2.5rem;
-    left: calc(50% - 10rem);
-    top: -2.5rem;
-    border-bottom: none;
-    border-radius: 50% 50% 0 0;
   }
 `;
 

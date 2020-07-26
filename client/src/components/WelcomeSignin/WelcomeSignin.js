@@ -1,8 +1,11 @@
 import React, {useState} from 'react'; 
 import styled, {keyframes} from 'styled-components'; 
 
+///// INITIAL WELCOME WINDOW WHEN SIGNED OUT /////
+
 import { AuthContext } from '../AuthContext/AuthContext';
 
+import { MEDIA_GATE } from '../../constants';
 import parchment2 from '../../assets/parchment2.png';
 
 
@@ -93,12 +96,12 @@ const StyledDiv = styled.div`
   border: 10px ridge peru;
   border-radius: 10px;
   color: black;
-  @media (max-width: 600px) {
+  @media (max-width: ${MEDIA_GATE.tablet}) {
     width: 90vw;
     max-height: 60%;
     left: calc(50% - 45vw);
   }
-  @media (max-width: 350px) {
+  @media (max-width: ${`${MEDIA_GATE.mobile}px`}) {
     width: 100vw;
     max-height: 70%;
     left: calc(50% - 50vw);
@@ -121,7 +124,7 @@ const Title = styled.p`
   margin-bottom: 1rem;
   text-decoration: underline;
   color: darkgoldenrod;
-  @media (max-width: 440px) {
+  @media (max-width: ${`${MEDIA_GATE.mobile}px`}) {
     font-size: 1.5rem;
   }
 `;

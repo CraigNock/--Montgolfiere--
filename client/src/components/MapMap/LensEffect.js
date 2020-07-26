@@ -1,8 +1,10 @@
 import React from 'react'; 
 import styled from 'styled-components'; 
-
 import { useSelector } from 'react-redux';
 
+///// GLASS LENS VISUAL EFFECT OVER MAP /////
+
+import { MEDIA_GATE } from '../../constants';
 import raindrops from '../../assets/raindrops.png';
 
 const LensEffect = () => { 
@@ -37,7 +39,7 @@ const GlassDiv = styled.div`
               inset 0 -15px 30px rgba(0,0,0,0.4),
                     0 5px 10px rgba(0,0,0,0.5);
   overflow: hidden;
-  @media (max-width: 440px) {
+  @media (max-width: ${`${MEDIA_GATE.mobile}px`}) {
     border-radius: 2%;
     height: 100%;
     width: 100%;

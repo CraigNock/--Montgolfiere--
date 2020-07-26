@@ -1,6 +1,10 @@
 import React, {useState} from 'react'; 
 import styled from 'styled-components'; 
 
+///// SINGLE IMAGE DISPLAY FOR NEARBY CITY /////
+
+import { MEDIA_GATE } from '../../constants';
+
 const NearImage = (props) => { 
   const [error, setError] = useState(false);
   return (
@@ -28,7 +32,7 @@ const StyledImg = styled.img`
     transform: scale(2) translateY(-1.2rem);
     
   }
-  @media(max-width: 440px){
+  @media(max-width: ${`${MEDIA_GATE.mobile}px`}){
     height: 4rem;
     width: 4rem;
   }

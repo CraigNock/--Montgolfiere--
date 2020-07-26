@@ -4,6 +4,7 @@ import { useSelector } from 'react-redux';
 
 ///// DISPLAYS CONDITIONS AT BALLOON /////
 
+import { MEDIA_GATE } from '../../constants';
 import PanelSelectors from '../PanelSelectors';
 
 const ConditionsDisplay = ({children}) => { 
@@ -95,7 +96,7 @@ const StyledDiv = styled.div`
   border-right: none;
   border-radius: 3rem 5px 5px 80%;
   padding: 1rem;
-  @media(max-width: 440px) {
+  @media(max-width: ${`${MEDIA_GATE.mobile}px`}) {
     ${props => `transform:${props.show? 'translateY(0)' : 'translateY(calc(100% + 3rem))'}` };
     /* flex-direction: row; */
     align-items: center;
@@ -112,7 +113,7 @@ const StyledDiv = styled.div`
 `;
 const Time = styled.div`
   text-align: right;
-  @media(max-width: 440px) {
+  @media(max-width: ${`${MEDIA_GATE.mobile}px`}) {
     width: 100%;
     text-align: left;
     margin-bottom: .25rem;
@@ -122,7 +123,7 @@ const Weather = styled.div`
   display: flex;
   flex-direction: column;
   align-items: flex-end;
-  @media(max-width: 440px) {
+  @media(max-width: ${`${MEDIA_GATE.mobile}px`}) {
     width: 100%;
     flex-direction: row;
     align-items: flex-start;
@@ -132,7 +133,7 @@ const StyledSubDiv1 = styled.div`
   text-align: right;
   border-top: 2px solid gray;
   overflow: hidden;
-  @media(max-width: 440px) {
+  @media(max-width: ${`${MEDIA_GATE.mobile}px`}) {
     text-align: left;
     padding-top: .5rem;
     width: 100%;
@@ -142,7 +143,7 @@ const StyledSubDiv2 = styled(StyledSubDiv1)`
   margin: .5rem 0;
   font-size: .85rem;
   border-bottom: 2px solid gray;
-  @media(max-width: 440px) {
+  @media(max-width: ${`${MEDIA_GATE.mobile}px`}) {
     margin: 0;
     font-size: 1rem;
     border-bottom: none;
@@ -152,7 +153,7 @@ const P1 = styled.p`
   color: black;
   font-family: 'Rye', cursive;
   margin: .25rem 0;
-  @media(max-width: 440px) {
+  @media(max-width: ${`${MEDIA_GATE.mobile}px`}) {
     margin: 0;
   }
 `;
@@ -161,7 +162,7 @@ const S1 = styled.span`
   color: #36454f;
   font-family: 'Rye', cursive;
   margin: .25rem 0;
-  @media(max-width: 440px) {
+  @media(max-width: ${`${MEDIA_GATE.mobile}px`}) {
     display: inline-block;
     margin: 0;
   }
@@ -189,15 +190,7 @@ const Tab = styled.div`
     cursor: pointer;
     opacity: .5;
   }
-  @media(max-width: 440px) {
+  @media(max-width: ${`${MEDIA_GATE.mobile}px`}) {
     display: none;
-    
-    opacity: .8;
-    width: 6rem;
-    height: 2.5rem;
-    left: calc(50% + 4rem);
-    top: -2.5rem;
-    border-bottom: none;
-    border-radius: 50% 50% 0 0;
   }
 `;

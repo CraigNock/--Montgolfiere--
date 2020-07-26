@@ -4,8 +4,8 @@ export const IP = `${process.env.REACT_APP_FB_IP}` ;
 
 
 export const MEDIA_GATE = {
-  mobile: '460px',
-  tablet: '770px',
+  mobile: 770,
+  tablet: 950,
 };
 
 export const COLORS = {
@@ -13,3 +13,4 @@ export const COLORS = {
   labels: 'black',
   values: '#36454f',
 }
+

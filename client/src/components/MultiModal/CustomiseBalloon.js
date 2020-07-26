@@ -4,6 +4,7 @@ import { useDispatch, useSelector } from 'react-redux';
 
 ///// USER BALLOON ICON SELECTION /////
 
+import { MEDIA_GATE } from '../../constants';
 import { changeBalloon 
 } from '../../reducersActions/userActions';
 
@@ -68,7 +69,7 @@ const StyledDiv = styled.div`
   background: rgba(0,0,0, .1);
   font-family: 'Fredericka the Great', cursive;
   overflow: hidden;
-  @media(max-width: 440px){
+  @media(max-width: ${`${MEDIA_GATE.mobile}px`}){
     width: 100%;
     height: 100%;
     padding: .5rem ;
@@ -81,7 +82,7 @@ const Title = styled.p`
   font-weight: bold;
   text-decoration: underline;
   margin-bottom: 1rem;
-  @media(max-width: 440px){
+  @media(max-width: ${`${MEDIA_GATE.mobile}px`}){
     margin-bottom: 0;
   }
 `;
@@ -113,7 +114,7 @@ const BalloonGallery = styled.div`
   border-radius: 6px;
   border: 3px solid var(#CFD8DC);
   };
-  @media(max-width: 440px){
+  @media(max-width: ${`${MEDIA_GATE.mobile}px`}){
     padding: .5rem;
   }
 `;

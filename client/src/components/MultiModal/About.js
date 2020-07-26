@@ -2,6 +2,10 @@ import React from 'react';
 import styled from 'styled-components'; 
 import CloseModal from './CloseModal';
 
+///// ABOUT PROJECT INFORMATION /////
+
+import { MEDIA_GATE } from '../../constants';
+
 const About = () => { 
 
   return (
@@ -71,7 +75,7 @@ const Title = styled.p`
   font-weight: bold;
   text-decoration: underline;
   margin-bottom: 2rem;
-  @media(max-width: 440px){
+  @media(max-width: ${`${MEDIA_GATE.mobile}px`}){
     margin-bottom: 1rem;
   }
 `;

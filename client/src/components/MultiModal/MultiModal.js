@@ -2,6 +2,9 @@ import React from 'react';
 import styled from 'styled-components'; 
 import { useDispatch, useSelector } from 'react-redux';
 
+///// REUSABLE MODAL USED TO DISPLAY VARIOUS INFORMATION /////
+
+import { MEDIA_GATE } from '../../constants';
 import { toggleModal } 
 from '../../reducersActions/appActions';
 
@@ -101,7 +104,7 @@ const ModalFront = styled.div`
   background-image: url(${parchment2});
   background-size: cover;
   border: 10px ridge peru;
-  @media (max-width: 440px) {
+  @media (max-width: ${`${MEDIA_GATE.mobile}px`}) {
     min-height: 10px;
     min-width: 10px;
     width: 90vw;

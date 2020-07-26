@@ -5,6 +5,7 @@ import { useDispatch, useSelector } from 'react-redux';
 
 ///// TOGGLES LENS EFFECT OVER MAP /////
 
+import { MEDIA_GATE } from '../../constants';
 import { toggleLens } from '../../reducersActions/appActions';
 
 const CtrlLens = () => { 
@@ -31,7 +32,7 @@ const StyledDiv = styled.div`
     font-family: 'Rye', cursive;
     color: black;
   };
-  @media(max-width: 440px) {
+  @media(max-width: ${`${MEDIA_GATE.mobile}px`}) {
     display: inline-block;
     margin: 0;
   };

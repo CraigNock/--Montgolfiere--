@@ -4,6 +4,7 @@ import { useDispatch, useSelector } from 'react-redux';
 
 ///// CONTROLS STEERING (only +- 45 degrees to bearing) /////
 
+import { MEDIA_GATE } from '../../constants';
 import { changeDirection } from '../../reducersActions/userActions';
 
 import { GiShipWheel } from "react-icons/gi";
@@ -80,7 +81,7 @@ const StyledDiv = styled.div`
   align-items: flex-start;
   width: 70%;
   padding-top: .75rem;
-  @media(max-width: 440px) {
+  @media(max-width: ${`${MEDIA_GATE.mobile}px`}) {
     flex-direction: row;
     width: fit-content;
     max-width: fit-content;
@@ -97,7 +98,7 @@ const WheelDiv = styled.div`
   margin-left: .4rem;
   font-size: 3.5rem;
   color: #2b0b13;
-  @media(max-width: 440px) {
+  @media(max-width: ${`${MEDIA_GATE.mobile}px`}) {
     margin: -.5rem 0 0 0;
     width: fit-content;
   }

@@ -4,6 +4,8 @@ import { useSelector } from 'react-redux';
 
 ///// DISPLAYS THE SPEED("Velocity") & BEARING OF BALLOON /////
 
+import { MEDIA_GATE } from '../../constants';
+
 const SpeedDirDisplay = () => { 
   const { elevation, direction } = useSelector( state => state.user.profile);
   const { windSum, windBearing } = useSelector( state => state.conditions.current);
@@ -41,7 +43,7 @@ const StyledDiv = styled.div`
     font-family: 'Rye', cursive;
     color: black;
   };
-  @media(max-width: 440px) {
+  @media(max-width: ${`${MEDIA_GATE.mobile}px`}) {
     p {
       display: inline-block;
       margin: .3rem .5rem 0 0;

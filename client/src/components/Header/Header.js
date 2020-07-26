@@ -4,6 +4,7 @@ import { useDispatch, useSelector } from 'react-redux';
 
 import { AuthContext } from '../AuthContext/AuthContext';
 
+import { MEDIA_GATE } from '../../constants';
 import { toggleModal, setModalValue } 
 from '../../reducersActions/appActions';
 
@@ -137,7 +138,7 @@ const Title = styled.div`
   &:hover{
     cursor: context-menu;
   }
-  @media(max-width: 440px){
+  @media(max-width: ${`${MEDIA_GATE.mobile}px`}){
     width: fit-content;
     margin: .3rem 1rem;
     p {
@@ -179,7 +180,7 @@ const SignOut = styled.div`
   min-width: 8rem;
   box-sizing: border-box;
   border-left: 2px solid gray;
-  @media(max-width: 440px){
+  @media(max-width: ${`${MEDIA_GATE.mobile}px`}){
     width: 5rem;
     min-width: 5rem;
   }
@@ -200,7 +201,7 @@ const Menu = styled.div`
   border-top: 2px solid gray;
   border-right: none;
   z-index: 10000;
-  @media(max-width: 440px){
+  @media(max-width: ${`${MEDIA_GATE.mobile}px`}){
     width: 5rem;
   }
 `;
