@@ -24,21 +24,21 @@ const CtrlElevation = () => {
     <StyledSpan>Elevation</StyledSpan>
     <StyledDiv> 
       <ElevUl>
-        <li style={(elevation===3)?{color: '#00563f', borderBottom:'2px solid #00563f'} : {color:'slategray'}} >
+        <li style={(elevation===3)?{color: '#00563f', fontWeight: 'bold'} : {color:'slategray'}} >
           <label>
           <InvisRadio type='radio' name={'High'} value={3} 
           onChange={(e) => handleElevation(e)}
           checked={(elevation === 3)} />High
           </label>
         </li>
-        <li style={(elevation===2)?{color: '#00563f', borderBottom:'2px solid #00563f'} : {color:'slategray'}} >
+        <li style={(elevation===2)?{color: '#00563f', fontWeight: 'bold'} : {color:'slategray'}} >
           <label>
           <InvisRadio type='radio' name={'Med'} value={2} 
           onChange={(e) => handleElevation(e)}
           checked={(elevation === 2)} />Med
           </label>
         </li>
-        <li style={(elevation===1)?{color: '#00563f', borderBottom:'2px solid #00563f'} : {color:'slategray'}} >
+        <li style={(elevation===1)?{color: '#00563f', fontWeight: 'bold'} : {color:'slategray'}} >
           <label>
           <InvisRadio type='radio' name={'Low'} value={1}
           onChange={(e) => handleElevation(e)} 

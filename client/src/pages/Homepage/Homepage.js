@@ -161,7 +161,7 @@ const StyledDiv = styled.div`
   min-height: 700px;
   @media (max-width: ${`${MEDIA_GATE.mobile}px`}) {
     min-width: 100vw;
-    min-height: 100%;
+    min-height: 100vh;
   }
 `;
 const MainContent = styled.div`

@@ -24,21 +24,21 @@ const CtrlRange = () => {
     <StyledSpan>View Range</StyledSpan>
     <StyledDiv> 
       <ViewRange>
-        <li style={(viewRange === 3)?{color: '#00563f', borderBottom:'2px solid #00563f'} : {color:'slategray'}}>
+        <li style={(viewRange === 3)?{color: '#00563f', fontWeight: 'bold'} : {color:'slategray'}}>
           <label>
           <InvisRadio type='radio' name={'global'} value={3} 
           onChange={(e) => handleViewRange(e)}
           checked={(viewRange === 3)} />Global
           </label>
         </li>
-        <li style={(viewRange === 2)?{color: '#00563f', borderBottom:'2px solid #00563f'} : {color:'slategray'}}>
+        <li style={(viewRange === 2)?{color: '#00563f', fontWeight: 'bold'} : {color:'slategray'}}>
           <label>
           <InvisRadio type='radio' name={'radius'} value={2} 
           onChange={(e) => handleViewRange(e)}
           checked={(viewRange === 2)} />Abroad
           </label>
         </li>
-        <li style={(viewRange === 1)?{color: '#00563f', borderBottom:'2px solid #00563f'} : {color:'slategray'}}>
+        <li style={(viewRange === 1)?{color: '#00563f', fontWeight: 'bold'} : {color:'slategray'}}>
           <label>
           <InvisRadio type='radio' name={'local'} value={1}
           onChange={(e) => handleViewRange(e)} 
@@ -98,6 +98,9 @@ position: relative;
       color: black;
     }
   };
+  li {
+    /* border-radius: 5px; */
+  }
 `;
 const ViewCircle = styled.div`
   position: relative;

@@ -21,6 +21,12 @@ const GlobalStyleGlobal = createGlobalStyle`
   }
   html {
     font-size: 16px;
+    @media (max-width: 400px) {
+      font-size: 14px;
+    }
+    @media (max-width: 350px) {
+      font-size: 12px;
+    }
   }
   html, body {
     max-width: 100vw;
@@ -82,6 +88,10 @@ const GlobalStyleGlobal = createGlobalStyle`
     background: black;
     color: whitesmoke;
     font-family: 'Poppins', sans-serif;
+    @media(max-width: 950px) {
+    min-width: 100vw;
+    min-height: 100vh;
+  }
   }
   button {
     font-family: 'Poppins', sans-serif;

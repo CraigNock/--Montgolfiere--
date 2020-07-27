@@ -3,7 +3,7 @@ import styled from 'styled-components';
 
 ///// INSTRUCTIONS ON HOW TO USE APP /////
 
-// import { MEDIA_GATE } from '../../constants';
+import { MEDIA_GATE } from '../../constants';
 import CloseModal from './CloseModal';
 
 import { GoArrowLeft } from "react-icons/go";
@@ -39,7 +39,7 @@ const Instructions = () => {
           <p><GoArrowLeft/><BoldSpan>Lens Effect</BoldSpan>
             : Toggles lens-effect over map.
           </p>
-          <p><GoArrowLeft/><BoldSpan>Navigation</BoldSpan>
+          <p><GoArrowLeft/><BoldSpan>Direction</BoldSpan>
             : Adjust your sail to alter your Bearing.
           </p>
 
@@ -55,14 +55,14 @@ const Instructions = () => {
             <Imagio src={anchor} alt='anchor button' />
             <p>When <BoldSpan>[Elevation: Low]</BoldSpan> balloon can be <BoldSpan>Anchored</BoldSpan>, stopping flight.</p>
           </ImageDiv>
-          <ImageDiv>
+          <ChatImage>
             <Imagio src={fellow} alt='chat others' />
             <p>When other balloons visible, <BoldSpan>Chat</BoldSpan> can be initiated.</p>
-          </ImageDiv>
+          </ChatImage>
         </SubDiv>
         <RightDiv>
           <p><BoldSpan>Menu</BoldSpan><GoArrowUp/>
-            : Check out the options menu to view your Profile, Sign-out, or read About the project 
+            : Check out your Profile, Customise your Balloon, or read the Instructions 
           </p>
           <p><BoldSpan>Panel Toggles<GoArrowRight/></BoldSpan>
             : Hide or Show individual display panels using their clickable tabs.
@@ -71,7 +71,7 @@ const Instructions = () => {
             : Shows time and weather at balloon location.
           </p>
           <p><BoldSpan>Nearby Display<GoArrowDown/></BoldSpan>
-            : Shows the name, distance and images of the nearest city to balloon. Customize your balloon.
+            : Shows the name, distance and images of the nearest city to balloon. 
           </p>
         </RightDiv>
     </StyledDiv> 
@@ -94,7 +94,10 @@ const StyledDiv = styled.div`
   font-family: 'Fredericka the Great', cursive;
   h2{
     text-decoration: underline;
-  }
+    @media(max-width: ${`${MEDIA_GATE.mobile}px`}) {
+      span{font-size: 1rem;}
+    };
+  };
   overflow: hidden;
 `;
 const SubDiv = styled.div`
@@ -107,7 +110,11 @@ const SubDiv = styled.div`
   p {
     font-size: .9rem;
   }
+  @media (max-width: ${`${MEDIA_GATE.mobile}px`}) {
+    p{font-size: .75rem;}
+  }
 `;
+  
 const RightDiv = styled(SubDiv)`
   justify-content: space-between;
   align-items: flex-end;
@@ -130,15 +137,32 @@ const ImageDiv = styled.div`
     text-align: center;
     font-size: .8rem;
   }
+  @media (max-width: ${`${MEDIA_GATE.mobile}px`}) {
+    p{font-size: .75rem;}
+  }
+`;
+const ChatImage = styled(ImageDiv)`
+  @media (max-width: ${`${MEDIA_GATE.mobile}px`}) {
+    display: none;
+  }
 `;
 const Imagio = styled.img`
   width: 100px;
   border-radius: 50%;
+  @media (max-width: ${`${MEDIA_GATE.mobile}px`}) {
+    width: 75px; 
+  }
 `;
 const BoldSpan = styled.span`
   font-weight: bold;
   font-family: 'Fredericka the Great', cursive;
+  @media(max-width: ${`${MEDIA_GATE.mobile}px`}) {
+    font-size: .75rem;
+  }
 `;
 const Note = styled.p`
   font-size: .75rem;
+  @media(max-width: ${`${MEDIA_GATE.mobile}px`}) {
+    display: none;
+  }
 `;
