@@ -27,8 +27,11 @@ const NearbyDisplay = ({children}) => {
     fetch(`${IP}/api/retrieveImages/${nearestCity.tags.name}`)
       .then(data => data.json())
       .then(data => {
-        setImageArray(data.images);
-      }).catch(err => console.log('cond err', err))
+        if(data.status === 200){setImageArray(data.images);}
+        else if(data.status === 418){
+          console.error(' Please refer to step #7 of the ReadMe file: API Keys - "Azure_Cognitive_Key" https://github.com/CraigNock/--Montgolfiere--#api')
+        }
+      }).catch(err => console.log('cityImage err', err))
   }, [nearestCity]);
 
   return ( 

@@ -121,7 +121,10 @@ const retrieveImages = async (req, res) => {
         })
     }
   })
-  .catch(err => console.error(err))
+  .catch(err => {
+    console.error(err);
+    res.status(418).json({status: 418});
+  })
 };
 
 module.exports = {

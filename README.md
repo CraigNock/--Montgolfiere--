@@ -72,7 +72,7 @@ Note that a firebase RealTime Database will need to be set up and various API ke
       - FIREBASE_CLIENT_EMAIL=
       - FIREBASE_CLIENT_CERT=
   
-    - API keys: You will need to obtain your own keys for these services
+    - <span id="api">API keys:</span> You will need to obtain your own keys for these services
       - DARKSKY_API_KEY= 
         - Provides <strong>wind</strong>, weather and sunrise/set data. <strong>(Required)</strong>
         - (Darksky no longer accepts new signups, can use alternative: "Openweather One Call API" ) https://openweathermap.org/api/one-call-api
