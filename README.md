@@ -72,13 +72,14 @@ Note that a firebase RealTime Database will need to be set up and various API ke
       - FIREBASE_CLIENT_EMAIL=
       - FIREBASE_CLIENT_CERT=
   
-    - <span id="api">API keys:</span> You will need to obtain your own keys for these services
+    - <span id="api">API keys:</span> You will need to obtain your own keys for these services. 
       - DARKSKY_API_KEY= 
         - Provides <strong>wind</strong>, weather and sunrise/set data. <strong>(Required)</strong>
         - (Darksky no longer accepts new signups, can use alternative: "Openweather One Call API" ) https://openweathermap.org/api/one-call-api
       - AZURE_COGNITIVE_KEY=
-        - Provides nearby location images (<strong>Optional</strong>: defaults to built in icons)
+        - Provides nearby location images (<strong>Optional</strong>: defaults to built in icons (error message will show on absence))
         - https://docs.microsoft.com/en-us/azure/cognitive-services/
+        
 
 
 8. In the terminal enter $yarn full-start. Concurrently will start both the Server and the React app (which will open automatically in the browser).
