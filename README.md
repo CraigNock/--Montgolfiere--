@@ -20,7 +20,10 @@ This project was borne of the question of what happens to those escaped party ba
 <img src='.\client\src\assets\screenshots\screen3nightrain.png' />
 <img src='.\client\src\assets\screenshots\screen4profile.png'  />
 <img src='.\client\src\assets\screenshots\screen5instruct.png'  />
-
+<div>
+  <img width='49%' src='.\client\src\assets\screenshots\screenmobile1.png'  />
+  <img width='49%' src='.\client\src\assets\screenshots\screenmobile2.png'  />
+</div>
 ---
 
 ## Installing

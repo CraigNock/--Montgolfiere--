@@ -29,7 +29,7 @@ const NearbyDisplay = ({children}) => {
       .then(data => {
         if(data.status === 200){setImageArray(data.images);}
         else if(data.status === 418){
-          console.error(' Please refer to step #7 of the ReadMe file: API Keys - "Azure_Cognitive_Key" https://github.com/CraigNock/--Montgolfiere--#api')
+          console.error(' Please refer to Installation step #7 of the ReadMe file: API Keys - "Azure_Cognitive_Key" https://github.com/CraigNock/--Montgolfiere--#api')
         }
       }).catch(err => console.log('cityImage err', err))
   }, [nearestCity]);
