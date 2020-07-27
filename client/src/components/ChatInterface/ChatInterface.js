@@ -103,6 +103,7 @@ const ChatInterface = () => {
     else if(status ==='inChat' && jumpToNew === true) {
       chatRef.current.scrollTop = chatRef.current.scrollHeight;
     }
+// eslint-disable-next-line
   }, [currentChat]);
 
   return ( (status ==='inChat' && currentChat )?

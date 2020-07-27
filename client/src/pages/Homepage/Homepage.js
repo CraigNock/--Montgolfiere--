@@ -4,8 +4,6 @@ import styled from 'styled-components';
 
 import * as firebase from 'firebase';
 
-import PanelSelectors from '../../components/PanelSelectors';
-
 import Header from '../../components/Header';
 import MultiModal from '../../components/MultiModal';
 import MapMap from '../../components/MapMap';
@@ -26,7 +24,7 @@ const Homepage = () => {
   const { appStatus } = useSelector((state) => state.app);
   const { selectedPanel } = useSelector( state => state.app);
   const { profile } = useSelector(state => state.user);
-  const { status, chats } = useSelector(state => state.chat);
+  const { status } = useSelector(state => state.chat);
 
   const getConversation = async (snapshot) => {
     //get conversation first and make current or whatever then change status
@@ -88,6 +86,7 @@ const Homepage = () => {
     return () => {
       firebase.database().ref('conversations').off('child_removed', (snapshot) => {})
     }
+// eslint-disable-next-line
   }, [status]);
 
 ///// MOBILE RESPONSIVE LISTENER/////
@@ -98,6 +97,7 @@ const Homepage = () => {
       dispatch(setSelectedPanel('controls'));
     } else if(screenWidth > MEDIA_GATE.mobile && selectedPanel !== 'all'){
       dispatch(setSelectedPanel('all'))}
+// eslint-disable-next-line
   }, [screenWidth]);
 
   useEffect(() => {
@@ -246,6 +246,9 @@ const BottomPanel = styled.div`
     min-width: 100vw;
     width: 100vw;
   }
+  @media (max-height: ${`${MEDIA_GATE.mobileHeight}px`}) {
+    height: 30vh;
+  }
 `;
 const BottomBackground = styled.div`
   position: absolute;
@@ -282,5 +285,8 @@ const CenterDiv = styled.div`
   justify-content: space-between;
   width: 100%;
   height: 100%;
-  min-height: 600px;
+  min-height: 400px;
+  @media(max-width: ${`${MEDIA_GATE.mobile}px`}) {
+    min-height: 100px;
+  }
 `;

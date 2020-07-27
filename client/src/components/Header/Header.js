@@ -147,6 +147,9 @@ const Title = styled.div`
       font-size: 1rem;
     }
   }
+  @media(max-width: 300px) {
+    margin: .25rem .5rem;
+  }
 `;
 const ModalButtons = styled.div`
   display: flex;
@@ -168,6 +171,10 @@ const IconDiv = styled.div`
   &:hover {
     cursor: pointer;
     opacity: .8;
+  }
+  @media(max-width: 300px) {
+    padding: 0 .5rem;
+    margin: 0;
   }
 `;
 const SignOut = styled.div`

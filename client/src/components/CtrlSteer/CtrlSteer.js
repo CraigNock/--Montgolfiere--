@@ -23,6 +23,7 @@ const CtrlSteer = () => {
     if (windBearing + activeModifier !== direction) {
       handleDirection(0);
     }
+// eslint-disable-next-line
   }, []);
 
   const handleDirection = async (val) => {

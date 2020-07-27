@@ -5,6 +5,7 @@ export const IP = `${process.env.REACT_APP_FB_IP}` ;
 
 export const MEDIA_GATE = {
   mobile: 770,
+  mobileHeight: 600,
   tablet: 950,
 };
 

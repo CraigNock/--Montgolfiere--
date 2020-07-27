@@ -1,4 +1,6 @@
 
+import {MEDIA_GATE} from './constants';
+
 import { createGlobalStyle } from 'styled-components';
 
 // First we get the viewport height and we multiple it by 1% to get a value for a vh unit
@@ -22,6 +24,9 @@ const GlobalStyleGlobal = createGlobalStyle`
   html {
     font-size: 16px;
     @media (max-width: 400px) {
+      font-size: 14px;
+    }
+    @media (max-height: ${`${MEDIA_GATE.mobileHeight}px`}) {
       font-size: 14px;
     }
     @media (max-width: 350px) {

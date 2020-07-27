@@ -262,6 +262,9 @@ const StyledDiv = styled.div`
     border-radius: 5%;
     /* border: 10px ridge #b78727; */
   }
+  @media (max-height: ${`${MEDIA_GATE.mobileHeight}px`}) {
+    height: 50vh;
+  }
 `;
 
 const StyledBalloon = styled.img`

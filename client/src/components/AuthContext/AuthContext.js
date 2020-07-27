@@ -2,7 +2,7 @@ import React, { createContext, useEffect, useState } from 'react';
 import { useDispatch } from 'react-redux';
 
 import { updateCurrentUser, updateLocation } from '../../reducersActions/userActions';
-import { setStatusWaiting, setStatusLoading, setStatusLogged } from '../../reducersActions/appActions';
+import { setStatusLogged } from '../../reducersActions/appActions';
 import findNextLoc from '../MapMap/findNextLoc';
 
 import { IP } from '../../constants';
