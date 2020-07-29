@@ -14,6 +14,7 @@ const WelcomeSignin = () => {
 
   const [toggle, setToggle] = useState(true);
 
+//toggle disable off if signinwithgoogle aborted?
   const [disable, setDisable] = useState(false);
 
   return (
@@ -104,7 +105,7 @@ const StyledDiv = styled.div`
   @media (max-width: ${`${MEDIA_GATE.mobile}px`}) {
     width: 100vw;
     max-height: 70%;
-    left: calc(50% - 50vw);
+    left: 0;
   }
 `;
 const Intro = styled.div`
@@ -177,5 +178,8 @@ const Tab = styled.div`
   &:hover {
     cursor: pointer;
     opacity: .5;
+  }
+  @media (max-width: ${`${MEDIA_GATE.mobile}px`}) {
+    display: none;
   }
 `;

@@ -2,7 +2,7 @@ import React, { createContext, useEffect, useState } from 'react';
 import { useDispatch } from 'react-redux';
 
 import { updateCurrentUser, updateLocation } from '../../reducersActions/userActions';
-import { setStatusLogged } from '../../reducersActions/appActions';
+import { setStatusLoading, setStatusLogged } from '../../reducersActions/appActions';
 import findNextLoc from '../MapMap/findNextLoc';
 
 import { IP } from '../../constants';
@@ -15,7 +15,6 @@ import 'firebase/auth';
 
 export const AuthContext = createContext(null);
   
-
   // Your web app's Firebase configuration
   var firebaseConfig = {
     apiKey: process.env.REACT_APP_FB_APIKEY,
@@ -27,14 +26,14 @@ export const AuthContext = createContext(null);
     appId: process.env.REACT_APP_FB_APPID,
   };
 
+//sign in methods (can add others later)
+    const providers = {
+      googleProvider: new firebase.auth.GoogleAuthProvider(),
+    };
 //initializes firebase app
   const firebaseApp = firebase.initializeApp(firebaseConfig);
   const firebaseAppAuth = firebaseApp.auth();
 
-//sign in methods (can add others later)
-  const providers = {
-    googleProvider: new firebase.auth.GoogleAuthProvider(),
-  };
 
 
 // {signInWithGoogle, signOut, user} are provided/imported with firebase
@@ -98,6 +97,7 @@ const AuthProvider = ({ children, signInWithGoogle, signOut, user }) => {
 //if someone signs in with google (user changes) then check if user exists on db(createUser endpoint checks), if not then add to db and set currentUser to that user data
   useEffect(() => {
     if (user) {
+      dispatch(setStatusLoading());
       fetch(`${IP}/createUser`, {
         method: 'POST',
         headers: {

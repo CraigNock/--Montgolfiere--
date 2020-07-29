@@ -35,10 +35,10 @@ const ProfileDetails = () => {
       <Values>{profile.startingLocation.city}</Values>
       <Headings>Began Journey</Headings>
       <Values>{format(profile.startDate, 'do MMMM yyyy')}</Values>
-      <Headings>Collectables</Headings>
+      {/* <Headings>Collectables</Headings>
       <Values>0/100</Values>
       <Headings>Friends</Headings>
-      <Values>No Friends Yet</Values>
+      <Values>No Friends Yet</Values> */}
     </StyledDiv> 
   ) 
 }; 
