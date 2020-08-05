@@ -63,7 +63,7 @@ const AuthProvider = ({ children, signInWithGoogle, signOut, user }) => {
     return start;
   }
 
-//HANDLING FOR GUEST SIGNIN (one time use, currently cleared manually)
+//HANDLING FOR GUEST SIGNIN (one time use)
   const randy = (min, max) => { 
     let rand = Math.floor((Math.random()*(max - min)) + min);
     return rand;
@@ -112,7 +112,7 @@ const AuthProvider = ({ children, signInWithGoogle, signOut, user }) => {
       })
         .then((res) => res.json())
         .then((json) => {
-          setCurrentUser(json.data);
+          setCurrentUser(json.data);   ///loading
           dispatch(updateCurrentUser(json.data));
         //grabs last known vector and updates the starting location
           fetch(`${IP}/getLastVector/${json.data.userId}`)
