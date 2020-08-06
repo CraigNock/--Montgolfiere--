@@ -27,7 +27,7 @@ const Homepage = () => {
   const { status } = useSelector(state => state.chat);
 
   const getConversation = async (snapshot) => {
-    //get conversation first and make current or whatever then change status
+    //get conversation first and make current, then change status
     console.log('IP', IP);
     fetch(`${IP}/getConversation/${snapshot.chatId}`, {
       method: 'GET',

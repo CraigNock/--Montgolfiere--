@@ -7,7 +7,7 @@ const initialState = {
 
 };
 
-//status toggle chat window 'inChat' 'loading' 'noChat' 'askChat'
+//status toggle chat window 'inChat' 'chatloading' 'noChat' 'askChat'
 
 const chatReducer = (state = initialState, action) => {
   switch (action.type) {
@@ -19,7 +19,7 @@ const chatReducer = (state = initialState, action) => {
       return produce(state, draftState => {
         draftState.status = 'askChat';
       });
-    case 'SET_STATUS_LOADING':
+    case 'SET_STATUS_CHATLOADING':
       return produce(state, draftState => {
         draftState.status = 'loading';
       });

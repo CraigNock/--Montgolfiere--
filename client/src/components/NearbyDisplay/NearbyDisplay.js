@@ -22,6 +22,7 @@ const NearbyDisplay = ({children}) => {
 
   const [imageArray, setImageArray ] = useState([]);
 
+// Only if the nearest city changes, will new images will be retrieved of the new city. (nearestCity variable only changes if findClosestCity fetch returns a different city)
   useEffect(() => {
     if(nearestCity !== 'Atlantis')
     fetch(`${IP}/api/retrieveImages/${nearestCity.tags.name}`)

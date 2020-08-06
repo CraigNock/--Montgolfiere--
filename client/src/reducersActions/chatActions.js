@@ -12,7 +12,7 @@ export const setStatusAskChat = () => (
     type: 'SET_STATUS_ASKCHAT',
   }
 );
-export const setStatusLoading = () => (
+export const setStatusChatLoading = () => (
   {
     type: 'SET_STATUS_LOADING',
   }
